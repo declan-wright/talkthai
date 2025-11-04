@@ -1,0 +1,438 @@
+/**
+ * UI Strings for Reading Lessons
+ * All translatable content for the Thai reading framework
+ */
+
+import { LanguageCode } from '../types';
+
+export const READING_UI_STRINGS = {
+  // Reading Lesson Selector
+  'reading.selector.title': {
+    [LanguageCode.ENGLISH]: 'Learn Thai Reading',
+    [LanguageCode.FRENCH]: 'Apprendre à lire le thaï',
+    [LanguageCode.PORTUGUESE]: 'Aprender Leitura Tailandesa',
+    [LanguageCode.MANDARIN]: '學習泰語閱讀',
+  },
+  'reading.selector.subtitle': {
+    [LanguageCode.ENGLISH]: 'Master Thai characters step by step',
+    [LanguageCode.FRENCH]: 'Maîtrisez les caractères thaïlandais étape par étape',
+    [LanguageCode.PORTUGUESE]: 'Domine os caracteres tailandeses passo a passo',
+    [LanguageCode.MANDARIN]: '逐步掌握泰語字符',
+  },
+  'reading.section.characters': {
+    [LanguageCode.ENGLISH]: 'Characters',
+    [LanguageCode.FRENCH]: 'Caractères',
+    [LanguageCode.PORTUGUESE]: 'Caracteres',
+    [LanguageCode.MANDARIN]: '字符',
+  },
+
+  // Part 0: Introduction
+  'reading.intro.page1.title': {
+    [LanguageCode.ENGLISH]: 'Welcome to Thai Reading!',
+    [LanguageCode.FRENCH]: 'Bienvenue à la lecture thaïlandaise!',
+    [LanguageCode.PORTUGUESE]: 'Bem-vindo à leitura tailandesa!',
+    [LanguageCode.MANDARIN]: '歡迎學習泰語閱讀！',
+  },
+  'reading.intro.page1.body': {
+    [LanguageCode.ENGLISH]: 'This app is designed to help you learn how to read Thai. You can master it through repetitive practice, just like a game. By progressing step by step, you will be able to read Thai!',
+    [LanguageCode.FRENCH]: 'Cette application est conçue pour vous aider à apprendre à lire le thaï. Vous pouvez le maîtriser grâce à une pratique répétitive, tout comme un jeu. En progressant étape par étape, vous pourrez lire le thaï !',
+    [LanguageCode.PORTUGUESE]: 'Este aplicativo foi projetado para ajudá-lo a aprender a ler tailandês. Você pode dominar através de prática repetitiva, como um jogo. Progredindo passo a passo, você será capaz de ler tailandês!',
+    [LanguageCode.MANDARIN]: '此應用程序旨在幫助您學習閱讀泰語。您可以通過重複練習來掌握它，就像遊戲一樣。通過逐步前進，您將能夠閱讀泰語！',
+  },
+  'reading.intro.page1.footer': {
+    [LanguageCode.ENGLISH]: 'Now, let\'s enjoy learning!',
+    [LanguageCode.FRENCH]: 'Maintenant, amusons-nous à apprendre !',
+    [LanguageCode.PORTUGUESE]: 'Agora, vamos aproveitar o aprendizado!',
+    [LanguageCode.MANDARIN]: '現在，讓我們享受學習的樂趣吧！',
+  },
+
+  'reading.intro.page2.title': {
+    [LanguageCode.ENGLISH]: 'Thai Language and Phonetic Symbols',
+    [LanguageCode.FRENCH]: 'Langue thaïlandaise et symboles phonétiques',
+    [LanguageCode.PORTUGUESE]: 'Língua Tailandesa e Símbolos Fonéticos',
+    [LanguageCode.MANDARIN]: '泰語和音標符號',
+  },
+  'reading.intro.page2.body': {
+    [LanguageCode.ENGLISH]: 'This is Thai language. It is difficult to read right away, so it is common to learn using phonetic symbols, which are like alphabets, until you remember Thai characters.',
+    [LanguageCode.FRENCH]: 'C\'est la langue thaïlandaise. Il est difficile de la lire immédiatement, il est donc courant d\'apprendre en utilisant des symboles phonétiques, qui sont comme des alphabets, jusqu\'à ce que vous vous souveniez des caractères thaïlandais.',
+    [LanguageCode.PORTUGUESE]: 'Esta é a língua tailandesa. É difícil ler imediatamente, então é comum aprender usando símbolos fonéticos, que são como alfabetos, até você memorizar os caracteres tailandeses.',
+    [LanguageCode.MANDARIN]: '這是泰語。立即閱讀很困難，因此通常使用音標符號學習，這些符號就像字母表一樣，直到您記住泰語字符。',
+  },
+  'reading.intro.page2.footer': {
+    [LanguageCode.ENGLISH]: 'These are phonetic symbols. You can somewhat read this, right? The ` mark above the letter "a" represents the tone, affecting the pitch flow of the voice.',
+    [LanguageCode.FRENCH]: 'Ce sont des symboles phonétiques. Vous pouvez un peu lire cela, n\'est-ce pas ? La marque ` au-dessus de la lettre "a" représente le ton, affectant le flux de hauteur de la voix.',
+    [LanguageCode.PORTUGUESE]: 'Estes são símbolos fonéticos. Você pode ler isso um pouco, certo? A marca ` acima da letra "a" representa o tom, afetando o fluxo de pitch da voz.',
+    [LanguageCode.MANDARIN]: '這些是音標符號。您可以有點閱讀這個，對吧？字母"a"上方的`標記代表聲調，影響聲音的音高流動。',
+  },
+
+  'reading.intro.page3.title': {
+    [LanguageCode.ENGLISH]: 'Structure of Thai Sounds',
+    [LanguageCode.FRENCH]: 'Structure des sons thaïlandais',
+    [LanguageCode.PORTUGUESE]: 'Estrutura dos Sons Tailandeses',
+    [LanguageCode.MANDARIN]: '泰語聲音的結構',
+  },
+  'reading.intro.page3.body': {
+    [LanguageCode.ENGLISH]: 'Thai sounds are made up of three components: consonants, vowels, and tones. For example, in "kâa", the consonant is "k", the vowel is "aa", and the tone is indicated by the "^" mark.',
+    [LanguageCode.FRENCH]: 'Les sons thaïlandais sont composés de trois composants : consonnes, voyelles et tons. Par exemple, dans "kâa", la consonne est "k", la voyelle est "aa", et le ton est indiqué par la marque "^".',
+    [LanguageCode.PORTUGUESE]: 'Os sons tailandeses são compostos por três componentes: consoantes, vogais e tons. Por exemplo, em "kâa", a consoante é "k", a vogal é "aa", e o tom é indicado pela marca "^".',
+    [LanguageCode.MANDARIN]: '泰語聲音由三個組件組成：輔音、元音和聲調。例如，在"kâa"中，輔音是"k"，元音是"aa"，聲調由"^"標記表示。',
+  },
+
+  'reading.intro.page4.title': {
+    [LanguageCode.ENGLISH]: 'Learning Order',
+    [LanguageCode.FRENCH]: 'Ordre d\'apprentissage',
+    [LanguageCode.PORTUGUESE]: 'Ordem de Aprendizado',
+    [LanguageCode.MANDARIN]: '學習順序',
+  },
+  'reading.intro.page4.body': {
+    [LanguageCode.ENGLISH]: 'You will learn in the order of Consonants → Vowels → Tones. The key is to practice "step by step until it sticks." The goal is to reach a state where you can "understand instantly" without much thought. Even if it seems confusing at first, with practice, you will start to understand instantly. If you find it difficult, go back and proceed slowly.',
+    [LanguageCode.FRENCH]: 'Vous apprendrez dans l\'ordre Consonnes → Voyelles → Tons. La clé est de pratiquer "étape par étape jusqu\'à ce que cela reste". L\'objectif est d\'atteindre un état où vous pouvez "comprendre instantanément" sans trop réfléchir. Même si cela semble déroutant au début, avec de la pratique, vous commencerez à comprendre instantanément. Si vous trouvez cela difficile, revenez en arrière et procédez lentement.',
+    [LanguageCode.PORTUGUESE]: 'Você aprenderá na ordem Consoantes → Vogais → Tons. A chave é praticar "passo a passo até fixar". O objetivo é alcançar um estado onde você pode "entender instantaneamente" sem muito pensamento. Mesmo que pareça confuso no início, com a prática, você começará a entender instantaneamente. Se achar difícil, volte e prossiga devagar.',
+    [LanguageCode.MANDARIN]: '您將按照輔音 → 元音 → 聲調的順序學習。關鍵是練習"逐步直到掌握"。目標是達到一種無需太多思考即可"立即理解"的狀態。即使一開始看起來令人困惑，通過練習，您將開始立即理解。如果覺得困難，請返回並慢慢進行。',
+  },
+  'reading.intro.page4.footer': {
+    [LanguageCode.ENGLISH]: 'Now, let\'s enjoy learning!',
+    [LanguageCode.FRENCH]: 'Maintenant, amusons-nous à apprendre !',
+    [LanguageCode.PORTUGUESE]: 'Agora, vamos aproveitar o aprendizado!',
+    [LanguageCode.MANDARIN]: '現在，讓我們享受學習的樂趣吧！',
+  },
+
+  // Lesson 1: High Consonants
+  'reading.lesson1.page1.title': {
+    [LanguageCode.ENGLISH]: 'Types of Consonants',
+    [LanguageCode.FRENCH]: 'Types de consonnes',
+    [LanguageCode.PORTUGUESE]: 'Tipos de Consoantes',
+    [LanguageCode.MANDARIN]: '輔音類型',
+  },
+  'reading.lesson1.page1.body': {
+    [LanguageCode.ENGLISH]: 'There are 42 consonants in Thai. They are classified into three groups: "High", "Mid", and "Low". These groups are used later when learning tones.',
+    [LanguageCode.FRENCH]: 'Il y a 42 consonnes en thaï. Elles sont classées en trois groupes : "Hautes", "Moyennes" et "Basses". Ces groupes sont utilisés plus tard lors de l\'apprentissage des tons.',
+    [LanguageCode.PORTUGUESE]: 'Existem 42 consoantes em tailandês. Elas são classificadas em três grupos: "Altas", "Médias" e "Baixas". Esses grupos são usados posteriormente ao aprender tons.',
+    [LanguageCode.MANDARIN]: '泰語中有42個輔音。它們分為三組："高"、"中"和"低"。這些組在後來學習聲調時使用。',
+  },
+
+  'reading.lesson1.page2.title': {
+    [LanguageCode.ENGLISH]: 'List of All Consonants',
+    [LanguageCode.FRENCH]: 'Liste de toutes les consonnes',
+    [LanguageCode.PORTUGUESE]: 'Lista de Todas as Consoantes',
+    [LanguageCode.MANDARIN]: '所有輔音列表',
+  },
+  'reading.lesson1.page2.body': {
+    [LanguageCode.ENGLISH]: 'This is a table of all consonants to give an overall picture.',
+    [LanguageCode.FRENCH]: 'Ceci est un tableau de toutes les consonnes pour donner une vue d\'ensemble.',
+    [LanguageCode.PORTUGUESE]: 'Esta é uma tabela de todas as consoantes para dar uma visão geral.',
+    [LanguageCode.MANDARIN]: '這是所有輔音的表格，以提供全局圖片。',
+  },
+
+  'reading.lesson1.page3.title': {
+    [LanguageCode.ENGLISH]: 'Consonants to Learn Later',
+    [LanguageCode.FRENCH]: 'Consonnes à apprendre plus tard',
+    [LanguageCode.PORTUGUESE]: 'Consoantes para Aprender Depois',
+    [LanguageCode.MANDARIN]: '稍後學習的輔音',
+  },
+  'reading.lesson1.page3.body': {
+    [LanguageCode.ENGLISH]: 'The gray consonants in the table are also used, but their usage is very low and they are complex and confusing, so they will not be covered for now. They will be introduced in a later step. After practicing with the basic consonants efficiently, these will be easy to remember, so don\'t worry.',
+    [LanguageCode.FRENCH]: 'Les consonnes grises du tableau sont également utilisées, mais leur utilisation est très faible et elles sont complexes et déroutantes, elles ne seront donc pas couvertes pour le moment. Elles seront introduites dans une étape ultérieure. Après avoir pratiqué efficacement avec les consonnes de base, celles-ci seront faciles à retenir, alors ne vous inquiétez pas.',
+    [LanguageCode.PORTUGUESE]: 'As consoantes cinza na tabela também são usadas, mas seu uso é muito baixo e são complexas e confusas, então não serão cobertas por enquanto. Elas serão introduzidas em uma etapa posterior. Depois de praticar com as consoantes básicas de forma eficiente, essas serão fáceis de lembrar, então não se preocupe.',
+    [LanguageCode.MANDARIN]: '表格中的灰色輔音也被使用，但它們的使用率非常低，而且複雜且令人困惑，因此暫時不會涵蓋。它們將在後面的步驟中介紹。在有效練習基本輔音之後，這些將很容易記住，所以不要擔心。',
+  },
+
+  'reading.lesson1.page4.title': {
+    [LanguageCode.ENGLISH]: 'List of High Consonants',
+    [LanguageCode.FRENCH]: 'Liste des consonnes hautes',
+    [LanguageCode.PORTUGUESE]: 'Lista de Consoantes Altas',
+    [LanguageCode.MANDARIN]: '高輔音列表',
+  },
+  'reading.lesson1.page4.body': {
+    [LanguageCode.ENGLISH]: 'Check out the 10 high consonants you will learn in this step! Tap to play.',
+    [LanguageCode.FRENCH]: 'Découvrez les 10 consonnes hautes que vous apprendrez dans cette étape ! Appuyez pour jouer.',
+    [LanguageCode.PORTUGUESE]: 'Confira as 10 consoantes altas que você aprenderá nesta etapa! Toque para reproduzir.',
+    [LanguageCode.MANDARIN]: '查看您將在此步驟中學習的10個高輔音！點擊播放。',
+  },
+
+  'reading.lesson1.page5.title': {
+    [LanguageCode.ENGLISH]: 'Consonant Names',
+    [LanguageCode.FRENCH]: 'Noms des consonnes',
+    [LanguageCode.PORTUGUESE]: 'Nomes das Consoantes',
+    [LanguageCode.MANDARIN]: '輔音名稱',
+  },
+  'reading.lesson1.page5.body': {
+    [LanguageCode.ENGLISH]: 'To distinguish specific consonants, they are referred to along with a representative word that contains them. Pronounced as "Consonant" + "ɔɔ" + "Word". The consonant "ก" is pronounced as "kɔɔ kày" in conjunction with the word "kài" meaning "chicken". This app uses these as the names of the consonants.',
+    [LanguageCode.FRENCH]: 'Pour distinguer des consonnes spécifiques, elles sont désignées avec un mot représentatif qui les contient. Prononcé comme "Consonne" + "ɔɔ" + "Mot". La consonne "ก" est prononcée "kɔɔ kày" en conjonction avec le mot "kài" signifiant "poulet". Cette application utilise ces noms pour les consonnes.',
+    [LanguageCode.PORTUGUESE]: 'Para distinguir consoantes específicas, elas são referidas junto com uma palavra representativa que as contém. Pronunciado como "Consoante" + "ɔɔ" + "Palavra". A consoante "ก" é pronunciada como "kɔɔ kày" em conjunto com a palavra "kài" que significa "galinha". Este aplicativo usa esses como os nomes das consoantes.',
+    [LanguageCode.MANDARIN]: '為了區分特定的輔音，它們與包含它們的代表性詞一起被引用。發音為"輔音" + "ɔɔ" + "詞"。輔音"ก"與意為"雞"的詞"kài"一起發音為"kɔɔ kày"。此應用程序使用這些作為輔音的名稱。',
+  },
+
+  'reading.lesson1.page6.title': {
+    [LanguageCode.ENGLISH]: 'Time to Practice!',
+    [LanguageCode.FRENCH]: 'Temps de pratiquer !',
+    [LanguageCode.PORTUGUESE]: 'Hora de Praticar!',
+    [LanguageCode.MANDARIN]: '是時候練習了！',
+  },
+  'reading.lesson1.page6.body': {
+    [LanguageCode.ENGLISH]: 'In consonant practice, the goal is to recognize the "pronunciation symbols" from the "letters". Make Mistakes and Learn! This app is designed to learn through making mistakes. When you make a mistake, listen to the correct pronunciation and find the right answer. Gradually, you will learn more and more.',
+    [LanguageCode.FRENCH]: 'Dans la pratique des consonnes, le but est de reconnaître les "symboles de prononciation" à partir des "lettres". Faites des erreurs et apprenez ! Cette application est conçue pour apprendre en faisant des erreurs. Lorsque vous faites une erreur, écoutez la prononciation correcte et trouvez la bonne réponse. Progressivement, vous apprendrez de plus en plus.',
+    [LanguageCode.PORTUGUESE]: 'Na prática de consoantes, o objetivo é reconhecer os "símbolos de pronúncia" das "letras". Cometa Erros e Aprenda! Este aplicativo foi projetado para aprender através de erros. Quando você comete um erro, ouça a pronúncia correta e encontre a resposta certa. Gradualmente, você aprenderá cada vez mais.',
+    [LanguageCode.MANDARIN]: '在輔音練習中，目標是從"字母"中識別"發音符號"。犯錯並學習！此應用程序旨在通過犯錯來學習。當您犯錯時，聆聽正確的發音並找到正確的答案。逐漸地，您將學到越來越多。',
+  },
+
+  // Lesson 2: Mid Consonants
+  'reading.lesson2.page1.title': {
+    [LanguageCode.ENGLISH]: 'List of Middle Consonants',
+    [LanguageCode.FRENCH]: 'Liste des consonnes moyennes',
+    [LanguageCode.PORTUGUESE]: 'Lista de Consoantes Médias',
+    [LanguageCode.MANDARIN]: '中輔音列表',
+  },
+  'reading.lesson2.page1.body': {
+    [LanguageCode.ENGLISH]: 'These are the 7 middle consonants. Tap to play.',
+    [LanguageCode.FRENCH]: 'Ce sont les 7 consonnes moyennes. Appuyez pour jouer.',
+    [LanguageCode.PORTUGUESE]: 'Estas são as 7 consoantes médias. Toque para reproduzir.',
+    [LanguageCode.MANDARIN]: '這些是7個中輔音。點擊播放。',
+  },
+
+  'reading.lesson2.page2.title': {
+    [LanguageCode.ENGLISH]: 'Aspirated Consonants',
+    [LanguageCode.FRENCH]: 'Consonnes aspirées',
+    [LanguageCode.PORTUGUESE]: 'Consoantes Aspiradas',
+    [LanguageCode.MANDARIN]: '送氣輔音',
+  },
+  'reading.lesson2.page2.body': {
+    [LanguageCode.ENGLISH]: 'In Thai, there are consonants called "aspirated consonants" which are pronounced with a lot of breath. Aspirated sounds are created by adding an "h" to the consonant. There are four types: "kh", "th", "ph", and "ch". To get an idea of the pronunciation, imagine pronouncing it with enough breath so that it can be heard. Try taking a deep breath and pronouncing it while sighing to get the feel of it.',
+    [LanguageCode.FRENCH]: 'En thaï, il existe des consonnes appelées "consonnes aspirées" qui sont prononcées avec beaucoup de souffle. Les sons aspirés sont créés en ajoutant un "h" à la consonne. Il existe quatre types : "kh", "th", "ph" et "ch". Pour avoir une idée de la prononciation, imaginez la prononcer avec suffisamment de souffle pour qu\'elle puisse être entendue. Essayez de prendre une profonde inspiration et de la prononcer en soupirant pour en avoir le ressenti.',
+    [LanguageCode.PORTUGUESE]: 'Em tailandês, existem consoantes chamadas "consoantes aspiradas" que são pronunciadas com muito ar. Sons aspirados são criados adicionando um "h" à consoante. Existem quatro tipos: "kh", "th", "ph" e "ch". Para ter uma ideia da pronúncia, imagine pronunciá-la com ar suficiente para que possa ser ouvida. Tente respirar fundo e pronunciá-la enquanto suspira para sentir.',
+    [LanguageCode.MANDARIN]: '在泰語中，有一種叫做"送氣輔音"的輔音，發音時帶有大量氣息。送氣聲音是通過在輔音後添加"h"來創建的。有四種類型："kh"、"th"、"ph"和"ch"。要了解發音，想像用足夠的氣息發音以便可以聽到。嘗試深呼吸並在嘆氣時發音以感受它。',
+  },
+
+  // Lesson 2.5: Practice
+  'reading.lesson2_5.page1.title': {
+    [LanguageCode.ENGLISH]: 'Review: High and Mid Consonants',
+    [LanguageCode.FRENCH]: 'Révision : Consonnes hautes et moyennes',
+    [LanguageCode.PORTUGUESE]: 'Revisão: Consoantes Altas e Médias',
+    [LanguageCode.MANDARIN]: '複習：高輔音和中輔音',
+  },
+
+  // Lesson 3: Low Consonants Shared
+  'reading.lesson3.page1.title': {
+    [LanguageCode.ENGLISH]: 'Low Consonants',
+    [LanguageCode.FRENCH]: 'Consonnes basses',
+    [LanguageCode.PORTUGUESE]: 'Consoantes Baixas',
+    [LanguageCode.MANDARIN]: '低輔音',
+  },
+  'reading.lesson3.page1.body': {
+    [LanguageCode.ENGLISH]: 'There are a total of 23 low consonants, but we will learn 18 of them for now, excluding the less frequently used ones. Since there are many low consonants, they are divided into two parts.',
+    [LanguageCode.FRENCH]: 'Il y a un total de 23 consonnes basses, mais nous en apprendrons 18 pour le moment, en excluant celles qui sont moins fréquemment utilisées. Puisqu\'il y a beaucoup de consonnes basses, elles sont divisées en deux parties.',
+    [LanguageCode.PORTUGUESE]: 'Existem um total de 23 consoantes baixas, mas aprenderemos 18 delas por enquanto, excluindo as menos frequentemente usadas. Como há muitas consoantes baixas, elas são divididas em duas partes.',
+    [LanguageCode.MANDARIN]: '總共有23個低輔音，但我們現在將學習其中的18個，排除使用頻率較低的。由於低輔音很多，它們被分為兩部分。',
+  },
+
+  'reading.lesson3.page2.title': {
+    [LanguageCode.ENGLISH]: 'How the parts are divided',
+    [LanguageCode.FRENCH]: 'Comment les parties sont divisées',
+    [LanguageCode.PORTUGUESE]: 'Como as partes são divididas',
+    [LanguageCode.MANDARIN]: '如何劃分部分',
+  },
+  'reading.lesson3.page2.body': {
+    [LanguageCode.ENGLISH]: 'Part 1 covers sounds that also exist in high consonants, while Part 2 covers sounds that only exist in low consonants. Part 1 is labeled as "Shared" and Part 2 is labeled as "Unique". Let\'s look at examples of the shared ones on the next page.',
+    [LanguageCode.FRENCH]: 'La partie 1 couvre les sons qui existent également dans les consonnes hautes, tandis que la partie 2 couvre les sons qui n\'existent que dans les consonnes basses. La partie 1 est étiquetée "Partagées" et la partie 2 est étiquetée "Uniques". Regardons des exemples des partagées à la page suivante.',
+    [LanguageCode.PORTUGUESE]: 'A Parte 1 cobre sons que também existem em consoantes altas, enquanto a Parte 2 cobre sons que existem apenas em consoantes baixas. A Parte 1 é rotulada como "Compartilhadas" e a Parte 2 é rotulada como "Únicas". Vamos ver exemplos das compartilhadas na próxima página.',
+    [LanguageCode.MANDARIN]: '第1部分涵蓋也存在於高輔音中的聲音，而第2部分涵蓋僅存在於低輔音中的聲音。第1部分標記為"共享"，第2部分標記為"獨特"。讓我們在下一頁看一些共享的例子。',
+  },
+
+  'reading.lesson3.page3.title': {
+    [LanguageCode.ENGLISH]: 'Some low consonants share the same sound as high consonants',
+    [LanguageCode.FRENCH]: 'Certaines consonnes basses partagent le même son que les consonnes hautes',
+    [LanguageCode.PORTUGUESE]: 'Algumas consoantes baixas compartilham o mesmo som que consoantes altas',
+    [LanguageCode.MANDARIN]: '一些低輔音與高輔音共享相同的聲音',
+  },
+  'reading.lesson3.page3.body': {
+    [LanguageCode.ENGLISH]: 'Both the low consonant "ค" and the high consonant "ข" are pronounced "kh". However, there are differences in tone rules that will be learned later. For now, just remember that both have the same pronunciation.',
+    [LanguageCode.FRENCH]: 'La consonne basse "ค" et la consonne haute "ข" sont toutes deux prononcées "kh". Cependant, il existe des différences dans les règles de ton qui seront apprises plus tard. Pour l\'instant, retenez simplement que les deux ont la même prononciation.',
+    [LanguageCode.PORTUGUESE]: 'Tanto a consoante baixa "ค" quanto a consoante alta "ข" são pronunciadas "kh". No entanto, existem diferenças nas regras de tom que serão aprendidas mais tarde. Por enquanto, apenas lembre-se de que ambas têm a mesma pronúncia.',
+    [LanguageCode.MANDARIN]: '低輔音"ค"和高輔音"ข"都發音為"kh"。然而，聲調規則存在差異，將在後面學習。現在，只需記住兩者具有相同的發音。',
+  },
+
+  'reading.lesson3.page4.title': {
+    [LanguageCode.ENGLISH]: 'List of Shared Low Consonants',
+    [LanguageCode.FRENCH]: 'Liste des consonnes basses partagées',
+    [LanguageCode.PORTUGUESE]: 'Lista de Consoantes Baixas Compartilhadas',
+    [LanguageCode.MANDARIN]: '共享低輔音列表',
+  },
+  'reading.lesson3.page4.body': {
+    [LanguageCode.ENGLISH]: 'Let\'s review the consonants in "Shared Low Consonants"!',
+    [LanguageCode.FRENCH]: 'Révisons les consonnes dans "Consonnes basses partagées" !',
+    [LanguageCode.PORTUGUESE]: 'Vamos revisar as consoantes em "Consoantes Baixas Compartilhadas"!',
+    [LanguageCode.MANDARIN]: '讓我們復習"共享低輔音"中的輔音！',
+  },
+
+  // Lesson 3.5: Practice
+  'reading.lesson3_5.page1.title': {
+    [LanguageCode.ENGLISH]: 'Review: High, Mid, and Shared Low Consonants',
+    [LanguageCode.FRENCH]: 'Révision : Consonnes hautes, moyennes et basses partagées',
+    [LanguageCode.PORTUGUESE]: 'Revisão: Consoantes Altas, Médias e Baixas Compartilhadas',
+    [LanguageCode.MANDARIN]: '複習：高、中和共享低輔音',
+  },
+
+  // Lesson 4: Low Consonants Unique
+  'reading.lesson4.page1.title': {
+    [LanguageCode.ENGLISH]: 'Low Consonants "Unique"',
+    [LanguageCode.FRENCH]: 'Consonnes basses "Uniques"',
+    [LanguageCode.PORTUGUESE]: 'Consoantes Baixas "Únicas"',
+    [LanguageCode.MANDARIN]: '低輔音「獨特」',
+  },
+  'reading.lesson4.page1.body': {
+    [LanguageCode.ENGLISH]: 'Let\'s learn the remaining low consonants! The sounds of unique consonants exist only in low consonants, and no other consonants have these sounds.',
+    [LanguageCode.FRENCH]: 'Apprenons les consonnes basses restantes ! Les sons des consonnes uniques n\'existent que dans les consonnes basses, et aucune autre consonne n\'a ces sons.',
+    [LanguageCode.PORTUGUESE]: 'Vamos aprender as consoantes baixas restantes! Os sons de consoantes únicas existem apenas em consoantes baixas, e nenhuma outra consoante possui esses sons.',
+    [LanguageCode.MANDARIN]: '讓我們學習剩餘的低輔音！獨特輔音的聲音僅存在於低輔音中，其他輔音沒有這些聲音。',
+  },
+
+  'reading.lesson4.page2.title': {
+    [LanguageCode.ENGLISH]: 'ง - How to Pronounce ŋ',
+    [LanguageCode.FRENCH]: 'ง - Comment prononcer ŋ',
+    [LanguageCode.PORTUGUESE]: 'ง - Como Pronunciar ŋ',
+    [LanguageCode.MANDARIN]: 'ง - 如何發音 ŋ',
+  },
+  'reading.lesson4.page2.body': {
+    [LanguageCode.ENGLISH]: '"ง" = "ŋ" is a sound that doesn\'t exist in English. Say "Sing" super slowly and stop at "n". When it\'s at "n", notice that your mouth is open but the throat is closed, and the air goes through the nose. This is the "ŋ" sound. To pronounce "ŋaa", first close the throat first and let the air go through the nose for a moment and then open the throat to pronounce "aa". Below are pronunciations using ŋ. Ignore the vowels and tone marks for now.',
+    [LanguageCode.FRENCH]: '"ง" = "ŋ" est un son qui n\'existe pas en français. Dites "Sing" très lentement et arrêtez-vous à "n". Quand c\'est à "n", remarquez que votre bouche est ouverte mais la gorge est fermée, et l\'air passe par le nez. C\'est le son "ŋ". Pour prononcer "ŋaa", fermez d\'abord la gorge et laissez l\'air passer par le nez pendant un moment, puis ouvrez la gorge pour prononcer "aa". Ci-dessous sont les prononciations utilisant ŋ. Ignorez les voyelles et les marques de ton pour l\'instant.',
+    [LanguageCode.PORTUGUESE]: '"ง" = "ŋ" é um som que não existe em português. Diga "Sing" muito devagar e pare em "n". Quando está em "n", observe que sua boca está aberta mas a garganta está fechada, e o ar passa pelo nariz. Este é o som "ŋ". Para pronunciar "ŋaa", primeiro feche a garganta e deixe o ar passar pelo nariz por um momento e então abra a garganta para pronunciar "aa". Abaixo estão as pronúncias usando ŋ. Ignore as vogais e marcas de tom por enquanto.',
+    [LanguageCode.MANDARIN]: '"ง" = "ŋ" 是一種在英語中不存在的聲音。非常慢地說"Sing"並在"n"處停止。當它在"n"時，注意您的嘴是張開的，但喉嚨是關閉的，空氣通過鼻子。這就是"ŋ"聲音。要發音"ŋaa"，首先關閉喉嚨並讓空氣通過鼻子一會兒，然後打開喉嚨發音"aa"。以下是使用ŋ的發音。現在忽略元音和聲調標記。',
+  },
+
+  'reading.lesson4.page3.title': {
+    [LanguageCode.ENGLISH]: 'List of Unique Low Consonants',
+    [LanguageCode.FRENCH]: 'Liste des consonnes basses uniques',
+    [LanguageCode.PORTUGUESE]: 'Lista de Consoantes Baixas Únicas',
+    [LanguageCode.MANDARIN]: '獨特低輔音列表',
+  },
+  'reading.lesson4.page3.body': {
+    [LanguageCode.ENGLISH]: 'Let\'s review the Unique Low Consonants!',
+    [LanguageCode.FRENCH]: 'Révisons les consonnes basses uniques !',
+    [LanguageCode.PORTUGUESE]: 'Vamos revisar as Consoantes Baixas Únicas!',
+    [LanguageCode.MANDARIN]: '讓我們復習獨特低輔音！',
+  },
+
+  // Practice UI Strings
+  'reading.practice.correct': {
+    [LanguageCode.ENGLISH]: 'Correct!',
+    [LanguageCode.FRENCH]: 'Correct !',
+    [LanguageCode.PORTUGUESE]: 'Correto!',
+    [LanguageCode.MANDARIN]: '正確！',
+  },
+  'reading.practice.next': {
+    [LanguageCode.ENGLISH]: 'Next',
+    [LanguageCode.FRENCH]: 'Suivant',
+    [LanguageCode.PORTUGUESE]: 'Próximo',
+    [LanguageCode.MANDARIN]: '下一個',
+  },
+  'reading.practice.question': {
+    [LanguageCode.ENGLISH]: 'Question {current} of {total}',
+    [LanguageCode.FRENCH]: 'Question {current} sur {total}',
+    [LanguageCode.PORTUGUESE]: 'Pergunta {current} de {total}',
+    [LanguageCode.MANDARIN]: '問題 {current} / {total}',
+  },
+  'reading.practice.complete.title': {
+    [LanguageCode.ENGLISH]: 'Practice Complete!',
+    [LanguageCode.FRENCH]: 'Pratique terminée !',
+    [LanguageCode.PORTUGUESE]: 'Prática Completa!',
+    [LanguageCode.MANDARIN]: '練習完成！',
+  },
+  'reading.practice.complete.score': {
+    [LanguageCode.ENGLISH]: '{correct} / {total} Correct ({percentage}%)',
+    [LanguageCode.FRENCH]: '{correct} / {total} Correct ({percentage}%)',
+    [LanguageCode.PORTUGUESE]: '{correct} / {total} Correto ({percentage}%)',
+    [LanguageCode.MANDARIN]: '{correct} / {total} 正確 ({percentage}%)',
+  },
+  'reading.practice.complete.points': {
+    [LanguageCode.ENGLISH]: '+{points} Points',
+    [LanguageCode.FRENCH]: '+{points} Points',
+    [LanguageCode.PORTUGUESE]: '+{points} Pontos',
+    [LanguageCode.MANDARIN]: '+{points} 分',
+  },
+  'reading.practice.complete.timeComparison.faster': {
+    [LanguageCode.ENGLISH]: '{seconds} seconds faster than your average!',
+    [LanguageCode.FRENCH]: '{seconds} secondes plus rapide que votre moyenne !',
+    [LanguageCode.PORTUGUESE]: '{seconds} segundos mais rápido que sua média!',
+    [LanguageCode.MANDARIN]: '比您的平均速度快 {seconds} 秒！',
+  },
+  'reading.practice.complete.timeComparison.slower': {
+    [LanguageCode.ENGLISH]: '{seconds} seconds slower than your average',
+    [LanguageCode.FRENCH]: '{seconds} secondes plus lent que votre moyenne',
+    [LanguageCode.PORTUGUESE]: '{seconds} segundos mais lento que sua média',
+    [LanguageCode.MANDARIN]: '比您的平均速度慢 {seconds} 秒',
+  },
+  'reading.practice.complete.review': {
+    [LanguageCode.ENGLISH]: 'Characters you missed:',
+    [LanguageCode.FRENCH]: 'Caractères que vous avez manqués :',
+    [LanguageCode.PORTUGUESE]: 'Caracteres que você errou:',
+    [LanguageCode.MANDARIN]: '您錯過的字符：',
+  },
+  'reading.practice.complete.tryAgain': {
+    [LanguageCode.ENGLISH]: 'Try Again',
+    [LanguageCode.FRENCH]: 'Réessayer',
+    [LanguageCode.PORTUGUESE]: 'Tentar Novamente',
+    [LanguageCode.MANDARIN]: '再試一次',
+  },
+  'reading.practice.complete.returnToLessons': {
+    [LanguageCode.ENGLISH]: 'Return to Lessons',
+    [LanguageCode.FRENCH]: 'Retour aux leçons',
+    [LanguageCode.PORTUGUESE]: 'Voltar para Lições',
+    [LanguageCode.MANDARIN]: '返回課程',
+  },
+
+  // General Labels
+  'reading.consonant': {
+    [LanguageCode.ENGLISH]: 'Consonant',
+    [LanguageCode.FRENCH]: 'Consonne',
+    [LanguageCode.PORTUGUESE]: 'Consoante',
+    [LanguageCode.MANDARIN]: '輔音',
+  },
+  'reading.vowel': {
+    [LanguageCode.ENGLISH]: 'Vowel',
+    [LanguageCode.FRENCH]: 'Voyelle',
+    [LanguageCode.PORTUGUESE]: 'Vogal',
+    [LanguageCode.MANDARIN]: '元音',
+  },
+  'reading.tone': {
+    [LanguageCode.ENGLISH]: 'Tone',
+    [LanguageCode.FRENCH]: 'Ton',
+    [LanguageCode.PORTUGUESE]: 'Tom',
+    [LanguageCode.MANDARIN]: '聲調',
+  },
+  'reading.class.high': {
+    [LanguageCode.ENGLISH]: 'High Consonant',
+    [LanguageCode.FRENCH]: 'Consonne haute',
+    [LanguageCode.PORTUGUESE]: 'Consoante Alta',
+    [LanguageCode.MANDARIN]: '高輔音',
+  },
+  'reading.class.mid': {
+    [LanguageCode.ENGLISH]: 'Mid Consonant',
+    [LanguageCode.FRENCH]: 'Consonne moyenne',
+    [LanguageCode.PORTUGUESE]: 'Consoante Média',
+    [LanguageCode.MANDARIN]: '中輔音',
+  },
+  'reading.class.low': {
+    [LanguageCode.ENGLISH]: 'Low Consonant',
+    [LanguageCode.FRENCH]: 'Consonne basse',
+    [LanguageCode.PORTUGUESE]: 'Consoante Baixa',
+    [LanguageCode.MANDARIN]: '低輔音',
+  },
+  'reading.startLesson': {
+    [LanguageCode.ENGLISH]: 'Start Lesson',
+    [LanguageCode.FRENCH]: 'Commencer la leçon',
+    [LanguageCode.PORTUGUESE]: 'Iniciar Lição',
+    [LanguageCode.MANDARIN]: '開始課程',
+  },
+  'reading.startPractice': {
+    [LanguageCode.ENGLISH]: 'Start Practice',
+    [LanguageCode.FRENCH]: 'Commencer la pratique',
+    [LanguageCode.PORTUGUESE]: 'Iniciar Prática',
+    [LanguageCode.MANDARIN]: '開始練習',
+  },
+  'reading.backToLessons': {
+    [LanguageCode.ENGLISH]: 'Back to Lessons',
+    [LanguageCode.FRENCH]: 'Retour aux leçons',
+    [LanguageCode.PORTUGUESE]: 'Voltar para Lições',
+    [LanguageCode.MANDARIN]: '返回課程',
+  },
+};

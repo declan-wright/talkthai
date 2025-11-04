@@ -1,0 +1,23 @@
+{
+  "short_name": "Thai Talk",
+  "name": "Thai Talk: Real-time Conversation Practice",
+  "icons": [
+    {
+      "src": "/logo.jpg",
+      "type": "image/jpeg",
+      "sizes": "512x512",
+      "purpose": "any"
+    },
+    {
+      "src": "/logo.jpg",
+      "type": "image/jpeg",
+      "sizes": "192x192",
+      "purpose": "maskable"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#1A1A1A",
+  "background_color": "#1A1A1A",
+  "description": "Practice your Thai fluency with real-time feedback through 5 custom conversation lessons."
+}

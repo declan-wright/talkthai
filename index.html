@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/jpeg" href="/logo.jpg" />
+    <link rel="shortcut icon" type="image/jpeg" href="/logo.jpg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thai Talk: Real-time Conversation Practice</title>
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#1A1A1A" />
+    <link rel="apple-touch-icon" href="/logo.jpg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/logo.jpg" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/logo.jpg" />
+    <link rel="apple-touch-icon" sizes="120x120" href="/logo.jpg" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Thai Talk">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;700&family=Noto+Sans+TC:wght@400;700;900&family=Noto+Sans+Thai+Looped:wght@400;600;700&family=Prompt:wght@700&display=swap" rel="stylesheet">
+    <script>
+      try {
+        if (localStorage.getItem('thaiTalk-thai-looped-font') === 'true') {
+          document.documentElement.classList.add('thai-looped');
+          document.body?.classList.add('thai-looped');
+        }
+      } catch (e) {}
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+                'charcoal-ink': '#1A1A1A',
+                'warm-white': '#FAF7F0',
+                'vibrant-orange': '#FF6B00',
+                'light-grey': '#E0E0E0',
+            },
+            fontFamily: {
+                sans: ['Inter', 'sans-serif'],
+                heading: ['Archivo Black', 'sans-serif'],
+                thai: ['Prompt', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      /* Hide scrollbar for Chrome, Safari and Opera */
+      .no-scrollbar::-webkit-scrollbar {
+          display: none;
+      }
+
+      /* Hide scrollbar for IE, Edge and Firefox */
+      .no-scrollbar {
+          -ms-overflow-style: none;  /* IE and Edge */
+          scrollbar-width: none;  /* Firefox */
+      }
+
+      @keyframes pulse {
+        0%, 100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+      }
+      .animate-pulse-orange {
+        animation: pulse 1.5s infinite ease-in-out;
+      }
+
+      @keyframes progress-bar-load {
+        from { width: 0%; }
+        to { width: 95%; }
+      }
+      .animate-progress-bar {
+        animation: progress-bar-load 15s ease-out forwards;
+      }
+
+      /* Mandarin Font Overrides */
+      .lang-zh-TW .font-sans {
+        font-family: 'Noto Sans TC', sans-serif;
+      }
+      .lang-zh-TW .font-heading {
+        font-family: 'Noto Sans TC', sans-serif;
+        font-weight: 900;
+      }
+
+      /* Thai Looped Font Toggle */
+      .thai-looped .font-sans {
+        font-family: 'Noto Sans Thai Looped', 'Inter', sans-serif;
+      }
+      .thai-looped .font-thai {
+        font-family: 'Noto Sans Thai Looped', sans-serif;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body class="bg-charcoal-ink text-warm-white antialiased">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>

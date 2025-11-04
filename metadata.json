@@ -1,0 +1,8 @@
+{
+  "name": "Talk Thai",
+  "description": "Practice your Thai fluency with real-time feedback through 5 custom conversation lessons. Start learning from English, French, Brazilian Portuguese, or Taiwanese Mandarin.",
+  "requestFramePermissions": [
+    "microphone",
+    "camera"
+  ]
+}
