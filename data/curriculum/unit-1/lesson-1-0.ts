@@ -42,6 +42,11 @@ export const lesson_1_0: Lesson = {
         { thai: "ช่วยด้วย", phonetic: "chûai dûai", translations: { [LanguageCode.ENGLISH]: "Help!", [LanguageCode.FRENCH]: "À l'aide !", [LanguageCode.PORTUGUESE]: "Socorro!", [LanguageCode.MANDARIN]: "救命！" } },
         { thai: "ได้ไหม", phonetic: "dâai mái", translations: { [LanguageCode.ENGLISH]: "Can (I/you)?", [LanguageCode.FRENCH]: "Est-ce que je/tu peux ?", [LanguageCode.PORTUGUESE]: "Pode?", [LanguageCode.MANDARIN]: "可以嗎？" } },
         { thai: "หน่อย", phonetic: "nòi", translations: { [LanguageCode.ENGLISH]: "(A little) please", [LanguageCode.FRENCH]: "(Un peu) s'il te/vous plaît", [LanguageCode.PORTUGUESE]: "(Um pouco) por favor", [LanguageCode.MANDARIN]: "稍微一下，請" } },
+        { thai: "บราซิล", phonetic: "braa-sin", translations: { [LanguageCode.ENGLISH]: "Brazil", [LanguageCode.FRENCH]: "Brésil", [LanguageCode.PORTUGUESE]: "Brasil", [LanguageCode.MANDARIN]: "巴西" } },
+        { thai: "อเมริกา", phonetic: "à-mee-rí-gaa", translations: { [LanguageCode.ENGLISH]: "America", [LanguageCode.FRENCH]: "Amérique", [LanguageCode.PORTUGUESE]: "América", [LanguageCode.MANDARIN]: "美國" } },
+        { thai: "ฝรั่งเศส", phonetic: "fà-ràng-sèet", translations: { [LanguageCode.ENGLISH]: "France", [LanguageCode.FRENCH]: "France", [LanguageCode.PORTUGUESE]: "França", [LanguageCode.MANDARIN]: "法國" } },
+        { thai: "ประเทศไทย", phonetic: "bprà-thêet-thai", translations: { [LanguageCode.ENGLISH]: "Thailand", [LanguageCode.FRENCH]: "Thaïlande", [LanguageCode.PORTUGUESE]: "Tailândia", [LanguageCode.MANDARIN]: "泰國" } },
+        { thai: "ไทย", phonetic: "thai", translations: { [LanguageCode.ENGLISH]: "Thai", [LanguageCode.FRENCH]: "Thaïlandais(e)", [LanguageCode.PORTUGUESE]: "Tailandês(a)", [LanguageCode.MANDARIN]: "泰國的" } },
     ],
     worksheet: [
         {

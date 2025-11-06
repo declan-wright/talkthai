@@ -12,12 +12,23 @@ import {
   ALL_HIGH_CONSONANTS,
   ALL_MID_CONSONANTS,
   ALL_LOW_CONSONANTS,
-  type ThaiConsonant
+  type ThaiConsonant,
+  VOWEL_PLACEMENT_EXAMPLES,
+  LONG_VOWELS,
+  type ThaiVowel,
+  LIVE_ENDING_CONSONANTS,
+  DEAD_ENDING_CONSONANTS,
+  ENDING_K_EXAMPLES,
+  ENDING_P_EXAMPLES,
+  ENDING_T_EXAMPLES,
+  INTRO_EXAMPLES,
+  ENDING_CONSONANT_PRACTICE_WORDS
 } from './characters';
 
 export enum ReadingLessonType {
   INTRODUCTION = 'INTRODUCTION',
   CONSONANT_LESSON = 'CONSONANT_LESSON',
+  VOWEL_LESSON = 'VOWEL_LESSON',
   PRACTICE = 'PRACTICE',
 }
 
@@ -30,14 +41,25 @@ export interface ReadingPage {
   data?: any; // Additional data for dynamic content
 }
 
+export interface EndingConsonantPracticeWord {
+  thai: string;
+  phonetic: string;
+  endingSound: string; // The ending consonant sound (n, ŋ, m, y, w, k, p, t)
+  audioFile: string;
+}
+
 export interface ReadingLesson {
   id: string;
   type: ReadingLessonType;
   title: LocalizedString;
   description?: LocalizedString;
   pages: ReadingPage[];
-  practiceCharacters?: ThaiConsonant[]; // Characters to practice
+  practiceCharacters?: ThaiConsonant[]; // Characters to practice (for consonant practice)
+  practiceVowels?: ThaiVowel[]; // Vowels to practice (for vowel practice)
+  practiceEndingConsonants?: EndingConsonantPracticeWord[]; // Words for ending consonant practice
   practiceAnswerOptions?: string[]; // Phonetic options for practice
+  isVowelPractice?: boolean; // Flag to indicate vowel practice mode
+  isEndingConsonantPractice?: boolean; // Flag to indicate ending consonant practice mode
 }
 
 // =============================================================================
@@ -352,6 +374,188 @@ export const LESSON_4_LOW_UNIQUE: ReadingLesson = {
   practiceAnswerOptions: ['ŋ', 'y', 'n', 'm', 'r', 'l', 'w', 'h']
 };
 
+// Lesson 4.3: Practice (Similar Consonants - High & Shared Low)
+export const LESSON_4_3_PRACTICE: ReadingLesson = {
+  id: '4.3',
+  type: ReadingLessonType.PRACTICE,
+  title: {
+    [LanguageCode.ENGLISH]: 'Practice: Similar Consonants',
+    [LanguageCode.FRENCH]: 'Pratique: Consonnes Similaires',
+    [LanguageCode.PORTUGUESE]: 'Prática: Consoantes Similares',
+    [LanguageCode.MANDARIN]: '練習：相似輔音',
+  },
+  pages: [
+    {
+      title: 'reading.lesson4_3.page1.title',
+      type: 'character-list',
+      data: {
+        characters: [...TAUGHT_HIGH_CONSONANTS, ...TAUGHT_LOW_CONSONANTS_SHARED]
+      }
+    }
+  ],
+  practiceCharacters: [...TAUGHT_HIGH_CONSONANTS, ...TAUGHT_LOW_CONSONANTS_SHARED],
+  practiceAnswerOptions: ['kh', 'ch', 's', 'th', 'ph', 'f', 'h']
+};
+
+// Lesson 4.6: Practice (All Consonants)
+export const LESSON_4_6_PRACTICE: ReadingLesson = {
+  id: '4.6',
+  type: ReadingLessonType.PRACTICE,
+  title: {
+    [LanguageCode.ENGLISH]: 'Practice: All Consonants',
+    [LanguageCode.FRENCH]: 'Pratique: Toutes les Consonnes',
+    [LanguageCode.PORTUGUESE]: 'Prática: Todas as Consoantes',
+    [LanguageCode.MANDARIN]: '練習：所有輔音',
+  },
+  pages: [
+    {
+      title: 'reading.lesson4_6.page1.title',
+      type: 'character-list',
+      data: {
+        characters: [...TAUGHT_HIGH_CONSONANTS, ...TAUGHT_MID_CONSONANTS, ...TAUGHT_LOW_CONSONANTS_SHARED, ...TAUGHT_LOW_CONSONANTS_UNIQUE]
+      }
+    }
+  ],
+  practiceCharacters: [...TAUGHT_HIGH_CONSONANTS, ...TAUGHT_MID_CONSONANTS, ...TAUGHT_LOW_CONSONANTS_SHARED, ...TAUGHT_LOW_CONSONANTS_UNIQUE],
+  practiceAnswerOptions: ['k', 'kh', 'c', 'ch', 'd', 't', 'b', 'p', 'ph', 'f', 's', 'h', 'th', 'n', 'm', 'y', 'r', 'l', 'w', 'ŋ', '∅']
+};
+
+// =============================================================================
+// PART 5: VOWELS
+// =============================================================================
+
+// Lesson 5: Long Vowels
+export const LESSON_5_LONG_VOWELS: ReadingLesson = {
+  id: '5',
+  type: ReadingLessonType.VOWEL_LESSON,
+  title: {
+    [LanguageCode.ENGLISH]: 'Long Vowels',
+    [LanguageCode.FRENCH]: 'Voyelles Longues',
+    [LanguageCode.PORTUGUESE]: 'Vogais Longas',
+    [LanguageCode.MANDARIN]: '長元音',
+  },
+  pages: [
+    {
+      title: 'reading.lesson5.page1.title',
+      body: 'reading.lesson5.page1.body',
+      type: 'special',
+      data: {
+        vowelPlacementExamples: VOWEL_PLACEMENT_EXAMPLES
+      }
+    },
+    {
+      title: 'reading.lesson5.page2.title',
+      body: 'reading.lesson5.page2.body',
+      type: 'special',
+      data: {
+        vowelTypes: [
+          { title: 'reading.lesson5.page2.section1.title', example: 'reading.lesson5.page2.section1.example' },
+          { title: 'reading.lesson5.page2.section2.title', example: 'reading.lesson5.page2.section2.example' },
+          { title: 'reading.lesson5.page2.section3.title', example: 'reading.lesson5.page2.section3.example' }
+        ]
+      }
+    },
+    {
+      title: 'reading.lesson5.page3.title',
+      body: 'reading.lesson5.page3.body',
+      type: 'character-list',
+      data: {
+        vowels: LONG_VOWELS
+      }
+    }
+  ],
+  practiceVowels: LONG_VOWELS,
+  practiceAnswerOptions: ['aa', 'ii', 'uu', 'ɯɯ', 'ee', 'ɛɛ', 'oo', 'ɔɔ', 'əə'],
+  isVowelPractice: true
+};
+
+// Lesson 7: Long Vowels + Ending Consonants
+export const LESSON_7_ENDING_CONSONANTS: ReadingLesson = {
+  id: '7',
+  type: ReadingLessonType.VOWEL_LESSON,
+  title: {
+    [LanguageCode.ENGLISH]: 'Long Vowels + Ending Consonants',
+    [LanguageCode.FRENCH]: 'Voyelles Longues + Consonnes Finales',
+    [LanguageCode.PORTUGUESE]: 'Vogais Longas + Consoantes Finais',
+    [LanguageCode.MANDARIN]: '長元音 + 結尾輔音',
+  },
+  pages: [
+    {
+      title: 'reading.lesson7.page1.title',
+      body: 'reading.lesson7.page1.body',
+      type: 'special',
+      data: {
+        introExamples: INTRO_EXAMPLES
+      }
+    },
+    {
+      title: 'reading.lesson7.page2.title',
+      body: 'reading.lesson7.page2.body',
+      type: 'special',
+      data: {
+        liveEndingConsonants: LIVE_ENDING_CONSONANTS
+      }
+    },
+    {
+      title: 'reading.lesson7.page3.title',
+      body: 'reading.lesson7.page3.body',
+      type: 'special',
+      data: {
+        deadEndingConsonants: DEAD_ENDING_CONSONANTS
+      }
+    },
+    {
+      title: 'reading.lesson7.page4.title',
+      body: 'reading.lesson7.page4.body',
+      type: 'special',
+      data: {
+        endingType: 'k',
+        mainConsonant: 'ก',
+        otherConsonants: ['ข', 'ค'],
+        examples: ENDING_K_EXAMPLES
+      }
+    },
+    {
+      title: 'reading.lesson7.page5.title',
+      body: 'reading.lesson7.page5.body',
+      type: 'special',
+      data: {
+        endingType: 'p',
+        mainConsonant: 'บ',
+        otherConsonants: ['ป', 'พ', 'ฟ', 'ภ'],
+        examples: ENDING_P_EXAMPLES
+      }
+    },
+    {
+      title: 'reading.lesson7.page6.title',
+      body: 'reading.lesson7.page6.body',
+      type: 'special',
+      data: {
+        endingType: 't',
+        mainConsonant: 'ด',
+        otherConsonants: ['จ', 'ช', 'ซ', 'ฎ', 'ฏ', 'ฐ', 'ฑ', 'ฒ', 'ต', 'ถ', 'ท', 'ธ', 'ศ', 'ษ', 'ส'],
+        examples: ENDING_T_EXAMPLES
+      }
+    },
+    {
+      title: 'reading.lesson7.page7.title',
+      body: 'reading.lesson7.page7.body',
+      type: 'special',
+      data: {
+        vowelChanges: [
+          { before: 'กือ', beforePhonetic: 'kɯɯ', after: 'กืบ', afterPhonetic: 'kɯ̀ɯp', ending: 'บ', note: 'reading.lesson7.page7.note1' },
+          { before: 'กัว', beforePhonetic: 'kua', after: 'กวด', afterPhonetic: 'kùat', ending: 'ด', note: 'reading.lesson7.page7.note2' },
+          { before: 'เกอ', beforePhonetic: 'kəə', after: 'เกิน', afterPhonetic: 'kəən', ending: 'น', note: 'reading.lesson7.page7.note3' },
+          { before: 'แดอ', beforePhonetic: 'khəə', after: 'เคย', afterPhonetic: 'khəəy', ending: 'ย', note: 'reading.lesson7.page7.note4' }
+        ]
+      }
+    }
+  ],
+  practiceEndingConsonants: ENDING_CONSONANT_PRACTICE_WORDS,
+  practiceAnswerOptions: ['n', 'ŋ', 'm', 'y', 'w', 'k', 'p', 't'],
+  isEndingConsonantPractice: true
+};
+
 // =============================================================================
 // ALL LESSONS
 // =============================================================================
@@ -363,5 +567,9 @@ export const ALL_READING_LESSONS: ReadingLesson[] = [
   LESSON_2_5_PRACTICE,
   LESSON_3_LOW_SHARED,
   LESSON_3_5_PRACTICE,
-  LESSON_4_LOW_UNIQUE
+  LESSON_4_LOW_UNIQUE,
+  LESSON_4_3_PRACTICE,
+  LESSON_4_6_PRACTICE,
+  LESSON_5_LONG_VOWELS,
+  LESSON_7_ENDING_CONSONANTS
 ];

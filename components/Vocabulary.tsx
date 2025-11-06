@@ -26,7 +26,10 @@ const ProgressRow: React.FC<{ color: string; label: string; count: number }> = (
 );
 
 const StudyProgress: React.FC<{ progress: { new: number, learning: number, almost: number, mastered: number }, total: number, language: Language }> = ({ progress, total, language }) => {
-    const masteredPercent = total > 0 ? Math.round((progress.mastered / total) * 100) : 0;
+    // Calculate mastery with partial credit: learning = 1/3, almost = 2/3, mastered = 3/3
+    const masteredPercent = total > 0
+        ? Math.round(((progress.learning * (1/3) + progress.almost * (2/3) + progress.mastered) / total) * 100)
+        : 0;
     
     return (
         <div className="bg-warm-white p-4 mb-6 border border-light-grey text-charcoal-ink rounded-none">
@@ -98,8 +101,11 @@ export const Vocabulary: React.FC<VocabularyProps> = ({ lesson, language, onStud
         
         let potentialSet = [ ...learningCards, ...almostCards, ...newCards ];
         
-        // Get review cards from previous lessons
-        const reviewVocab = getReviewVocabulary(UNITS, lesson.id);
+        // 20% chance to skip review cards
+        const skipReviewCards = Math.random() < 0.2;
+        
+        // Get review cards from previous lessons (unless skipping)
+        const reviewVocab = skipReviewCards ? [] : getReviewVocabulary(UNITS, lesson.id);
         const reviewCardsSet = new Set(reviewVocab.map(v => v.thai));
         
         // Calculate how many cards from current lesson to include
@@ -108,7 +114,7 @@ export const Vocabulary: React.FC<VocabularyProps> = ({ lesson, language, onStud
         // Select cards from current lesson
         let nextSet = shuffleArray(potentialSet).slice(0, currentLessonCardCount);
         
-        // Add review cards
+        // Add review cards (if not skipping)
         nextSet = [...nextSet, ...reviewVocab];
         
         // Shuffle the combined set
@@ -171,8 +177,8 @@ export const Vocabulary: React.FC<VocabularyProps> = ({ lesson, language, onStud
     
     const handleSetComplete = () => {
         if (user) {
-            firestoreService.addPoints(user.uid, 10, 'Flashcard Set');
-            showPoints(10);
+            firestoreService.addPoints(user.uid, 5, 'Flashcard Set');
+            showPoints(5);
         }
         setIsStudying(false);
     };

@@ -17,6 +17,11 @@ export const WritingPractice: React.FC<WritingPracticeProps> = ({ lesson, langua
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const contextRef = useRef<CanvasRenderingContext2D | null>(null);
     const [isDrawing, setIsDrawing] = useState(false);
+    const isDrawingRef = useRef(false);
+    const lastPointRef = useRef<{ x: number; y: number; pressure: number; t: number } | null>(null);
+    const pointQueueRef = useRef<Array<{ x: number; y: number; pressure: number; t: number }>>([]);
+    const rafIdRef = useRef<number | null>(null);
+    const baseStrokeWidthRef = useRef<number>(3.5); // slightly thinner than previous 5px
 
     const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -38,7 +43,7 @@ export const WritingPractice: React.FC<WritingPracticeProps> = ({ lesson, langua
         const canvas = canvasRef.current;
         if (!canvas) return;
 
-        const context = canvas.getContext('2d');
+        const context = canvas.getContext('2d', { desynchronized: true } as any);
         if (!context) return;
         contextRef.current = context;
 
@@ -57,8 +62,9 @@ export const WritingPractice: React.FC<WritingPracticeProps> = ({ lesson, langua
 
             // Set drawing properties. These are reset after every resize/setup.
             context.lineCap = 'round';
+            context.lineJoin = 'round';
             context.strokeStyle = '#1A1A1A';
-            context.lineWidth = 5;
+            context.lineWidth = baseStrokeWidthRef.current;
 
             // Fill background, effectively clearing the canvas.
             context.fillStyle = '#FAF7F0';
@@ -78,49 +84,84 @@ export const WritingPractice: React.FC<WritingPracticeProps> = ({ lesson, langua
         };
     }, [currentWord]); // Dependency on currentWord ensures canvas is cleared for new words.
 
-    const getCoords = (event: MouseEvent | TouchEvent) => {
+    const getPointerCoords = (evt: PointerEvent) => {
         const canvas = canvasRef.current;
-        if (!canvas) return { offsetX: 0, offsetY: 0 };
+        if (!canvas) return { x: 0, y: 0 };
         const rect = canvas.getBoundingClientRect();
-        
-        let clientX, clientY;
-        if (event instanceof MouseEvent) {
-            clientX = event.clientX;
-            clientY = event.clientY;
-        } else if (event.touches[0]) {
-            clientX = event.touches[0].clientX;
-            clientY = event.touches[0].clientY;
-        } else {
-            return { offsetX: 0, offsetY: 0 };
-        }
+        return { x: evt.clientX - rect.left, y: evt.clientY - rect.top };
+    };
 
-        return { offsetX: clientX - rect.left, offsetY: clientY - rect.top };
-    }
+    const scheduleDraw = () => {
+        if (rafIdRef.current != null) return;
+        rafIdRef.current = requestAnimationFrame(() => {
+            rafIdRef.current = null;
+            const ctx = contextRef.current;
+            if (!ctx) return;
+            let last = lastPointRef.current;
+            const queue = pointQueueRef.current;
+            while (queue.length > 0) {
+                const next = queue.shift()!;
+                if (!last) {
+                    last = next;
+                    lastPointRef.current = last;
+                    continue;
+                }
+                const midX = (last.x + next.x) / 2;
+                const midY = (last.y + next.y) / 2;
 
-    const startDrawing = (event: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
-        const { offsetX, offsetY } = getCoords(event.nativeEvent);
-        contextRef.current?.beginPath();
-        contextRef.current?.moveTo(offsetX, offsetY);
+                // Pressure-aware width, defaulting to a comfortable minimum
+                const pressure = Math.max(0.1, Math.min(1, next.pressure || 0.5));
+                const width = baseStrokeWidthRef.current * (0.75 + 0.25 * pressure);
+
+                ctx.lineWidth = width;
+                ctx.beginPath();
+                ctx.moveTo(last.x, last.y);
+                ctx.quadraticCurveTo(last.x, last.y, midX, midY);
+                ctx.stroke();
+
+                last = next;
+                lastPointRef.current = last;
+            }
+        });
+    };
+
+    const handlePointerDown = (e: React.PointerEvent<HTMLCanvasElement>) => {
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+        (e.currentTarget as HTMLCanvasElement).setPointerCapture(e.pointerId);
+        isDrawingRef.current = true;
         setIsDrawing(true);
-    };
-
-    const finishDrawing = () => {
-        contextRef.current?.closePath();
-        setIsDrawing(false);
-    };
-
-    const draw = (event: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
-        if (!isDrawing) return;
-        
-        // Prevent scrolling on touch devices while drawing
-        if (event.nativeEvent instanceof TouchEvent) {
-            event.preventDefault();
-        }
-
-        const { offsetX, offsetY } = getCoords(event.nativeEvent);
-        contextRef.current?.lineTo(offsetX, offsetY);
-        contextRef.current?.stroke();
         setIsCanvasEmpty(false);
+
+        const native = e.nativeEvent as PointerEvent;
+        const { x, y } = getPointerCoords(native);
+        const pressure = native.pressure || 0.5;
+        const t = performance.now();
+        lastPointRef.current = { x, y, pressure, t };
+        // seed the queue with initial point so the first segment can be drawn smoothly
+        pointQueueRef.current.push({ x, y, pressure, t });
+        scheduleDraw();
+    };
+
+    const handlePointerMove = (e: React.PointerEvent<HTMLCanvasElement>) => {
+        if (!isDrawingRef.current) return;
+        const native = e.nativeEvent as PointerEvent;
+        // Use coalesced events for high-frequency inputs (e.g., Apple Pencil)
+        const events = typeof native.getCoalescedEvents === 'function' ? native.getCoalescedEvents() : [native];
+        for (const ce of events) {
+            const { x, y } = getPointerCoords(ce);
+            const pressure = ce.pressure || 0.5;
+            const t = performance.now();
+            pointQueueRef.current.push({ x, y, pressure, t });
+        }
+        scheduleDraw();
+    };
+
+    const handlePointerUp = () => {
+        isDrawingRef.current = false;
+        setIsDrawing(false);
+        lastPointRef.current = null;
+        pointQueueRef.current.length = 0;
     };
 
     const clearCanvas = () => {
@@ -191,13 +232,10 @@ export const WritingPractice: React.FC<WritingPracticeProps> = ({ lesson, langua
                     <canvas
                         ref={canvasRef}
                         className="w-full h-52 cursor-crosshair touch-none"
-                        onMouseDown={startDrawing}
-                        onMouseUp={finishDrawing}
-                        onMouseLeave={finishDrawing}
-                        onMouseMove={draw}
-                        onTouchStart={startDrawing}
-                        onTouchEnd={finishDrawing}
-                        onTouchMove={draw}
+                        onPointerDown={handlePointerDown}
+                        onPointerMove={handlePointerMove}
+                        onPointerUp={handlePointerUp}
+                        onPointerCancel={handlePointerUp}
                     />
                 </div>
                 <div className="flex flex-wrap justify-center items-center gap-4 mt-4 w-full max-w-2xl">

@@ -83,6 +83,13 @@ export const addPoints = async (uid: string, points: number, activity: string): 
 };
 
 
+export const getAllAssignedAvatars = async (): Promise<string[]> => {
+    const usersRef = collection(db, FIRESTORE_COLLECTIONS.USERS);
+    const q = query(usersRef, where('fallbackAvatar', '!=', null));
+    const querySnapshot = await getDocs(q);
+    return querySnapshot.docs.map(doc => doc.data().fallbackAvatar).filter(Boolean) as string[];
+};
+
 export const getLeaderboard = async (): Promise<{ leaderboard: LeaderboardEntry[], weeklyWinner: LeaderboardEntry | null }> => {
     const usersRef = collection(db, FIRESTORE_COLLECTIONS.USERS);
     const currentWeekField = `weeklyPoints.${getCurrentWeekId()}`;
@@ -109,6 +116,7 @@ export const getLeaderboard = async (): Promise<{ leaderboard: LeaderboardEntry[
             firstName: data.firstName || '',
             thaiName: data.thaiName || '',
             photoURL: data.photoURL || '',
+            fallbackAvatar: data.fallbackAvatar || null,
             weeklyScore: data.weeklyPoints?.[getCurrentWeekId()] || 0,
         }));
         return { leaderboard, weeklyWinner: null };
@@ -122,6 +130,7 @@ export const getLeaderboard = async (): Promise<{ leaderboard: LeaderboardEntry[
             firstName: data.firstName || '',
             thaiName: data.thaiName || '',
             photoURL: data.photoURL || '',
+            fallbackAvatar: data.fallbackAvatar || null,
             weeklyScore: data.weeklyPoints?.[getCurrentWeekId()] || 0,
         };
     });
@@ -140,6 +149,7 @@ export const getLeaderboard = async (): Promise<{ leaderboard: LeaderboardEntry[
                     firstName: winnerData.firstName || '',
                     thaiName: winnerData.thaiName || '',
                     photoURL: winnerData.photoURL || '',
+                    fallbackAvatar: winnerData.fallbackAvatar || null,
                     weeklyScore: winnerData.weeklyPoints?.[getPreviousWeekId()] || 0,
                 };
             }
@@ -224,6 +234,15 @@ export const updateWeeklyLoserOnShameWall = async (): Promise<void> => {
     }
 
     const loser = querySnapshot.docs[0].data() as UserProfile;
+    const loserWeeklyPoints = loser.weeklyPoints?.[prevWeekId] || 0;
+
+    // Don't add to shame wall if they earned over 2,000 points
+    if (loserWeeklyPoints > 2000) {
+        console.log(`Loser ${loser.firstName} earned ${loserWeeklyPoints} points (>2000), sparing them from the shame wall.`);
+        // Still mark as processed so we don't check again
+        await setDoc(loserRef, { processed: true, timestamp: serverTimestamp() });
+        return;
+    }
 
     const now = Timestamp.now();
     const expires = Timestamp.fromMillis(now.toMillis() + 7 * 24 * 60 * 60 * 1000); // Expires in 7 days

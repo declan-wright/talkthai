@@ -1,12 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import type { Language } from '../types';
-import { type ReadingLesson } from '../data/reading/lessons';
-import { type ThaiConsonant, ConsonantClass } from '../data/reading/characters';
+import { type ReadingLesson, type EndingConsonantPracticeWord } from '../data/reading/lessons';
+import { type ThaiConsonant, type ThaiVowel, type VowelSyllable, ConsonantClass } from '../data/reading/characters';
 import { READING_UI_STRINGS } from '../data/readingUIStrings';
 import { ArrowLeftIcon } from './Icons';
 import { useAuth } from '../contexts/AuthContext';
 import * as firestoreService from '../services/firestoreService';
 import { usePoints } from '../contexts/PointsContext';
+import { TAUGHT_HIGH_CONSONANTS, TAUGHT_MID_CONSONANTS, TAUGHT_LOW_CONSONANTS_SHARED, TAUGHT_LOW_CONSONANTS_UNIQUE } from '../data/reading/characters';
 
 interface ReadingPracticeProps {
   lesson: ReadingLesson;
@@ -14,10 +15,26 @@ interface ReadingPracticeProps {
   onBack: () => void;
 }
 
-interface Question {
+interface ConsonantQuestion {
+  type: 'consonant';
   character: ThaiConsonant;
   options: string[];
 }
+
+interface VowelQuestion {
+  type: 'vowel';
+  syllableData: VowelSyllable; // The pre-defined syllable data
+  vowel: ThaiVowel;
+  options: string[];
+}
+
+interface EndingConsonantQuestion {
+  type: 'endingConsonant';
+  word: EndingConsonantPracticeWord;
+  options: string[];
+}
+
+type Question = ConsonantQuestion | VowelQuestion | EndingConsonantQuestion;
 
 const QUESTIONS_PER_SESSION = 20;
 
@@ -34,64 +51,142 @@ export const ReadingPractice: React.FC<ReadingPracticeProps> = ({ lesson, langua
   const [startTime] = useState(Date.now());
   const [endTime, setEndTime] = useState<number | null>(null);
 
-  const practiceCharacters = lesson.practiceCharacters || [];
-  const answerOptions = lesson.practiceAnswerOptions || [];
+  // Memoize these to prevent re-renders when they haven't actually changed
+  const practiceCharacters = useMemo(() => lesson.practiceCharacters || [], [lesson.practiceCharacters]);
+  const practiceVowels = useMemo(() => lesson.practiceVowels || [], [lesson.practiceVowels]);
+  const practiceEndingConsonants = useMemo(() => lesson.practiceEndingConsonants || [], [lesson.practiceEndingConsonants]);
+  const answerOptions = useMemo(() => lesson.practiceAnswerOptions || [], [lesson.practiceAnswerOptions]);
+  const isVowelPractice = lesson.isVowelPractice || false;
+  const isEndingConsonantPractice = lesson.isEndingConsonantPractice || false;
 
   useEffect(() => {
-    // Generate 20 questions with no consecutive duplicates
     const generatedQuestions: Question[] = [];
 
-    // Create a shuffled pool of characters
-    let characterPool: ThaiConsonant[] = [];
-    let lastCharacter: ThaiConsonant | null = null;
+    if (isEndingConsonantPractice && practiceEndingConsonants.length > 0) {
+      // Generate ending consonant practice questions
+      let wordPool: EndingConsonantPracticeWord[] = [];
+      let lastWord: EndingConsonantPracticeWord | null = null;
 
-    for (let i = 0; i < QUESTIONS_PER_SESSION; i++) {
-      // Refill pool if empty
-      if (characterPool.length === 0) {
-        characterPool = [...practiceCharacters].sort(() => Math.random() - 0.5);
-      }
+      for (let i = 0; i < QUESTIONS_PER_SESSION; i++) {
+        // Refill pool if empty
+        if (wordPool.length === 0) {
+          wordPool = [...practiceEndingConsonants].sort(() => Math.random() - 0.5);
+        }
 
-      // Find a character that's not the same as the last one
-      let selectedChar: ThaiConsonant;
-      if (lastCharacter && characterPool.length > 1) {
-        // Filter out the last character to avoid consecutive duplicates
-        const availableChars = characterPool.filter(c => c.character !== lastCharacter.character);
-        if (availableChars.length > 0) {
-          selectedChar = availableChars[0];
-          // Remove selected character from pool
-          characterPool = characterPool.filter(c => c.character !== selectedChar.character);
+        // Find a word that's not the same as the last one
+        let selectedWord: EndingConsonantPracticeWord;
+        if (lastWord && wordPool.length > 1) {
+          const availableWords = wordPool.filter(w => w.thai !== lastWord.thai);
+          if (availableWords.length > 0) {
+            selectedWord = availableWords[0];
+            wordPool = wordPool.filter(w => w.thai !== selectedWord.thai);
+          } else {
+            selectedWord = wordPool[0];
+            wordPool = wordPool.slice(1);
+          }
         } else {
-          // Fallback if only one character left
+          selectedWord = wordPool[0];
+          wordPool = wordPool.slice(1);
+        }
+
+        lastWord = selectedWord;
+
+        // Use all 8 ending consonant options in fixed order
+        const options = [...answerOptions]; // Keep original order
+
+        generatedQuestions.push({
+          type: 'endingConsonant',
+          word: selectedWord,
+          options
+        });
+      }
+    } else if (isVowelPractice && practiceVowels.length > 0) {
+      // Generate vowel practice questions using pre-defined syllables
+      let vowelPool: ThaiVowel[] = [];
+      let lastVowel: ThaiVowel | null = null;
+
+      for (let i = 0; i < QUESTIONS_PER_SESSION; i++) {
+        // Refill pool if empty
+        if (vowelPool.length === 0) {
+          vowelPool = [...practiceVowels].sort(() => Math.random() - 0.5);
+        }
+
+        // Find a vowel that's not the same as the last one
+        let selectedVowel: ThaiVowel;
+        if (lastVowel && vowelPool.length > 1) {
+          const availableVowels = vowelPool.filter(v => v.phonetic !== lastVowel.phonetic);
+          if (availableVowels.length > 0) {
+            selectedVowel = availableVowels[0];
+            vowelPool = vowelPool.filter(v => v.phonetic !== selectedVowel.phonetic);
+          } else {
+            selectedVowel = vowelPool[0];
+            vowelPool = vowelPool.slice(1);
+          }
+        } else {
+          selectedVowel = vowelPool[0];
+          vowelPool = vowelPool.slice(1);
+        }
+
+        lastVowel = selectedVowel;
+
+        // Select a random syllable from the vowel's practice syllables
+        const randomSyllable = selectedVowel.practiceSyllables[
+          Math.floor(Math.random() * selectedVowel.practiceSyllables.length)
+        ];
+
+        // Use all 9 vowel options in fixed order
+        const options = [...answerOptions]; // Keep original order
+
+        generatedQuestions.push({
+          type: 'vowel',
+          syllableData: randomSyllable,
+          vowel: selectedVowel,
+          options
+        });
+      }
+    } else {
+      // Generate consonant practice questions
+      let characterPool: ThaiConsonant[] = [];
+      let lastCharacter: ThaiConsonant | null = null;
+
+      for (let i = 0; i < QUESTIONS_PER_SESSION; i++) {
+        // Refill pool if empty
+        if (characterPool.length === 0) {
+          characterPool = [...practiceCharacters].sort(() => Math.random() - 0.5);
+        }
+
+        // Find a character that's not the same as the last one
+        let selectedChar: ThaiConsonant;
+        if (lastCharacter && characterPool.length > 1) {
+          const availableChars = characterPool.filter(c => c.character !== lastCharacter.character);
+          if (availableChars.length > 0) {
+            selectedChar = availableChars[0];
+            characterPool = characterPool.filter(c => c.character !== selectedChar.character);
+          } else {
+            selectedChar = characterPool[0];
+            characterPool = characterPool.slice(1);
+          }
+        } else {
           selectedChar = characterPool[0];
           characterPool = characterPool.slice(1);
         }
-      } else {
-        // First question or only one character total
-        selectedChar = characterPool[0];
-        characterPool = characterPool.slice(1);
+
+        lastCharacter = selectedChar;
+
+        // Use a consistent subset of options in fixed order
+        // Take the first 7 options that are relevant to this lesson
+        const options = answerOptions.slice(0, 7);
+
+        generatedQuestions.push({
+          type: 'consonant',
+          character: selectedChar,
+          options
+        });
       }
-
-      lastCharacter = selectedChar;
-
-      // Shuffle and select options
-      const shuffledOptions = [...answerOptions].sort(() => Math.random() - 0.5);
-      const options = shuffledOptions.slice(0, 7);
-
-      // Ensure correct answer is included
-      if (!options.includes(selectedChar.phonetic)) {
-        options[Math.floor(Math.random() * options.length)] = selectedChar.phonetic;
-      }
-
-      // Shuffle options again
-      options.sort(() => Math.random() - 0.5);
-
-      generatedQuestions.push({
-        character: selectedChar,
-        options
-      });
     }
+
     setQuestions(generatedQuestions);
-  }, [practiceCharacters, answerOptions]);
+  }, [practiceCharacters, practiceVowels, practiceEndingConsonants, answerOptions, isVowelPractice, isEndingConsonantPractice]);
 
   const currentQuestion = questions[currentQuestionIndex];
 
@@ -103,19 +198,39 @@ export const ReadingPractice: React.FC<ReadingPracticeProps> = ({ lesson, langua
   const handleAnswerClick = (answer: string) => {
     if (isCorrect !== null) return; // Already answered correctly
 
-    const correct = answer === currentQuestion.character.phonetic;
+    const correctAnswer = currentQuestion.type === 'vowel'
+      ? currentQuestion.vowel.phonetic
+      : currentQuestion.type === 'endingConsonant'
+      ? currentQuestion.word.endingSound
+      : currentQuestion.character.phonetic;
+
+    const correct = answer === correctAnswer;
 
     if (correct) {
       setIsCorrect(true);
       setSelectedAnswer(answer);
+
+      // Play the correct answer audio
+      if (currentQuestion.type === 'vowel') {
+        playAudio(currentQuestion.syllableData.audioFile);
+      } else if (currentQuestion.type === 'endingConsonant') {
+        playAudio(currentQuestion.word.audioFile);
+      } else {
+        playAudio(currentQuestion.character.audioFile);
+      }
     } else {
-      // Wrong answer: play the incorrect sound and mark as wrong
+      // Wrong answer: play the CORRECT answer as a hint
       setWrongAttempts(prev => new Set(prev).add(currentQuestionIndex));
 
-      // Play audio for the wrong answer (find a character with this phonetic)
-      const wrongChar = practiceCharacters.find(c => c.phonetic === answer);
-      if (wrongChar) {
-        playAudio(wrongChar.audioFile);
+      if (currentQuestion.type === 'vowel') {
+        // Play the correct syllable audio
+        playAudio(currentQuestion.syllableData.audioFile);
+      } else if (currentQuestion.type === 'endingConsonant') {
+        // Play the correct word audio
+        playAudio(currentQuestion.word.audioFile);
+      } else {
+        // Play the correct consonant audio
+        playAudio(currentQuestion.character.audioFile);
       }
     }
   };
@@ -161,10 +276,9 @@ export const ReadingPractice: React.FC<ReadingPracticeProps> = ({ lesson, langua
 
     const durationSeconds = endTime ? Math.round((endTime - startTime) / 1000) : 0;
 
-    // Get missed characters
-    const missedCharacters = questions
-      .filter((_, idx) => wrongAttempts.has(idx))
-      .map(q => q.character);
+    // Get missed items (characters or vowels)
+    const missedItems = questions
+      .filter((_, idx) => wrongAttempts.has(idx));
 
     return (
       <div className="w-full h-full flex flex-col max-w-4xl mx-auto bg-warm-white text-charcoal-ink border border-light-grey overflow-hidden" style={{ height: '90vh' }}>
@@ -199,22 +313,48 @@ export const ReadingPractice: React.FC<ReadingPracticeProps> = ({ lesson, langua
             Completed in {durationSeconds} seconds
           </div>
 
-          {missedCharacters.length > 0 && (
+          {missedItems.length > 0 && (
             <div className="w-full max-w-2xl mb-8">
               <h3 className="font-bold text-charcoal-ink mb-4">
                 {READING_UI_STRINGS['reading.practice.complete.review'][language.code]}
               </h3>
               <div className="grid grid-cols-4 md:grid-cols-6 gap-4">
-                {missedCharacters.map((char, idx) => (
-                  <div
-                    key={idx}
-                    className="border border-light-grey p-4 bg-white hover:bg-light-grey cursor-pointer"
-                    onClick={() => playAudio(char.audioFile)}
-                  >
-                    <div className="font-thai text-4xl text-charcoal-ink mb-1">{char.character}</div>
-                    <div className="text-sm font-mono text-charcoal-ink/70">{char.phonetic}</div>
-                  </div>
-                ))}
+                {missedItems.map((item, idx) => {
+                  if (item.type === 'vowel') {
+                    return (
+                      <div
+                        key={idx}
+                        className="border border-light-grey p-4 bg-white hover:bg-light-grey cursor-pointer"
+                        onClick={() => playAudio(item.syllableData.audioFile)}
+                      >
+                        <div className="font-thai text-4xl text-charcoal-ink mb-1">{item.syllableData.syllable}</div>
+                        <div className="text-sm font-mono text-charcoal-ink/70">{item.vowel.phonetic}</div>
+                      </div>
+                    );
+                  } else if (item.type === 'endingConsonant') {
+                    return (
+                      <div
+                        key={idx}
+                        className="border border-light-grey p-4 bg-white hover:bg-light-grey cursor-pointer"
+                        onClick={() => playAudio(item.word.audioFile)}
+                      >
+                        <div className="font-thai text-4xl text-charcoal-ink mb-1">{item.word.thai}</div>
+                        <div className="text-sm font-mono text-charcoal-ink/70">{item.word.endingSound}</div>
+                      </div>
+                    );
+                  } else {
+                    return (
+                      <div
+                        key={idx}
+                        className="border border-light-grey p-4 bg-white hover:bg-light-grey cursor-pointer"
+                        onClick={() => playAudio(item.character.audioFile)}
+                      >
+                        <div className="font-thai text-4xl text-charcoal-ink mb-1">{item.character.character}</div>
+                        <div className="text-sm font-mono text-charcoal-ink/70">{item.character.phonetic}</div>
+                      </div>
+                    );
+                  }
+                })}
               </div>
             </div>
           )}
@@ -280,10 +420,14 @@ export const ReadingPractice: React.FC<ReadingPracticeProps> = ({ lesson, langua
       </header>
 
       <main className="flex-1 overflow-y-auto no-scrollbar p-8 flex flex-col items-center justify-center">
-        {/* Thai Character Display */}
+        {/* Thai Character/Syllable Display */}
         <div className="mb-12">
           <div className="font-thai text-9xl text-charcoal-ink text-center">
-            {currentQuestion.character.character}
+            {currentQuestion.type === 'vowel' 
+              ? currentQuestion.syllableData.syllable 
+              : currentQuestion.type === 'endingConsonant'
+              ? currentQuestion.word.thai
+              : currentQuestion.character.character}
           </div>
         </div>
 
@@ -293,42 +437,106 @@ export const ReadingPractice: React.FC<ReadingPracticeProps> = ({ lesson, langua
             <div className="text-3xl font-bold text-green-600 mb-4">
               {READING_UI_STRINGS['reading.practice.correct'][language.code]}
             </div>
-            <div className="text-2xl font-mono text-charcoal-ink">
-              {currentQuestion.character.name}
-            </div>
-            <div className={`text-xl font-bold ${getClassColor(currentQuestion.character.class)}`}>
-              {getClassLabel(currentQuestion.character.class)}
-            </div>
+            {currentQuestion.type === 'vowel' ? (
+              <>
+                <div className="text-2xl font-mono text-charcoal-ink">
+                  Vowel: {currentQuestion.vowel.phonetic}
+                </div>
+                <div className={`text-xl font-bold ${getClassColor(currentQuestion.syllableData.consonant.class)}`}>
+                  {getClassLabel(currentQuestion.syllableData.consonant.class)} Class
+                </div>
+              </>
+            ) : currentQuestion.type === 'endingConsonant' ? (
+              <>
+                <div className="text-2xl font-mono text-charcoal-ink">
+                  {currentQuestion.word.phonetic}
+                </div>
+                <div className="text-xl text-charcoal-ink/70">
+                  Ending: {currentQuestion.word.endingSound}
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="text-2xl font-mono text-charcoal-ink">
+                  {currentQuestion.character.name}
+                </div>
+                <div className={`text-xl font-bold ${getClassColor(currentQuestion.character.class)}`}>
+                  {getClassLabel(currentQuestion.character.class)}
+                </div>
+              </>
+            )}
           </div>
         )}
 
         {/* Answer Options */}
         {!isCorrect && (
           <div className="w-full max-w-3xl space-y-4">
-            {/* Top row: 3 buttons */}
-            <div className="grid grid-cols-3 gap-4">
-              {currentQuestion.options.slice(0, 3).map((option, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => handleAnswerClick(option)}
-                  className="py-6 px-4 bg-light-grey text-charcoal-ink font-mono text-2xl font-bold hover:bg-vibrant-orange hover:text-warm-white transition-colors active:scale-95"
-                >
-                  {option}
-                </button>
-              ))}
-            </div>
-            {/* Bottom row: 4 buttons */}
-            <div className="grid grid-cols-4 gap-4">
-              {currentQuestion.options.slice(3, 7).map((option, idx) => (
-                <button
-                  key={idx + 3}
-                  onClick={() => handleAnswerClick(option)}
-                  className="py-6 px-4 bg-light-grey text-charcoal-ink font-mono text-2xl font-bold hover:bg-vibrant-orange hover:text-warm-white transition-colors active:scale-95"
-                >
-                  {option}
-                </button>
-              ))}
-            </div>
+            {currentQuestion.type === 'vowel' ? (
+              // Vowel practice: 9 options in 3x3 grid
+              <div className="grid grid-cols-3 gap-4">
+                {currentQuestion.options.map((option, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => handleAnswerClick(option)}
+                    className="py-6 px-4 bg-light-grey text-charcoal-ink font-mono text-2xl font-bold hover:bg-vibrant-orange hover:text-warm-white transition-colors active:scale-95"
+                  >
+                    {option}
+                  </button>
+                ))}
+              </div>
+            ) : currentQuestion.type === 'endingConsonant' ? (
+              // Ending consonant practice: 8 options in 4+4 layout
+              <>
+                <div className="grid grid-cols-4 gap-4">
+                  {currentQuestion.options.slice(0, 4).map((option, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => handleAnswerClick(option)}
+                      className="py-6 px-4 bg-light-grey text-charcoal-ink font-mono text-2xl font-bold hover:bg-vibrant-orange hover:text-warm-white transition-colors active:scale-95"
+                    >
+                      {option}
+                    </button>
+                  ))}
+                </div>
+                <div className="grid grid-cols-4 gap-4">
+                  {currentQuestion.options.slice(4, 8).map((option, idx) => (
+                    <button
+                      key={idx + 4}
+                      onClick={() => handleAnswerClick(option)}
+                      className="py-6 px-4 bg-light-grey text-charcoal-ink font-mono text-2xl font-bold hover:bg-vibrant-orange hover:text-warm-white transition-colors active:scale-95"
+                    >
+                      {option}
+                    </button>
+                  ))}
+                </div>
+              </>
+            ) : (
+              // Consonant practice: 7 options in 3+4 layout
+              <>
+                <div className="grid grid-cols-3 gap-4">
+                  {currentQuestion.options.slice(0, 3).map((option, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => handleAnswerClick(option)}
+                      className="py-6 px-4 bg-light-grey text-charcoal-ink font-mono text-2xl font-bold hover:bg-vibrant-orange hover:text-warm-white transition-colors active:scale-95"
+                    >
+                      {option}
+                    </button>
+                  ))}
+                </div>
+                <div className="grid grid-cols-4 gap-4">
+                  {currentQuestion.options.slice(3, 7).map((option, idx) => (
+                    <button
+                      key={idx + 3}
+                      onClick={() => handleAnswerClick(option)}
+                      className="py-6 px-4 bg-light-grey text-charcoal-ink font-mono text-2xl font-bold hover:bg-vibrant-orange hover:text-warm-white transition-colors active:scale-95"
+                    >
+                      {option}
+                    </button>
+                  ))}
+                </div>
+              </>
+            )}
           </div>
         )}
 

@@ -4,13 +4,7 @@ import * as firestoreService from '../services/firestoreService';
 import { getCurrentWeekId } from '../utils/dateUtils';
 import { TrophyIcon, FlashIcon, XIcon } from './Icons';
 import { CoinFlipAnimation } from './CoinFlipAnimation';
-
-const FALLBACK_AVATARS = [
-    '/avatar1.jpg',
-    '/avatar2.jpg',
-    '/avatar3.jpg',
-    '/avatar4.jpg',
-];
+import { getFallbackAvatar, FALLBACK_AVATARS } from '../utils/avatarUtils';
 
 interface ProfileModalProps {
     selectedUserId: string;
@@ -29,6 +23,8 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({ selectedUserId, curr
     const [error, setError] = useState<string | null>(null);
     const [imageError, setImageError] = useState(false);
     const [coinFlipResult, setCoinFlipResult] = useState<'double' | 'nothing' | null>(null);
+    const [changingAvatar, setChangingAvatar] = useState(false);
+    const [avatarSelectorOpen, setAvatarSelectorOpen] = useState(false);
 
     const isSelf = selectedUserId === currentUserId;
     const weekId = getCurrentWeekId();
@@ -179,13 +175,27 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({ selectedUserId, curr
         }
     };
 
-    // Fallback avatar
-    const getFallbackAvatar = () => {
-        const hash = selectedUserId.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
-        return FALLBACK_AVATARS[hash % FALLBACK_AVATARS.length];
+    const handleAvatarChange = async (newAvatar: string) => {
+        try {
+            setChangingAvatar(true);
+            await firestoreService.updateUserProfile(selectedUserId, { fallbackAvatar: newAvatar });
+            setProfile({ ...profile, fallbackAvatar: newAvatar });
+            onActionCompleted && onActionCompleted();
+        } catch (e: any) {
+            alert(e?.message || 'Failed to change avatar');
+        } finally {
+            setChangingAvatar(false);
+        }
     };
 
     const displayName = profile.firstName || profile.displayName;
+
+    // Get all avatars including the original photoURL
+    const allAvatars = profile.photoURL
+        ? [profile.photoURL, ...FALLBACK_AVATARS]
+        : FALLBACK_AVATARS;
+
+    const currentAvatar = profile.fallbackAvatar || profile.photoURL || FALLBACK_AVATARS[0];
 
     return (
         <>
@@ -201,19 +211,69 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({ selectedUserId, curr
 
                 {/* Profile header */}
                 <div className="flex items-center gap-4 mb-6">
-                    {(!profile.photoURL || imageError) ? (
-                        <img src={getFallbackAvatar()} alt={displayName} className="w-16 h-16 rounded-full border-2 border-vibrant-orange object-cover" />
-                    ) : (
-                        <img src={profile.photoURL} alt={displayName} className="w-16 h-16 rounded-full border-2 border-vibrant-orange object-cover" onError={() => setImageError(true)} />
-                    )}
+                    {(() => {
+                        // Prioritize fallbackAvatar if set, otherwise use photoURL
+                        const displayAvatar = profile.fallbackAvatar || profile.photoURL;
+
+                        if (!displayAvatar || imageError) {
+                            return <img src={getFallbackAvatar(profile.fallbackAvatar)} alt={displayName} className="w-16 h-16 rounded-full border-2 border-vibrant-orange object-cover" />;
+                        }
+
+                        return <img src={displayAvatar} alt={displayName} className="w-16 h-16 rounded-full border-2 border-vibrant-orange object-cover" onError={() => setImageError(true)} />;
+                    })()}
                     <div className="flex-grow">
                         <h3 className="font-heading text-3xl uppercase">{displayName}</h3>
                         <p className="font-thai text-warm-white/40 text-xl">{profile.thaiName || 'ไม่มีชื่อไทย'}</p>
                     </div>
                 </div>
 
-                {/* Stats grid */}
-                <div className="grid grid-cols-3 gap-3 mb-6">
+                {/* Avatar Selection - Universal for all profiles */}
+                <div className="bg-warm-white/5 border border-warm-white/10 mb-4 rounded-none">
+                    <button
+                        onClick={() => setAvatarSelectorOpen(!avatarSelectorOpen)}
+                        className="w-full p-4 flex items-center justify-between hover:bg-warm-white/5 transition-colors"
+                    >
+                        <p className="font-heading text-sm uppercase text-warm-white/60">Change Avatar</p>
+                        <span className={`text-warm-white/60 transition-transform ${avatarSelectorOpen ? 'rotate-180' : ''}`}>▼</span>
+                    </button>
+                    {avatarSelectorOpen && (
+                        <div className="p-4 pt-0">
+                            <div className="grid grid-cols-4 gap-3">
+                                {allAvatars.map((avatar, index) => {
+                                    const isSelected = currentAvatar === avatar;
+                                    const isOriginal = avatar === profile.photoURL;
+                                    return (
+                                        <button
+                                            key={avatar}
+                                            onClick={() => handleAvatarChange(avatar)}
+                                            disabled={changingAvatar || isSelected}
+                                            className={`relative aspect-square rounded-full overflow-hidden transition-all ${
+                                                isSelected
+                                                    ? 'ring-4 ring-vibrant-orange scale-95'
+                                                    : 'ring-2 ring-warm-white/20 hover:ring-warm-white/40 hover:scale-105 active:scale-95'
+                                            } ${changingAvatar ? 'opacity-50' : ''}`}
+                                        >
+                                            <img
+                                                src={avatar}
+                                                alt={`Avatar ${index + 1}`}
+                                                className="w-full h-full object-cover"
+                                            />
+                                            {isOriginal && (
+                                                <div className="absolute bottom-0 left-0 right-0 bg-vibrant-orange/90 text-warm-white text-xs py-0.5 text-center font-bold">
+                                                    ORIGINAL
+                                                </div>
+                                            )}
+                                        </button>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                    )}
+                </div>
+
+                {/* Stats grid - hidden when avatar selector is open */}
+                {!avatarSelectorOpen && (
+                    <div className="grid grid-cols-3 gap-3 mb-6">
                     <div className="bg-warm-white/5 border border-warm-white/10 p-4 text-center rounded-none">
                         <p className="text-xs text-warm-white/60 uppercase mb-1">Streak</p>
                         <p className="font-heading text-2xl text-vibrant-orange">{profile.currentStreak}</p>
@@ -227,6 +287,7 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({ selectedUserId, curr
                         <p className="font-heading text-2xl text-warm-white">{profile.totalPoints}</p>
                     </div>
                 </div>
+                )}
 
                 {!isSelf ? (
                     <div className="space-y-4">

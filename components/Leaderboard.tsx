@@ -3,6 +3,7 @@ import type { LeaderboardEntry, UserProfile, Language } from '../types';
 import { CrownIcon } from './Icons';
 import { getDaysLeftInWeek } from '../utils/dateUtils';
 import { UI_STRINGS } from '../data/uiStrings';
+import { getFallbackAvatar } from '../utils/avatarUtils';
 
 interface LeaderboardProps {
     entries: LeaderboardEntry[];
@@ -11,29 +12,20 @@ interface LeaderboardProps {
     currentUserProfile: UserProfile | null;
     language: Language;
     onSelectUser?: (uid: string) => void;
+    onIconClick?: (uid: string) => void;
 }
 
-const FALLBACK_AVATARS = [
-    '/avatar1.jpg',
-    '/avatar2.jpg',
-    '/avatar3.jpg',
-    '/avatar4.jpg',
-];
-
-const ProfileImage: React.FC<{ entry: LeaderboardEntry }> = ({ entry }) => {
+const ProfileImage: React.FC<{ entry: LeaderboardEntry & { fallbackAvatar?: string } }> = ({ entry }) => {
     const [imageError, setImageError] = useState(false);
     const displayName = entry.thaiName || entry.firstName || entry.displayName;
 
-    // Use uid to consistently assign the same fallback avatar to each user
-    const getFallbackAvatar = () => {
-        const hash = entry.uid.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
-        return FALLBACK_AVATARS[hash % FALLBACK_AVATARS.length];
-    };
+    // If user has selected a fallback avatar, use that instead of photoURL
+    const avatarSrc = entry.fallbackAvatar || entry.photoURL;
 
-    if (!entry.photoURL || imageError) {
+    if (!avatarSrc || imageError) {
         return (
             <img
-                src={getFallbackAvatar()}
+                src={getFallbackAvatar(entry.fallbackAvatar)}
                 alt={displayName}
                 className="w-10 h-10 rounded-full border-2 border-warm-white/20 object-cover"
                 loading="lazy"
@@ -43,7 +35,7 @@ const ProfileImage: React.FC<{ entry: LeaderboardEntry }> = ({ entry }) => {
 
     return (
         <img
-            src={entry.photoURL}
+            src={avatarSrc}
             alt={displayName}
             className="w-10 h-10 rounded-full border-2 border-warm-white/20 object-cover"
             onError={() => setImageError(true)}
@@ -89,7 +81,7 @@ const LeaderboardName: React.FC<{ entry: LeaderboardEntry }> = ({ entry }) => {
     );
 };
 
-export const Leaderboard: React.FC<LeaderboardProps> = ({ entries, weeklyWinner, currentUserId, currentUserProfile, language, onSelectUser }) => {
+export const Leaderboard: React.FC<LeaderboardProps> = ({ entries, weeklyWinner, currentUserId, currentUserProfile, language, onSelectUser, onIconClick }) => {
     const daysLeft = getDaysLeftInWeek();
     const daysText = daysLeft === 1 ? UI_STRINGS.day[language.code] : UI_STRINGS.days[language.code];
     const daysLeftText = daysLeft === 0 ? UI_STRINGS.lastDay[language.code] : UI_STRINGS.daysLeft[language.code].replace('{daysLeft}', daysLeft.toString()).replace('{daysText}', daysText);
@@ -126,7 +118,12 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({ entries, weeklyWinner,
                     return (
                         <div key={entry.uid} onClick={() => onSelectUser && onSelectUser(entry.uid)} className={`flex items-center gap-4 p-2 rounded-none transition-colors cursor-pointer ${isCurrentUser ? 'bg-vibrant-orange' : 'hover:bg-warm-white/10'}`}>
                             <span className="font-bold text-lg w-6 text-center">{index + 1}</span>
-                            <ProfileImage entry={entry} />
+                            <div onClick={(e) => {
+                                e.stopPropagation();
+                                onIconClick?.(entry.uid);
+                            }}>
+                                <ProfileImage entry={entry} />
+                            </div>
                             <LeaderboardName entry={entry} />
                             <span className="font-bold text-lg">{entry.weeklyScore.toLocaleString()} {UI_STRINGS.pointsAbbreviation[language.code]}</span>
                         </div>

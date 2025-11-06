@@ -1,39 +1,45 @@
-import React, { useState } from 'react';
-import type { ShameWallEntry } from '../types';
+import React, { useState, useEffect } from 'react';
+import type { ShameWallEntry, UserProfile } from '../types';
 import { ShameReason } from '../types';
 import { BrokenHeartIcon, XIcon } from './Icons';
 import { isAdmin } from '../utils/adminUtils';
 import { useAuth } from '../contexts/AuthContext';
 import * as firestoreService from '../services/firestoreService';
+import { getFallbackAvatar } from '../utils/avatarUtils';
 
 interface ShameWallProps {
     entries: ShameWallEntry[];
     onEntryDeleted?: () => void;
 }
 
-const FALLBACK_AVATARS = [
-    '/avatar1.jpg',
-    '/avatar2.jpg',
-    '/avatar3.jpg',
-    '/avatar4.jpg',
-];
-
 const ShameProfileImage: React.FC<{ entry: ShameWallEntry }> = ({ entry }) => {
     const [imageError, setImageError] = useState(false);
+    const [currentPhotoURL, setCurrentPhotoURL] = useState<string | null>(entry.photoURL);
+    const [currentFallbackAvatar, setCurrentFallbackAvatar] = useState<string | null>(null);
     const displayName = entry.thaiName || entry.firstName || entry.displayName;
 
-    // Use uid to consistently assign the same fallback avatar to each user
-    const getFallbackAvatar = () => {
-        const hash = entry.uid.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
-        return FALLBACK_AVATARS[hash % FALLBACK_AVATARS.length];
-    };
+    useEffect(() => {
+        // Fetch current user profile to check if they've switched to fallback
+        const fetchCurrentProfile = async () => {
+            try {
+                const profile = await firestoreService.getUserProfile(entry.uid);
+                setCurrentPhotoURL(profile.photoURL);
+                setCurrentFallbackAvatar(profile.fallbackAvatar || null);
+            } catch (error) {
+                console.error('Error fetching profile for shame wall:', error);
+                setCurrentPhotoURL(entry.photoURL);
+            }
+        };
+        fetchCurrentProfile();
+    }, [entry.uid, entry.photoURL]);
 
-    if (!entry.photoURL || imageError) {
+    if (!currentPhotoURL || imageError) {
         return (
             <img
-                src={getFallbackAvatar()}
+                src={getFallbackAvatar(currentFallbackAvatar)}
                 alt={displayName}
-                className="w-10 h-10 rounded-full border-2 border-red-500/50 object-cover grayscale"
+                className="w-10 h-10 rounded-full border-2 border-vibrant-red/50 object-cover grayscale"
+                style={{ filter: 'sepia(100%) saturate(500%) hue-rotate(-50deg)' }}
                 loading="lazy"
             />
         );
@@ -41,9 +47,10 @@ const ShameProfileImage: React.FC<{ entry: ShameWallEntry }> = ({ entry }) => {
 
     return (
         <img
-            src={entry.photoURL}
+            src={currentPhotoURL}
             alt={displayName}
-            className="w-10 h-10 rounded-full border-2 border-red-500/50 object-cover"
+            className="w-10 h-10 rounded-full border-2 border-vibrant-red/50 object-cover"
+            style={{ filter: 'sepia(100%) saturate(500%) hue-rotate(-50deg)' }}
             onError={() => setImageError(true)}
             loading="lazy"
         />
@@ -71,8 +78,8 @@ export const ShameWall: React.FC<ShameWallProps> = ({ entries, onEntryDeleted })
     }
 
     return (
-        <div className="bg-charcoal-ink border-2 border-red-500/50 p-4 mt-8">
-            <h3 className="font-heading text-2xl text-red-400 text-center uppercase mb-4">The Shame Wall</h3>
+        <div className="bg-charcoal-ink border-2 border-vibrant-red/50 p-4 mt-8">
+            <h3 className="font-heading text-2xl text-vibrant-red text-center uppercase mb-4">The Shame Wall</h3>
             <div className="space-y-4">
                 {entries.map((entry) => {
                     const displayName = entry.thaiName || entry.firstName || entry.displayName;
@@ -86,7 +93,7 @@ export const ShameWall: React.FC<ShameWallProps> = ({ entries, onEntryDeleted })
                             {userIsAdmin && entry.id && (
                                 <button
                                     onClick={() => handleDelete(entry.id)}
-                                    className="opacity-0 group-hover:opacity-100 transition-opacity p-1 hover:bg-red-500/20 text-red-400"
+                                    className="opacity-0 group-hover:opacity-100 transition-opacity p-1 hover:bg-vibrant-red/20 text-vibrant-red"
                                     title="Delete entry"
                                 >
                                     <XIcon className="w-4 h-4" />

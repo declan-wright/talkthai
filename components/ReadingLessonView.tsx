@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import type { Language } from '../types';
 import { type ReadingLesson, ReadingLessonType } from '../data/reading/lessons';
-import { ConsonantClass, type ThaiConsonant } from '../data/reading/characters';
+import { ConsonantClass, type ThaiConsonant, type ThaiVowel, type VowelPosition } from '../data/reading/characters';
 import { READING_UI_STRINGS } from '../data/readingUIStrings';
 import { ArrowLeftIcon } from './Icons';
 
@@ -68,6 +68,50 @@ export const ReadingLessonView: React.FC<ReadingLessonViewProps> = ({
 
       case 'character-list':
         const characters: ThaiConsonant[] = currentPage.data?.characters || [];
+        const vowels: ThaiVowel[] = currentPage.data?.vowels || [];
+
+        // Handle vowels
+        if (vowels.length > 0) {
+          return (
+            <div className="space-y-6">
+              <h2 className="font-heading text-3xl uppercase text-charcoal-ink">{title}</h2>
+              {body && <p className="text-charcoal-ink leading-relaxed">{body}</p>}
+
+              <div className="border border-light-grey overflow-x-auto">
+                <table className="w-full min-w-max">
+                  <thead className="bg-light-grey">
+                    <tr>
+                      <th className="px-3 sm:px-4 py-3 text-left font-bold text-charcoal-ink whitespace-nowrap">Vowel</th>
+                      <th className="px-3 sm:px-4 py-3 text-left font-bold text-charcoal-ink whitespace-nowrap">Sound</th>
+                      <th className="px-3 sm:px-4 py-3 text-center font-bold text-charcoal-ink whitespace-nowrap">Play</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {vowels.map((vowel, idx) => (
+                      <tr key={idx} className="border-t border-light-grey hover:bg-warm-white">
+                        <td className="px-3 sm:px-4 py-3 font-thai text-3xl sm:text-4xl text-charcoal-ink">{vowel.exampleWithKɔɔ}</td>
+                        <td className="px-3 sm:px-4 py-3 text-base sm:text-lg font-mono text-charcoal-ink whitespace-nowrap">{vowel.phonetic}</td>
+                        <td className="px-3 sm:px-4 py-3 text-center">
+                          <button
+                            onClick={() => playAudio(vowel.audioFile)}
+                            className="w-10 h-10 flex items-center justify-center bg-vibrant-orange text-warm-white hover:bg-charcoal-ink transition-colors"
+                            aria-label={`Play ${vowel.phonetic}`}
+                          >
+                            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                              <path d="M6.3 2.841A1.5 1.5 0 004 4.11v11.78a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
+                            </svg>
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          );
+        }
+
+        // Handle characters (consonants)
         return (
           <div className="space-y-6">
             <h2 className="font-heading text-3xl uppercase text-charcoal-ink">{title}</h2>
@@ -359,6 +403,319 @@ export const ReadingLessonView: React.FC<ReadingLessonViewProps> = ({
           );
         }
 
+        // Vowel Placement Page
+        if (currentPage.data?.vowelPlacementExamples) {
+          const examples = currentPage.data.vowelPlacementExamples;
+          const groupedByPosition: Record<string, typeof examples> = {
+            top: [],
+            bottom: [],
+            left: [],
+            right: [],
+            'left-right': [],
+            'top-right': [],
+            'top-left-right': []
+          };
+
+          examples.forEach((ex: any) => {
+            if (groupedByPosition[ex.position]) {
+              groupedByPosition[ex.position].push(ex);
+            }
+          });
+
+          return (
+            <div className="space-y-6">
+              <h2 className="font-heading text-3xl uppercase text-charcoal-ink">{title}</h2>
+              {body && <p className="text-charcoal-ink leading-relaxed">{body}</p>}
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {Object.entries(groupedByPosition).map(([position, items]) => {
+                  if (items.length === 0) return null;
+
+                  const positionLabel = position
+                    .split('-')
+                    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                    .join(' and ');
+
+                  return (
+                    <div key={position} className="border border-light-grey p-4 bg-warm-white">
+                      <h3 className="font-bold text-charcoal-ink mb-3">{positionLabel}:</h3>
+                      <div className="space-y-2">
+                        {items.map((item: any, idx: number) => (
+                          <button
+                            key={idx}
+                            onClick={() => playAudio(item.audioFile)}
+                            className="w-full px-4 py-3 bg-light-grey hover:bg-vibrant-orange hover:text-warm-white transition-colors flex items-center justify-between group"
+                          >
+                            <span className="font-thai text-2xl text-charcoal-ink group-hover:text-warm-white">{item.thai}</span>
+                            <span className="font-mono text-lg text-charcoal-ink group-hover:text-warm-white">{item.phonetic}</span>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        }
+
+        // Vowel Types Page
+        if (currentPage.data?.vowelTypes) {
+          const types = currentPage.data.vowelTypes;
+          return (
+            <div className="space-y-6">
+              <h2 className="font-heading text-3xl uppercase text-charcoal-ink">{title}</h2>
+              {body && <p className="text-charcoal-ink leading-relaxed">{body}</p>}
+
+              <div className="space-y-4">
+                {types.map((type: any, idx: number) => (
+                  <div key={idx} className="border border-light-grey p-4 bg-warm-white">
+                    <h3 className="font-bold text-charcoal-ink mb-2">
+                      {READING_UI_STRINGS[type.title]?.[language.code] || type.title}
+                    </h3>
+                    <p className="text-charcoal-ink/70">
+                      {READING_UI_STRINGS[type.example]?.[language.code] || type.example}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          );
+        }
+
+        // Intro Examples (Lesson 7 Page 1)
+        if (currentPage.data?.introExamples) {
+          const examples = currentPage.data.introExamples;
+          return (
+            <div className="space-y-6">
+              <h2 className="font-heading text-3xl uppercase text-charcoal-ink">{title}</h2>
+              {body && <p className="text-charcoal-ink leading-relaxed">{body}</p>}
+
+              <div className="border border-light-grey p-4 bg-warm-white">
+                <h3 className="font-bold text-charcoal-ink mb-4 text-center">Long Vowel + Ending Consonant</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {examples.map((example: any, idx: number) => (
+                    <button
+                      key={idx}
+                      onClick={() => playAudio(example.audioFile)}
+                      className="px-4 py-3 bg-light-grey hover:bg-vibrant-orange hover:text-warm-white transition-colors flex items-center justify-between group"
+                    >
+                      <span className="font-thai text-2xl text-charcoal-ink group-hover:text-warm-white">{example.thai}</span>
+                      <span className="font-mono text-lg text-charcoal-ink group-hover:text-warm-white">{example.phonetic}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          );
+        }
+
+        // Live Ending Consonants (Lesson 7 Page 2)
+        if (currentPage.data?.liveEndingConsonants) {
+          const examples = currentPage.data.liveEndingConsonants;
+          return (
+            <div className="space-y-6">
+              <h2 className="font-heading text-3xl uppercase text-charcoal-ink">{title}</h2>
+              {body && <p className="text-charcoal-ink leading-relaxed">{body}</p>}
+
+              <div className="border border-light-grey overflow-x-auto">
+                <table className="w-full min-w-max">
+                  <thead className="bg-light-grey">
+                    <tr>
+                      <th className="px-3 sm:px-4 py-3 text-left font-bold text-charcoal-ink whitespace-nowrap">Ending</th>
+                      <th className="px-3 sm:px-4 py-3 text-left font-bold text-charcoal-ink whitespace-nowrap">Example</th>
+                      <th className="px-3 sm:px-4 py-3 text-center font-bold text-charcoal-ink whitespace-nowrap">Play</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {examples.map((example: any, idx: number) => (
+                      <tr key={idx} className="border-t border-light-grey hover:bg-warm-white">
+                        <td className="px-3 sm:px-4 py-3 font-mono text-lg text-charcoal-ink whitespace-nowrap">
+                          {example.phonetic.match(/[nmŋyw]$/)?.[0] || ''}
+                        </td>
+                        <td className="px-3 sm:px-4 py-3">
+                          <div className="flex items-center gap-3">
+                            <span className="font-thai text-2xl sm:text-3xl text-charcoal-ink">{example.thai}</span>
+                            <span className="font-mono text-base text-charcoal-ink/70">
+                              {example.phonetic}
+                              {example.meaning && ` (${example.meaning})`}
+                            </span>
+                          </div>
+                        </td>
+                        <td className="px-3 sm:px-4 py-3 text-center">
+                          <button
+                            onClick={() => playAudio(example.audioFile)}
+                            className="w-10 h-10 flex items-center justify-center bg-vibrant-orange text-warm-white hover:bg-charcoal-ink transition-colors"
+                            aria-label={`Play ${example.phonetic}`}
+                          >
+                            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                              <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
+                            </svg>
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          );
+        }
+
+        // Dead Ending Consonants (Lesson 7 Page 3)
+        if (currentPage.data?.deadEndingConsonants) {
+          const examples = currentPage.data.deadEndingConsonants;
+          return (
+            <div className="space-y-6">
+              <h2 className="font-heading text-3xl uppercase text-charcoal-ink">{title}</h2>
+              {body && <p className="text-charcoal-ink leading-relaxed">{body}</p>}
+
+              <div className="border border-light-grey overflow-x-auto">
+                <table className="w-full min-w-max">
+                  <thead className="bg-light-grey">
+                    <tr>
+                      <th className="px-3 sm:px-4 py-3 text-left font-bold text-charcoal-ink whitespace-nowrap">Ending</th>
+                      <th className="px-3 sm:px-4 py-3 text-left font-bold text-charcoal-ink whitespace-nowrap">Example</th>
+                      <th className="px-3 sm:px-4 py-3 text-center font-bold text-charcoal-ink whitespace-nowrap">Play</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {examples.map((example: any, idx: number) => (
+                      <tr key={idx} className="border-t border-light-grey hover:bg-warm-white">
+                        <td className="px-3 sm:px-4 py-3 font-mono text-lg text-charcoal-ink whitespace-nowrap">
+                          {example.phonetic.match(/[kpt]$/)?.[0] || ''}
+                        </td>
+                        <td className="px-3 sm:px-4 py-3">
+                          <div className="flex items-center gap-3">
+                            <span className="font-thai text-2xl sm:text-3xl text-charcoal-ink">{example.thai}</span>
+                            <span className="font-mono text-base text-charcoal-ink/70">
+                              {example.phonetic}
+                              {example.meaning && ` (${example.meaning})`}
+                            </span>
+                          </div>
+                        </td>
+                        <td className="px-3 sm:px-4 py-3 text-center">
+                          <button
+                            onClick={() => playAudio(example.audioFile)}
+                            className="w-10 h-10 flex items-center justify-center bg-vibrant-orange text-warm-white hover:bg-charcoal-ink transition-colors"
+                            aria-label={`Play ${example.phonetic}`}
+                          >
+                            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                              <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
+                            </svg>
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          );
+        }
+
+        // Ending Consonant Details (Lesson 7 Pages 4-6)
+        if (currentPage.data?.endingType && currentPage.data?.examples) {
+          const { endingType, mainConsonant, otherConsonants, examples } = currentPage.data;
+          return (
+            <div className="space-y-6">
+              <h2 className="font-heading text-3xl uppercase text-charcoal-ink">{title}</h2>
+              {body && <p className="text-charcoal-ink leading-relaxed">{body}</p>}
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Main/Sometimes Box */}
+                <div className="border border-light-grey p-4 bg-warm-white">
+                  <h3 className="font-bold text-charcoal-ink mb-4 text-center">Dead Ending Consonant {endingType}</h3>
+                  <div className="space-y-4">
+                    <div className="text-center">
+                      <div className="text-sm text-charcoal-ink/60 uppercase font-bold mb-2">Main Consonant</div>
+                      <div className="font-thai text-5xl text-charcoal-ink">{mainConsonant}</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-sm text-charcoal-ink/60 uppercase font-bold mb-2">Sometimes</div>
+                      <div className="flex flex-wrap gap-2 justify-center">
+                        {otherConsonants.map((char: string, idx: number) => (
+                          <span key={idx} className="font-thai text-2xl text-charcoal-ink">
+                            {char}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Examples Box */}
+                <div className="border border-light-grey p-4 bg-warm-white">
+                  <h3 className="font-bold text-charcoal-ink mb-4 text-center">Example</h3>
+                  <div className="space-y-2">
+                    {examples.map((example: any, idx: number) => (
+                      <button
+                        key={idx}
+                        onClick={() => playAudio(example.audioFile)}
+                        className="w-full px-4 py-3 bg-light-grey hover:bg-vibrant-orange hover:text-warm-white transition-colors flex items-center justify-between group"
+                      >
+                        <span className="font-thai text-2xl text-charcoal-ink group-hover:text-warm-white">{example.thai}</span>
+                        <span className="font-mono text-lg text-charcoal-ink group-hover:text-warm-white">{example.phonetic}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        }
+
+        // Vowel Changes (Lesson 7 Page 7)
+        if (currentPage.data?.vowelChanges) {
+          const changes = currentPage.data.vowelChanges;
+          return (
+            <div className="space-y-6">
+              <h2 className="font-heading text-3xl uppercase text-charcoal-ink">{title}</h2>
+              {body && <p className="text-charcoal-ink leading-relaxed">{body}</p>}
+
+              <div className="border border-light-grey p-4 bg-warm-white">
+                <h3 className="font-bold text-charcoal-ink mb-4 text-center">Long Vowel with Ending Consonant</h3>
+                <div className="space-y-6">
+                  {changes.map((change: any, idx: number) => (
+                    <div key={idx} className="flex items-center justify-center gap-4 pb-4 border-b border-light-grey last:border-b-0">
+                      {/* Before */}
+                      <div className="text-center">
+                        <div className="font-thai text-3xl text-charcoal-ink">{change.before}</div>
+                        <div className="font-mono text-sm text-charcoal-ink/70 mt-1">{change.beforePhonetic}</div>
+                      </div>
+
+                      {/* Plus Sign */}
+                      <div className="text-2xl text-charcoal-ink/60">+</div>
+
+                      {/* Ending */}
+                      <div className="text-center">
+                        <div className="font-thai text-3xl text-charcoal-ink">{change.ending}</div>
+                        <div className="font-mono text-sm text-charcoal-ink/70 mt-1">{change.ending}</div>
+                      </div>
+
+                      {/* Arrow */}
+                      <div className="text-2xl text-charcoal-ink/60">→</div>
+
+                      {/* After */}
+                      <div className="text-center">
+                        <div className="font-thai text-3xl text-charcoal-ink">{change.after}</div>
+                        <div className="font-mono text-sm text-charcoal-ink/70 mt-1">{change.afterPhonetic}</div>
+                      </div>
+
+                      {/* Note */}
+                      {change.note && (
+                        <div className="text-xs text-charcoal-ink/60 italic ml-2">
+                          {READING_UI_STRINGS[change.note]?.[language.code] || change.note}
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          );
+        }
+
         // Default special case
         return (
           <div className="space-y-6">
@@ -372,7 +729,7 @@ export const ReadingLessonView: React.FC<ReadingLessonViewProps> = ({
     }
   };
 
-  const isPracticeLesson = lesson.type === ReadingLessonType.CONSONANT_LESSON || lesson.type === ReadingLessonType.PRACTICE;
+  const isPracticeLesson = lesson.type === ReadingLessonType.CONSONANT_LESSON || lesson.type === ReadingLessonType.VOWEL_LESSON || lesson.type === ReadingLessonType.PRACTICE;
 
   return (
     <div className="w-full h-full flex flex-col max-w-5xl mx-auto bg-warm-white text-charcoal-ink border border-light-grey overflow-hidden" style={{ height: '90vh' }}>

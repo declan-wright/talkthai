@@ -139,6 +139,20 @@ export interface SpeakingFeedback {
     keyRecommendation: string;
 }
 
+export interface ConversationFeedback {
+    isRecognizable: boolean;
+    reasoning: string;
+    overallScore: number;
+    overallFeedback: string;
+    pronunciationScore: number;
+    pronunciationFeedback: string;
+    fluencyScore: number;
+    fluencyFeedback: string;
+    toneScore: number;
+    toneFeedback: string;
+    keyRecommendation: string;
+}
+
 
 // --- Types for Handwriting Feedback ---
 export interface HandwritingWordAnalysis {
@@ -215,6 +229,8 @@ export interface UserProfile {
     email: string | null;
     displayName: string | null;
     photoURL: string | null;
+    originalPhotoURL?: string | null; // Store original photo to allow restoring
+    fallbackAvatar?: string | null; // Store assigned fallback avatar to ensure uniqueness
     firstName: string;
     lastName: string;
     thaiName: string;
@@ -244,6 +260,7 @@ export interface LeaderboardEntry {
     firstName: string;
     thaiName: string;
     photoURL: string;
+    fallbackAvatar?: string | null;
     weeklyScore: number;
 }
 

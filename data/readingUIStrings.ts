@@ -312,6 +312,214 @@ export const READING_UI_STRINGS = {
     [LanguageCode.MANDARIN]: '讓我們復習獨特低輔音！',
   },
 
+  // Lesson 4.3: Practice (Similar Consonants)
+  'reading.lesson4_3.page1.title': {
+    [LanguageCode.ENGLISH]: 'Review: Similar Consonants',
+    [LanguageCode.FRENCH]: 'Révision : Consonnes similaires',
+    [LanguageCode.PORTUGUESE]: 'Revisão: Consoantes Similares',
+    [LanguageCode.MANDARIN]: '複習：相似輔音',
+  },
+
+  // Lesson 4.6: Practice (All Consonants)
+  'reading.lesson4_6.page1.title': {
+    [LanguageCode.ENGLISH]: 'Review: All Consonants',
+    [LanguageCode.FRENCH]: 'Révision : Toutes les consonnes',
+    [LanguageCode.PORTUGUESE]: 'Revisão: Todas as Consoantes',
+    [LanguageCode.MANDARIN]: '複習：所有輔音',
+  },
+
+  // Lesson 5: Long Vowels
+  'reading.lesson5.page1.title': {
+    [LanguageCode.ENGLISH]: 'Vowels',
+    [LanguageCode.FRENCH]: 'Voyelles',
+    [LanguageCode.PORTUGUESE]: 'Vogais',
+    [LanguageCode.MANDARIN]: '元音',
+  },
+  'reading.lesson5.page1.body': {
+    [LanguageCode.ENGLISH]: 'Let\'s learn about vowels! Vowels are placed around consonants, almost like decorating them. Let\'s look at examples of various vowels placed around "ก".',
+    [LanguageCode.FRENCH]: 'Apprenons les voyelles ! Les voyelles sont placées autour des consonnes, presque comme pour les décorer. Regardons des exemples de différentes voyelles placées autour de "ก".',
+    [LanguageCode.PORTUGUESE]: 'Vamos aprender sobre vogais! As vogais são colocadas ao redor das consoantes, quase como decorá-las. Vamos ver exemplos de várias vogais colocadas ao redor de "ก".',
+    [LanguageCode.MANDARIN]: '讓我們學習元音！元音放置在輔音周圍，幾乎就像裝飾它們一樣。讓我們看看放置在"ก"周圍的各種元音的例子。',
+  },
+
+  'reading.lesson5.page2.title': {
+    [LanguageCode.ENGLISH]: 'Types of Vowels',
+    [LanguageCode.FRENCH]: 'Types de voyelles',
+    [LanguageCode.PORTUGUESE]: 'Tipos de Vogais',
+    [LanguageCode.MANDARIN]: '元音的類型',
+  },
+  'reading.lesson5.page2.body': {
+    [LanguageCode.ENGLISH]: 'In Thai, there are 9 vowels. Vowels can be categorized into three main types: ① Long Vowels, ② Short Vowels, and ③ Other Long Vowels, which are combinations of sounds.',
+    [LanguageCode.FRENCH]: 'En thaï, il y a 9 voyelles. Les voyelles peuvent être classées en trois types principaux : ① Voyelles longues, ② Voyelles courtes et ③ Autres voyelles longues, qui sont des combinaisons de sons.',
+    [LanguageCode.PORTUGUESE]: 'Em tailandês, existem 9 vogais. As vogais podem ser categorizadas em três tipos principais: ① Vogais Longas, ② Vogais Curtas e ③ Outras Vogais Longas, que são combinações de sons.',
+    [LanguageCode.MANDARIN]: '在泰語中，有9個元音。元音可以分為三種主要類型：①長元音，②短元音，③其他長元音，即聲音的組合。',
+  },
+  'reading.lesson5.page2.section1.title': {
+    [LanguageCode.ENGLISH]: 'Long Vowels',
+    [LanguageCode.FRENCH]: 'Voyelles Longues',
+    [LanguageCode.PORTUGUESE]: 'Vogais Longas',
+    [LanguageCode.MANDARIN]: '長元音',
+  },
+  'reading.lesson5.page2.section1.example': {
+    [LanguageCode.ENGLISH]: 'Ex: kaa, maa, moo',
+    [LanguageCode.FRENCH]: 'Ex: kaa, maa, moo',
+    [LanguageCode.PORTUGUESE]: 'Ex: kaa, maa, moo',
+    [LanguageCode.MANDARIN]: '例：kaa, maa, moo',
+  },
+  'reading.lesson5.page2.section2.title': {
+    [LanguageCode.ENGLISH]: 'Short Vowels',
+    [LanguageCode.FRENCH]: 'Voyelles Courtes',
+    [LanguageCode.PORTUGUESE]: 'Vogais Curtas',
+    [LanguageCode.MANDARIN]: '短元音',
+  },
+  'reading.lesson5.page2.section2.example': {
+    [LanguageCode.ENGLISH]: 'Ex: ka, ma, mo',
+    [LanguageCode.FRENCH]: 'Ex: ka, ma, mo',
+    [LanguageCode.PORTUGUESE]: 'Ex: ka, ma, mo',
+    [LanguageCode.MANDARIN]: '例：ka, ma, mo',
+  },
+  'reading.lesson5.page2.section3.title': {
+    [LanguageCode.ENGLISH]: 'Other Long Vowels',
+    [LanguageCode.FRENCH]: 'Autres Voyelles Longues',
+    [LanguageCode.PORTUGUESE]: 'Outras Vogais Longas',
+    [LanguageCode.MANDARIN]: '其他長元音',
+  },
+  'reading.lesson5.page2.section3.example': {
+    [LanguageCode.ENGLISH]: 'Ex: kia, kua, mai',
+    [LanguageCode.FRENCH]: 'Ex: kia, kua, mai',
+    [LanguageCode.PORTUGUESE]: 'Ex: kia, kua, mai',
+    [LanguageCode.MANDARIN]: '例：kia, kua, mai',
+  },
+
+  'reading.lesson5.page3.title': {
+    [LanguageCode.ENGLISH]: 'List of Long Vowels',
+    [LanguageCode.FRENCH]: 'Liste des Voyelles Longues',
+    [LanguageCode.PORTUGUESE]: 'Lista de Vogais Longas',
+    [LanguageCode.MANDARIN]: '長元音列表',
+  },
+  'reading.lesson5.page3.body': {
+    [LanguageCode.ENGLISH]: 'Let\'s check the long vowels to practice! The practice includes different consonants and tone marks to get used to the actual pronunciation, but focus on the vowels when answering.',
+    [LanguageCode.FRENCH]: 'Vérifions les voyelles longues à pratiquer ! La pratique inclut différentes consonnes et marques de ton pour s\'habituer à la prononciation réelle, mais concentrez-vous sur les voyelles lors de la réponse.',
+    [LanguageCode.PORTUGUESE]: 'Vamos verificar as vogais longas para praticar! A prática inclui diferentes consoantes e marcas de tom para se acostumar com a pronúncia real, mas concentre-se nas vogais ao responder.',
+    [LanguageCode.MANDARIN]: '讓我們檢查要練習的長元音！練習包括不同的輔音和聲調標記以習慣實際發音，但在回答時請專注於元音。',
+  },
+
+  // Lesson 7: Long Vowels + Ending Consonants
+  'reading.lesson7.page1.title': {
+    [LanguageCode.ENGLISH]: 'Ending Consonants',
+    [LanguageCode.FRENCH]: 'Consonnes Finales',
+    [LanguageCode.PORTUGUESE]: 'Consoantes Finais',
+    [LanguageCode.MANDARIN]: '結尾輔音',
+  },
+  'reading.lesson7.page1.body': {
+    [LanguageCode.ENGLISH]: 'Some words are composed of a consonant + vowel + consonant. The final consonant is called an "Ending Consonant". Let\'s look at examples of long vowels with ending consonants. Pay attention to how the pronunciation ends.',
+    [LanguageCode.FRENCH]: 'Certains mots sont composés d\'une consonne + voyelle + consonne. La consonne finale est appelée "Consonne Finale". Regardons des exemples de voyelles longues avec des consonnes finales. Faites attention à la façon dont la prononciation se termine.',
+    [LanguageCode.PORTUGUESE]: 'Algumas palavras são compostas de uma consoante + vogal + consoante. A consoante final é chamada de "Consoante Final". Vamos ver exemplos de vogais longas com consoantes finais. Preste atenção em como a pronúncia termina.',
+    [LanguageCode.MANDARIN]: '有些詞由輔音 + 元音 + 輔音組成。最後的輔音稱為"結尾輔音"。讓我們看看長元音與結尾輔音的例子。注意發音如何結束。',
+  },
+
+  'reading.lesson7.page2.title': {
+    [LanguageCode.ENGLISH]: 'Live Ending Consonants',
+    [LanguageCode.FRENCH]: 'Consonnes Finales Vivantes',
+    [LanguageCode.PORTUGUESE]: 'Consoantes Finais Vivas',
+    [LanguageCode.MANDARIN]: '活結尾輔音',
+  },
+  'reading.lesson7.page2.body': {
+    [LanguageCode.ENGLISH]: 'Ending consonants are divided into live ending consonants and dead ending consonants (KPT). Below are live ending consonants. When pronounced, air flows out through the nose or throat. "n" and "m" also allow air to flow out through the nose. In some textbooks and dictionaries, the ending consonant "y" may be written as "i" and "w" as "o", but the pronunciation remains the same.',
+    [LanguageCode.FRENCH]: 'Les consonnes finales sont divisées en consonnes finales vivantes et consonnes finales mortes (KPT). Ci-dessous sont les consonnes finales vivantes. Lors de la prononciation, l\'air s\'écoule par le nez ou la gorge. "n" et "m" permettent également à l\'air de s\'écouler par le nez. Dans certains manuels et dictionnaires, la consonne finale "y" peut être écrite comme "i" et "w" comme "o", mais la prononciation reste la même.',
+    [LanguageCode.PORTUGUESE]: 'As consoantes finais são divididas em consoantes finais vivas e consoantes finais mortas (KPT). Abaixo estão as consoantes finais vivas. Quando pronunciadas, o ar flui pelo nariz ou garganta. "n" e "m" também permitem que o ar flua pelo nariz. Em alguns livros didáticos e dicionários, a consoante final "y" pode ser escrita como "i" e "w" como "o", mas a pronúncia permanece a mesma.',
+    [LanguageCode.MANDARIN]: '結尾輔音分為活結尾輔音和死結尾輔音（KPT）。以下是活結尾輔音。發音時，空氣通過鼻子或喉嚨流出。"n"和"m"也允許空氣通過鼻子流出。在某些教科書和詞典中，結尾輔音"y"可能寫為"i"，"w"寫為"o"，但發音保持不變。',
+  },
+
+  'reading.lesson7.page3.title': {
+    [LanguageCode.ENGLISH]: 'Dead Ending Consonants (KPT)',
+    [LanguageCode.FRENCH]: 'Consonnes Finales Mortes (KPT)',
+    [LanguageCode.PORTUGUESE]: 'Consoantes Finais Mortas (KPT)',
+    [LanguageCode.MANDARIN]: '死結尾輔音（KPT）',
+  },
+  'reading.lesson7.page3.body': {
+    [LanguageCode.ENGLISH]: 'English words like Cook, Sleep, and Meet are good examples of dead ending consonants KPT. Each stops the breath sharply with the throat, lips, or tongue.',
+    [LanguageCode.FRENCH]: 'Des mots anglais comme Cook, Sleep et Meet sont de bons exemples de consonnes finales mortes KPT. Chacun arrête brusquement le souffle avec la gorge, les lèvres ou la langue.',
+    [LanguageCode.PORTUGUESE]: 'Palavras em inglês como Cook, Sleep e Meet são bons exemplos de consoantes finais mortas KPT. Cada uma para a respiração bruscamente com a garganta, lábios ou língua.',
+    [LanguageCode.MANDARIN]: '像Cook、Sleep和Meet這樣的英語單詞是死結尾輔音KPT的好例子。每個都用喉嚨、嘴唇或舌頭突然停止呼吸。',
+  },
+
+  'reading.lesson7.page4.title': {
+    [LanguageCode.ENGLISH]: 'Dead Ending Consonant k',
+    [LanguageCode.FRENCH]: 'Consonne Finale Morte k',
+    [LanguageCode.PORTUGUESE]: 'Consoante Final Morta k',
+    [LanguageCode.MANDARIN]: '死結尾輔音 k',
+  },
+  'reading.lesson7.page4.body': {
+    [LanguageCode.ENGLISH]: 'Stop the breath in the throat just as when pronouncing "Cook" in English. Note that the mouth remains open. In most cases, ก is used for the ending consonant k. However, sometimes ข or ค is also used.',
+    [LanguageCode.FRENCH]: 'Arrêtez le souffle dans la gorge comme lors de la prononciation de "Cook" en anglais. Notez que la bouche reste ouverte. Dans la plupart des cas, ก est utilisé pour la consonne finale k. Cependant, parfois ข ou ค est également utilisé.',
+    [LanguageCode.PORTUGUESE]: 'Pare a respiração na garganta assim como ao pronunciar "Cook" em inglês. Note que a boca permanece aberta. Na maioria dos casos, ก é usado para a consoante final k. No entanto, às vezes ข ou ค também é usado.',
+    [LanguageCode.MANDARIN]: '在喉嚨中停止呼吸，就像發英語中的"Cook"一樣。注意嘴巴保持張開。在大多數情況下，ก用於結尾輔音k。然而，有時也使用ข或ค。',
+  },
+
+  'reading.lesson7.page5.title': {
+    [LanguageCode.ENGLISH]: 'Dead Ending Consonant p',
+    [LanguageCode.FRENCH]: 'Consonne Finale Morte p',
+    [LanguageCode.PORTUGUESE]: 'Consoante Final Morta p',
+    [LanguageCode.MANDARIN]: '死結尾輔音 p',
+  },
+  'reading.lesson7.page5.body': {
+    [LanguageCode.ENGLISH]: 'For the ending consonant p, stop the breath sharply with the lips. In most cases, บ is used for the ending consonant p. However, sometimes ป, พ, ฟ, and ภ are also used.',
+    [LanguageCode.FRENCH]: 'Pour la consonne finale p, arrêtez brusquement le souffle avec les lèvres. Dans la plupart des cas, บ est utilisé pour la consonne finale p. Cependant, parfois ป, พ, ฟ et ภ sont également utilisés.',
+    [LanguageCode.PORTUGUESE]: 'Para a consoante final p, pare a respiração bruscamente com os lábios. Na maioria dos casos, บ é usado para a consoante final p. No entanto, às vezes ป, พ, ฟ e ภ também são usados.',
+    [LanguageCode.MANDARIN]: '對於結尾輔音p，用嘴唇突然停止呼吸。在大多數情況下，บ用於結尾輔音p。然而，有時也使用ป、พ、ฟ和ภ。',
+  },
+
+  'reading.lesson7.page6.title': {
+    [LanguageCode.ENGLISH]: 'Dead Ending Consonant t',
+    [LanguageCode.FRENCH]: 'Consonne Finale Morte t',
+    [LanguageCode.PORTUGUESE]: 'Consoante Final Morta t',
+    [LanguageCode.MANDARIN]: '死結尾輔音 t',
+  },
+  'reading.lesson7.page6.body': {
+    [LanguageCode.ENGLISH]: 'The ending consonant t stops the breath with the tongue. Be careful to keep the lips open. In most cases, ด is used for the ending consonant t. However, sometimes จ, ช, ซ, ฎ, ฏ, ฐ, ฑ, ฒ, ต, ถ, ท, ธ, ศ, ษ, and ส are also used. That\'s quite a lot! Since they are rarely used, it is more efficient to remember them as you encounter such words.',
+    [LanguageCode.FRENCH]: 'La consonne finale t arrête le souffle avec la langue. Faites attention à garder les lèvres ouvertes. Dans la plupart des cas, ด est utilisé pour la consonne finale t. Cependant, parfois จ, ช, ซ, ฎ, ฏ, ฐ, ฑ, ฒ, ต, ถ, ท, ธ, ศ, ษ et ส sont également utilisés. C\'est beaucoup ! Puisqu\'ils sont rarement utilisés, il est plus efficace de les mémoriser au fur et à mesure que vous rencontrez de tels mots.',
+    [LanguageCode.PORTUGUESE]: 'A consoante final t para a respiração com a língua. Tenha cuidado para manter os lábios abertos. Na maioria dos casos, ด é usado para a consoante final t. No entanto, às vezes จ, ช, ซ, ฎ, ฏ, ฐ, ฑ, ฒ, ต, ถ, ท, ธ, ศ, ษ e ส também são usados. São muitos! Como são raramente usados, é mais eficiente memorizá-los à medida que você encontra tais palavras.',
+    [LanguageCode.MANDARIN]: '結尾輔音t用舌頭停止呼吸。注意保持嘴唇張開。在大多數情況下，ด用於結尾輔音t。然而，有時也使用จ、ช、ซ、ฎ、ฏ、ฐ、ฑ、ฒ、ต、ถ、ท、ธ、ศ、ษ和ส。那可真多！由於它們很少使用，當您遇到這樣的詞時記住它們會更有效。',
+  },
+
+  'reading.lesson7.page7.title': {
+    [LanguageCode.ENGLISH]: 'Changes in Vowel Letters',
+    [LanguageCode.FRENCH]: 'Changements dans les Lettres Voyelles',
+    [LanguageCode.PORTUGUESE]: 'Mudanças nas Letras de Vogais',
+    [LanguageCode.MANDARIN]: '元音字母的變化',
+  },
+  'reading.lesson7.page7.body': {
+    [LanguageCode.ENGLISH]: 'The following four long vowels are shortened when an ending consonant is added. Let\'s see how each one changes. Get used to it with the next practice!',
+    [LanguageCode.FRENCH]: 'Les quatre voyelles longues suivantes sont raccourcies lorsqu\'une consonne finale est ajoutée. Voyons comment chacune change. Habituez-vous avec la prochaine pratique !',
+    [LanguageCode.PORTUGUESE]: 'As quatro vogais longas a seguir são encurtadas quando uma consoante final é adicionada. Vamos ver como cada uma muda. Acostume-se com a próxima prática!',
+    [LanguageCode.MANDARIN]: '以下四個長元音在添加結尾輔音時會縮短。讓我們看看每個如何變化。通過下一個練習習慣它！',
+  },
+  'reading.lesson7.page7.note1': {
+    [LanguageCode.ENGLISH]: 'Not กือบ',
+    [LanguageCode.FRENCH]: 'Pas กือบ',
+    [LanguageCode.PORTUGUESE]: 'Não กือบ',
+    [LanguageCode.MANDARIN]: '不是 กือบ',
+  },
+  'reading.lesson7.page7.note2': {
+    [LanguageCode.ENGLISH]: 'Not กัวด',
+    [LanguageCode.FRENCH]: 'Pas กัวด',
+    [LanguageCode.PORTUGUESE]: 'Não กัวด',
+    [LanguageCode.MANDARIN]: '不是 กัวด',
+  },
+  'reading.lesson7.page7.note3': {
+    [LanguageCode.ENGLISH]: 'Not เกอน',
+    [LanguageCode.FRENCH]: 'Pas เกอน',
+    [LanguageCode.PORTUGUESE]: 'Não เกอน',
+    [LanguageCode.MANDARIN]: '不是 เกอน',
+  },
+  'reading.lesson7.page7.note4': {
+    [LanguageCode.ENGLISH]: 'Only when the ending consonant is ย',
+    [LanguageCode.FRENCH]: 'Seulement lorsque la consonne finale est ย',
+    [LanguageCode.PORTUGUESE]: 'Apenas quando a consoante final é ย',
+    [LanguageCode.MANDARIN]: '僅當結尾輔音是 ย 時',
+  },
+
   // Practice UI Strings
   'reading.practice.correct': {
     [LanguageCode.ENGLISH]: 'Correct!',

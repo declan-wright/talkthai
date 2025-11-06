@@ -1,13 +1,13 @@
 import React from 'react';
-import type { Language, ConversationTopic } from '../types';
+import type { Language, ConversationTopic, ConversationFeedback } from '../types';
 import { UI_STRINGS } from '../data/uiStrings';
-import { MarkdownRenderer } from './MarkdownRenderer';
+import { ConversationAnalysisView } from './ConversationAnalysisView';
 
 interface AnalysisViewProps {
   lesson: ConversationTopic;
   language: Language;
   isLoading: boolean;
-  feedback: string | null;
+  feedback: ConversationFeedback | null;
   error: string | null;
   onBack: () => void;
 }
@@ -54,9 +54,11 @@ export const AnalysisView: React.FC<AnalysisViewProps> = ({ lesson, language, is
                 </div>
             )}
             {feedback && (
-                <div className="space-y-4">
-                    <MarkdownRenderer content={feedback} />
-                </div>
+                <ConversationAnalysisView 
+                    feedback={feedback} 
+                    language={language} 
+                    onTryAgain={onBack}
+                />
             )}
         </main>
     </div>

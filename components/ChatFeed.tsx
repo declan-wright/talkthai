@@ -3,11 +3,46 @@ import type { ChatMessage, UserProfile } from '../types';
 import * as firestoreService from '../services/firestoreService';
 import { isAdmin } from '../utils/adminUtils';
 import { XIcon } from './Icons';
+import { getFallbackAvatar } from '../utils/avatarUtils';
 
 interface ChatFeedProps {
     currentUser: { uid: string; email: string | null } | null;
     currentUserProfile: UserProfile | null;
 }
+
+const ChatAvatar: React.FC<{ message: ChatMessage }> = ({ message }) => {
+    const [currentPhotoURL, setCurrentPhotoURL] = useState<string | null>(message.photoURL || null);
+    const [currentFallbackAvatar, setCurrentFallbackAvatar] = useState<string | null>(null);
+
+    useEffect(() => {
+        if (!message.uid) {
+            return;
+        }
+
+        // Fetch current user profile to get latest photoURL and fallback avatar
+        const fetchCurrentProfile = async () => {
+            try {
+                const profile = await firestoreService.getUserProfile(message.uid!);
+                setCurrentPhotoURL(profile.photoURL);
+                setCurrentFallbackAvatar(profile.fallbackAvatar || null);
+            } catch (error) {
+                console.error('Error fetching profile for chat avatar:', error);
+                setCurrentPhotoURL(message.photoURL || null);
+            }
+        };
+        fetchCurrentProfile();
+    }, [message.uid, message.photoURL]);
+
+    const avatarSrc = currentPhotoURL || getFallbackAvatar(currentFallbackAvatar);
+
+    return (
+        <img
+            src={avatarSrc}
+            alt={message.displayName}
+            className="w-6 h-6 rounded-full border border-warm-white/20"
+        />
+    );
+};
 
 export const ChatFeed: React.FC<ChatFeedProps> = ({ currentUser, currentUserProfile }) => {
     const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -78,9 +113,7 @@ export const ChatFeed: React.FC<ChatFeedProps> = ({ currentUser, currentUserProf
                 )}
                 {messages.map((m) => (
                     <div key={m.id} className={`flex items-start gap-2 group ${m.isSystem ? 'opacity-80' : ''}`}>
-                        {!m.isSystem && m.photoURL && (
-                            <img src={m.photoURL} alt={m.displayName} className="w-6 h-6 rounded-full border border-warm-white/20" />
-                        )}
+                        {!m.isSystem && <ChatAvatar message={m} />}
                         <div className={`p-2 flex-1 ${m.isSystem ? 'bg-warm-white/10 text-warm-white' : 'bg-warm-white text-charcoal-ink'}`}>
                             <p className="text-xs font-bold mb-0.5">{m.isSystem ? 'System' : m.displayName}</p>
                             <p className="text-sm whitespace-pre-wrap">{m.text}</p>

@@ -1,6 +1,6 @@
 import { GoogleGenAI, Type, Modality } from '@google/genai';
 // Fix: Moved `TestQuestionType` from a type-only import to a value import to allow its use at runtime.
-import type { Language, ConversationTopic, Transcript, VocabularyItem, HandwritingFeedback, ListeningSpeakingExercise, SpeakingFeedback, LocalizedString, ConversationScriptItem, Lesson, TestQuestion, VocabMCQuestion, AppMCQuestion, AppFillBlankQuestion, ListeningSection } from '../types';
+import type { Language, ConversationTopic, Transcript, VocabularyItem, HandwritingFeedback, ListeningSpeakingExercise, SpeakingFeedback, ConversationFeedback, LocalizedString, ConversationScriptItem, Lesson, TestQuestion, VocabMCQuestion, AppMCQuestion, AppFillBlankQuestion, ListeningSection } from '../types';
 import { LanguageCode, ExerciseType, TestQuestionType } from '../types';
 import { blobToBase64 } from '../utils/fileUtils';
 import { getGeminiApiKey } from '../utils/env';
@@ -68,46 +68,96 @@ export const convertRomanizationToThai = async (romanizedText: string): Promise<
 
 export const generateConversationFeedback = async (
     audioBlob: globalThis.Blob,
-    transcript: Transcript[],
     language: Language,
     topic: ConversationTopic
-): Promise<string> => {
+): Promise<ConversationFeedback> => {
     const audioBase64 = await blobToBase64(audioBlob);
-    const transcriptText = transcript
-        .map(t => `${t.speaker === 'user' ? 'You' : 'Tutor'}: ${t.text}`)
-        .join('\n');
-
-    const prompt = `Analyze the attached audio and transcript of a native ${language.name} speaker practicing a Thai conversation.
-The scenario was: '${topic.translations[LanguageCode.ENGLISH].scenario}'.
-Transcript:
-${transcriptText}
-
-Your task is to provide feedback on their performance.
-
-**IMPORTANT RULES:**
-- Your entire response and analysis MUST be in the user's native language: **${language.name}**.
-- Be clear, direct, and concise. Keep the feedback short and focus only on the most critical points for improvement. Avoid long explanations.
-- Use simple markdown headings.
-
-**Feedback Structure:**
-1.  **Pronunciation:** Point out 1-2 specific words that need improvement.
-2.  **Grammar & Vocabulary:** Suggest one key improvement for sentence structure or word choice.
-3.  **Fluency:** Give a brief, encouraging comment on their rhythm and confidence.`;
-
-    const audioPart = {
-        inlineData: {
-          mimeType: 'audio/wav',
-          data: audioBase64,
+    
+    const feedbackSchema = {
+        type: Type.OBJECT,
+        properties: {
+            isRecognizable: { 
+                type: Type.BOOLEAN, 
+                description: "Set to true if the audio contains a genuine attempt at a Thai conversation related to the scenario, even if poorly pronounced or with errors. Set to false ONLY if the audio contains no Thai speech, is just noise, or is completely unrelated to a conversation." 
+            },
+            reasoning: { 
+                type: Type.STRING, 
+                description: `If 'isRecognizable' is false, a brief explanation why in ${language.name}. If true, this can be an empty string.` 
+            },
+            overallScore: { 
+                type: Type.INTEGER, 
+                description: "Overall conversation performance score from 1-5 stars." 
+            },
+            overallFeedback: { 
+                type: Type.STRING, 
+                description: `A concise paragraph summarizing the overall conversation performance and offering encouragement. Must be in ${language.name}.` 
+            },
+            pronunciationScore: { 
+                type: Type.INTEGER, 
+                description: "Pronunciation score from 1-5 stars, focusing on individual consonant and vowel sounds across the conversation." 
+            },
+            pronunciationFeedback: { 
+                type: Type.STRING, 
+                description: `A concise paragraph explaining the pronunciation score, highlighting what was good and what specific sounds or words need work. Must be in ${language.name}.` 
+            },
+            fluencyScore: { 
+                type: Type.INTEGER, 
+                description: "Fluency score from 1-5 stars, focusing on rhythm, flow, and conversational naturalness." 
+            },
+            fluencyFeedback: { 
+                type: Type.STRING, 
+                description: `A concise paragraph explaining the fluency score, commenting on the pace, smoothness, and conversational flow. Must be in ${language.name}.` 
+            },
+            toneScore: { 
+                type: Type.INTEGER, 
+                description: "Thai tone accuracy score from 1-5 stars across the conversation." 
+            },
+            toneFeedback: { 
+                type: Type.STRING, 
+                description: `A concise paragraph explaining the tone score, identifying any specific words where the tone was incorrect (e.g., rising instead of falling). Must be in ${language.name}.` 
+            },
+            keyRecommendation: { 
+                type: Type.STRING, 
+                description: `The single most important tip for improvement in future conversations, in ${language.name}.` 
+            }
         },
+        required: ["isRecognizable", "reasoning", "overallScore", "overallFeedback", "pronunciationScore", "pronunciationFeedback", "fluencyScore", "fluencyFeedback", "toneScore", "toneFeedback", "keyRecommendation"]
+    };
+
+    const prompt = `You are an expert Thai language conversation coach. Analyze the user's audio recording of a Thai conversation practice session.
+**Scenario:** ${topic.translations[LanguageCode.ENGLISH].scenario}
+**User's native language:** ${language.name}
+
+Your task is to provide structured feedback in JSON format by analyzing the AUDIO ONLY (not any transcript, as transcripts are often inaccurate). All text feedback must be in ${language.name}.
+
+**Analysis Rules:**
+- Listen to the actual audio to understand what was said in the conversation.
+- Be lenient. If the audio contains a recognizable attempt at Thai conversation practice related to the scenario, set 'isRecognizable' to true and provide a full analysis.
+- **IMPORTANT**: Do not penalize the user for common pronunciation shortcuts that native Thai speakers use. A key example is dropping 'r' (ร) or 'l' (ล) sounds in consonant clusters (e.g., pronouncing 'krap' as 'kap', or 'klong' as 'kong'). If you detect this, either ignore it or praise it as sounding natural.
+- Only set 'isRecognizable' to false if the audio clearly contains no Thai conversation attempt (e.g., silence, noise, different language, etc.).
+- Provide a paragraph of feedback for each category: Pronunciation, Fluency, and Tone.
+- The feedback should be constructive, clear, and encouraging.
+- The scores (1-5 stars) and feedback paragraphs must be consistent with each other.
+- Focus on the user's speaking performance in the conversation, not the AI tutor's responses.`;
+
+    const audioPart = { 
+        inlineData: { 
+            mimeType: audioBlob.type || 'audio/wav', 
+            data: audioBase64 
+        } 
     };
     const textPart = { text: prompt };
 
     const response = await ai.models.generateContent({
         model: 'gemini-2.5-pro',
         contents: { parts: [textPart, audioPart] },
+        config: {
+            responseMimeType: "application/json",
+            responseSchema: feedbackSchema,
+        },
     });
-
-    return response.text;
+    
+    return JSON.parse(response.text) as ConversationFeedback;
 };
 
 export const generateHandwritingFeedback = async (
