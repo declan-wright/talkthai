@@ -59,19 +59,23 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
                             if (isYesterday(profile.lastActivityDate)) {
                                 // Continue streak
                                 const newStreak = profile.currentStreak + 1;
-                                const pointsToAdd = newStreak * 10;
-                                await firestoreService.updateUserProfile(user.uid, { 
+                                // Logarithmic streak bonus: starts at 10, approaches 100 asymptotically
+                                // Formula: 100 * (1 - e^(-streak/15))
+                                // Day 1: ~6.5, Day 7: ~37, Day 15: ~63, Day 30: ~86, Day 60: ~98, approaches 100
+                                const pointsToAdd = Math.round(100 * (1 - Math.exp(-newStreak / 15)));
+                                await firestoreService.updateUserProfile(user.uid, {
                                     currentStreak: newStreak,
-                                    lastActivityDate: today 
+                                    lastActivityDate: today
                                 });
                                 await firestoreService.addPoints(user.uid, pointsToAdd, `${newStreak}-day streak bonus!`);
                             } else {
                                 // Streak broken
                                 const newStreak = 1;
-                                const pointsToAdd = 10;
-                                await firestoreService.updateUserProfile(user.uid, { 
-                                    currentStreak: newStreak, 
-                                    lastActivityDate: today 
+                                // Day 1 bonus with logarithmic formula
+                                const pointsToAdd = Math.round(100 * (1 - Math.exp(-1 / 15)));
+                                await firestoreService.updateUserProfile(user.uid, {
+                                    currentStreak: newStreak,
+                                    lastActivityDate: today
                                 });
                                 await firestoreService.addPoints(user.uid, pointsToAdd, 'New 1-day streak!');
                                 await firestoreService.addStreakBrokenToShameWall(profile);
