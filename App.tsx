@@ -61,7 +61,7 @@ const LANGUAGE_KEY = 'thai-talk-language-preference'; // For non-logged-in users
 const INSTALL_SEEN_KEY = 'thai-talk-install-seen';
 
 const App: React.FC = () => {
-  const { user, userProfile, loading: authLoading, updateUserProfile } = useAuth();
+  const { user, userProfile, loading: authLoading, updateUserProfile, reloadProfile } = useAuth();
   const { showPoints } = usePoints();
   const [appState, setAppState] = useState<AppState>(AppState.SELECTING_LANGUAGE);
   const [selectedLanguage, setSelectedLanguage] = useState<Language | null>(null);
@@ -332,12 +332,20 @@ const App: React.FC = () => {
     navigateToState(AppState.IN_CONVERSATION, { conversationTopic: topic });
   };
 
-  const handleFinishConversation = (audioBlob: globalThis.Blob, transcript: Transcript[], durationSeconds: number) => {
+  const handleFinishConversation = async (audioBlob: globalThis.Blob, transcript: Transcript[], durationSeconds: number) => {
     if (user) {
         const points = Math.round((durationSeconds / 60) * 6);
         if (points > 0) {
             firestoreService.addPoints(user.uid, points, 'Conversation Practice');
             showPoints(points);
+        }
+        try {
+            if (selectedConversationTopic) {
+                await firestoreService.incrementConversationProgress(user.uid, selectedConversationTopic.id, durationSeconds);
+                await reloadProfile();
+            }
+        } catch (e) {
+            console.warn('Failed to update conversation progress', e);
         }
     }
     const data = { audio: audioBlob, transcript };
@@ -447,10 +455,17 @@ const App: React.FC = () => {
   }, [appState, feedback, isLoadingFeedback, generateAudioFeedback]);
 
   useEffect(() => {
-    if (appState === AppState.ANALYZING_WRITING_FEEDBACK && !feedback && !isLoadingFeedback) {
-        generateWritingFeedback();
+    if (appState === AppState.ANALYZING_WRITING_FEEDBACK) {
+        // Clear old feedback when new writing data arrives
+        if (feedback || feedbackError) {
+            setFeedback(null);
+            setFeedbackError(null);
+        }
+        if (!isLoadingFeedback) {
+            generateWritingFeedback();
+        }
     }
-  }, [appState, feedback, isLoadingFeedback, generateWritingFeedback]);
+  }, [appState, analysisWritingData]);
 
   const renderContent = () => {
     if (authLoading) {

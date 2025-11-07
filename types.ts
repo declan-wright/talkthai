@@ -252,6 +252,9 @@ export interface UserProfile {
     // Progress
     testScores: Record<string, number>; // { "lessonId": score }
     flashcardProgress: Record<string, Record<string, number>>; // { "lessonId": { "thai_word": streak } }
+    // Conversation Progress
+    conversationPracticeCounts?: Record<string, number>; // { "topicId": count }
+    conversationTotalTimeMs?: number; // total accumulated conversation time in ms
 }
 
 export interface LeaderboardEntry {

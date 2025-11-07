@@ -1,0 +1,96 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(uid) {
+      return isSignedIn() && request.auth.uid == uid;
+    }
+
+    function isAdmin() {
+      return isSignedIn() && request.auth.token.email == 'declanmarkwright@gmail.com';
+    }
+
+    // Users collection
+    match /users/{userId} {
+      // Anyone authenticated can read any user profile (for leaderboard, chat, profiles)
+      allow read: if isSignedIn();
+
+      // Users can only create their own profile
+      allow create: if isOwner(userId)
+                    && request.resource.data.uid == userId
+                    && request.resource.data.email == request.auth.token.email;
+
+      // Users can update their own profile
+      // OR any authenticated user can update ONLY fallbackAvatar field (change avatars)
+      // OR any authenticated user can update ONLY currentStreak field (end streaks - costs 500 points)
+      // OR admin can update anything
+      allow update: if isAdmin()
+                    || isOwner(userId)
+                    || (isSignedIn() && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['fallbackAvatar']))
+                    || (isSignedIn() && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['currentStreak']));
+
+      // Users can delete their own profile OR admin can delete any profile
+      allow delete: if isOwner(userId) || isAdmin();
+    }
+
+    // Shame Wall collection
+    match /shame_wall/{entryId} {
+      // Anyone authenticated can read shame wall entries
+      allow read: if isSignedIn();
+
+      // Anyone authenticated can create shame wall entries with server timestamp
+      allow create: if isSignedIn()
+                    && request.resource.data.timestamp == request.time;
+
+      // Users can delete their own shame wall entries OR admin can delete any
+      allow delete: if isAdmin()
+                    || (isSignedIn() && resource.data.uid == request.auth.uid);
+
+      // No updates allowed
+      allow update: if false;
+    }
+
+    // Chat Messages collection
+    match /chat_messages/{messageId} {
+      // Anyone authenticated can read chat messages
+      allow read: if isSignedIn();
+
+      // Anyone authenticated can create chat messages
+      // Can be their own uid OR system message (isSystem: true)
+      allow create: if isSignedIn()
+                    && (request.resource.data.uid == request.auth.uid
+                        || request.resource.data.uid == null
+                        || request.resource.data.isSystem == true)
+                    && request.resource.data.createdAt == request.time;
+
+      // Users can delete their own messages OR admin can delete any
+      allow delete: if isAdmin()
+                    || (isSignedIn() && resource.data.uid == request.auth.uid);
+
+      // No updates allowed
+      allow update: if false;
+    }
+
+    // Announcements collection (for tracking weekly winners/losers)
+    match /announcements/{announcementId} {
+      // Anyone authenticated can read announcements
+      allow read: if isSignedIn();
+
+      // Anyone authenticated can create announcements with server timestamp
+      allow create: if isSignedIn()
+                    && request.resource.data.createdAt == request.time;
+
+      // Admin can delete announcements
+      allow delete: if isAdmin();
+
+      // No updates allowed
+      allow update: if false;
+    }
+  }
+}

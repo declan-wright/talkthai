@@ -501,3 +501,33 @@ export const deleteUserAccount = async (uid: string): Promise<void> => {
         throw e;
     }
 };
+
+// ---- Conversation Progress ----
+
+export const incrementConversationProgress = async (
+    uid: string,
+    topicId: number,
+    durationSeconds: number
+): Promise<void> => {
+    if (!uid || !Number.isFinite(topicId)) return;
+    const userRef = doc(db, FIRESTORE_COLLECTIONS.USERS, uid);
+    const timeMsToAdd = Math.max(0, Math.round(durationSeconds * 1000));
+
+    await runTransaction(db, async (tx) => {
+        const snap = await tx.get(userRef);
+        if (!snap.exists()) return;
+        const current = snap.data() as UserProfile;
+
+        const currentCounts = current.conversationPracticeCounts || {};
+        const currentCountForTopic = Number(currentCounts[String(topicId)] || 0);
+        const nextCounts = { ...currentCounts, [String(topicId)]: currentCountForTopic + 1 } as Record<string, number>;
+
+        const currentTime = Number(current.conversationTotalTimeMs || 0);
+        const nextTime = currentTime + timeMsToAdd;
+
+        tx.update(userRef, {
+            conversationPracticeCounts: nextCounts,
+            conversationTotalTimeMs: nextTime,
+        });
+    });
+};

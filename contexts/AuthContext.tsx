@@ -146,6 +146,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
                 weeklyPoints: { ...(current.weeklyPoints || {}), ...(profileData.weeklyPoints || {}) },
                 testScores: { ...(current.testScores || {}), ...(profileData.testScores || {}) },
                 flashcardProgress: { ...(current.flashcardProgress || {}), ...(profileData.flashcardProgress || {}) },
+                conversationPracticeCounts: { ...(current.conversationPracticeCounts || {}), ...(profileData.conversationPracticeCounts || {}) },
             };
 
             // Shallow compare to avoid redundant writes

@@ -74,12 +74,30 @@ export const UI_STRINGS = {
         [LanguageCode.PORTUGUESE]: 'Unidade',
         [LanguageCode.MANDARIN]: '單元',
     },
+    noLessonsYet: {
+        [LanguageCode.ENGLISH]: 'No lessons yet! Unit {unitId} is coming soon.',
+        [LanguageCode.FRENCH]: 'Pas encore de leçons ! L\'unité {unitId} arrive bientôt.',
+        [LanguageCode.PORTUGUESE]: 'Ainda sem lições! A Unidade {unitId} está chegando em breve.',
+        [LanguageCode.MANDARIN]: '還沒有課程！單元 {unitId} 即將推出。',
+    },
     // ConversationPracticeSelector
     chooseConversation: {
         [LanguageCode.ENGLISH]: 'Choose a Conversation',
         [LanguageCode.FRENCH]: 'Choisissez une conversation',
         [LanguageCode.PORTUGUESE]: 'Escolha uma Conversa',
         [LanguageCode.MANDARIN]: '選擇一個對話',
+    },
+    conversationOverallProgress: {
+        [LanguageCode.ENGLISH]: 'Overall Progress',
+        [LanguageCode.FRENCH]: 'Progrès Global',
+        [LanguageCode.PORTUGUESE]: 'Progresso Geral',
+        [LanguageCode.MANDARIN]: '整體進度',
+    },
+    conversationTotalTime: {
+        [LanguageCode.ENGLISH]: 'Total Time',
+        [LanguageCode.FRENCH]: 'Temps Total',
+        [LanguageCode.PORTUGUESE]: 'Tempo Total',
+        [LanguageCode.MANDARIN]: '總時間',
     },
     levelBeginner: {
         [LanguageCode.ENGLISH]: 'Beginner',
