@@ -119,6 +119,21 @@ export const Changelog: React.FC<ChangelogProps> = ({ isOpen, onClose }) => {
                             </div>
                         </div>
                     </div>
+
+                    <div>
+                        <div className="flex items-center justify-between mb-4">
+                            <h3 className="text-warm-white/80 text-sm font-bold">version 1.2.2</h3>
+                            <span className="text-warm-white/50 text-xs">friday, nov 8 2025</span>
+                        </div>
+                        <div className="space-y-4 text-sm">
+                            <div>
+                                <p className="text-warm-white/80 font-semibold mb-2">issues/fixes:</p>
+                                <ul className="text-warm-white/70 space-y-1 list-disc list-inside">
+                                    <li>fixed firestore security rules that prevented donating points</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

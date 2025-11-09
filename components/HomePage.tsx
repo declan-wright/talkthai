@@ -233,7 +233,7 @@ export const HomePage: React.FC<HomePageProps> = ({ language, onSelectLesson, on
                 </div>
                 <div className="mt-4">
                     <button onClick={() => setShowVersionModal(true)} className="text-warm-white/40 hover:text-warm-white/60 hover:underline text-xs">
-                        version 1.2.1
+                        version 1.2.2
                     </button>
                 </div>
             </div>
