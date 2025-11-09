@@ -29,11 +29,13 @@ service cloud.firestore {
       // Users can update their own profile
       // OR any authenticated user can update ONLY fallbackAvatar field (change avatars)
       // OR any authenticated user can update ONLY currentStreak field (end streaks - costs 500 points)
+      // OR any authenticated user can update ONLY weeklyPoints field (for point donations)
       // OR admin can update anything
       allow update: if isAdmin()
                     || isOwner(userId)
                     || (isSignedIn() && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['fallbackAvatar']))
-                    || (isSignedIn() && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['currentStreak']));
+                    || (isSignedIn() && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['currentStreak']))
+                    || (isSignedIn() && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['weeklyPoints']));
 
       // Users can delete their own profile OR admin can delete any profile
       allow delete: if isOwner(userId) || isAdmin();
