@@ -287,3 +287,30 @@ export const CHANGELOG_UI_STRINGS = {
     }
 };
 
+export const UPDATE_NOTIFICATION_STRINGS = {
+    title: {
+        [LanguageCode.ENGLISH]: 'your experience just got better',
+        [LanguageCode.FRENCH]: 'votre expérience vient de s\'améliorer',
+        [LanguageCode.PORTUGUESE]: 'sua experiência acabou de melhorar',
+        [LanguageCode.MANDARIN]: '您的體驗剛剛變得更好'
+    },
+    subtitle: {
+        [LanguageCode.ENGLISH]: 'here\'s what\'s new',
+        [LanguageCode.FRENCH]: 'voici les nouveautés',
+        [LanguageCode.PORTUGUESE]: 'veja as novidades',
+        [LanguageCode.MANDARIN]: '這是新功能'
+    },
+    letsGo: {
+        [LanguageCode.ENGLISH]: 'let\'s go',
+        [LanguageCode.FRENCH]: 'c\'est parti',
+        [LanguageCode.PORTUGUESE]: 'vamos lá',
+        [LanguageCode.MANDARIN]: '開始吧'
+    },
+    viewMore: {
+        [LanguageCode.ENGLISH]: 'view more',
+        [LanguageCode.FRENCH]: 'voir plus',
+        [LanguageCode.PORTUGUESE]: 'ver mais',
+        [LanguageCode.MANDARIN]: '查看更多'
+    }
+};
+

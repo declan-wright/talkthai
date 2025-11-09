@@ -13,6 +13,7 @@ import { ChatFeed } from './ChatFeed';
 import EditProfileModal from './EditProfileModal';
 import { findAvailableAvatar } from '../utils/avatarUtils';
 import { Changelog } from './Changelog';
+import { UpdateNotification, hasNewVersion } from './UpdateNotification';
 
 interface HomePageProps {
     language: Language;
@@ -37,6 +38,7 @@ export const HomePage: React.FC<HomePageProps> = ({ language, onSelectLesson, on
     const [isThaiLooped, setIsThaiLooped] = useState<boolean>(false);
     const [showEditProfile, setShowEditProfile] = useState<boolean>(false);
     const [showVersionModal, setShowVersionModal] = useState<boolean>(false);
+    const [showUpdateNotification, setShowUpdateNotification] = useState<boolean>(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -57,6 +59,13 @@ export const HomePage: React.FC<HomePageProps> = ({ language, onSelectLesson, on
     useEffect(() => {
         const hasClass = document.documentElement.classList.contains('thai-looped') || document.body.classList.contains('thai-looped');
         setIsThaiLooped(hasClass);
+    }, []);
+
+    // Check for new version on mount
+    useEffect(() => {
+        if (hasNewVersion()) {
+            setShowUpdateNotification(true);
+        }
     }, []);
 
     const refreshLeaderboard = async () => {
@@ -262,6 +271,16 @@ export const HomePage: React.FC<HomePageProps> = ({ language, onSelectLesson, on
             {showEditProfile && userProfile && (
                 <EditProfileModal isOpen={showEditProfile} onClose={() => setShowEditProfile(false)} profile={userProfile} language={language} onChangeLanguage={(l) => onChangeLanguage && onChangeLanguage(l)} />
             )}
+
+            <UpdateNotification
+                isOpen={showUpdateNotification}
+                onClose={() => setShowUpdateNotification(false)}
+                onViewMore={() => {
+                    setShowUpdateNotification(false);
+                    setShowVersionModal(true);
+                }}
+                language={language}
+            />
 
             <Changelog isOpen={showVersionModal} onClose={() => setShowVersionModal(false)} language={language} />
         </div>
