@@ -263,7 +263,7 @@ export const HomePage: React.FC<HomePageProps> = ({ language, onSelectLesson, on
                 <EditProfileModal isOpen={showEditProfile} onClose={() => setShowEditProfile(false)} profile={userProfile} language={language} onChangeLanguage={(l) => onChangeLanguage && onChangeLanguage(l)} />
             )}
 
-            <Changelog isOpen={showVersionModal} onClose={() => setShowVersionModal(false)} />
+            <Changelog isOpen={showVersionModal} onClose={() => setShowVersionModal(false)} language={language} />
         </div>
     );
 };
