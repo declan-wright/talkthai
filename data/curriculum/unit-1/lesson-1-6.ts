@@ -24,7 +24,7 @@ export const lesson_1_6: Lesson = {
         { thai: "ใช้", phonetic: "chái", translations: { [LanguageCode.ENGLISH]: "use", [LanguageCode.FRENCH]: "utiliser", [LanguageCode.PORTUGUESE]: "usar", [LanguageCode.MANDARIN]: "用" } },
         { thai: "คิด", phonetic: "khít", translations: { [LanguageCode.ENGLISH]: "think", [LanguageCode.FRENCH]: "penser", [LanguageCode.PORTUGUESE]: "pensar", [LanguageCode.MANDARIN]: "想" } },
         { thai: "รอ", phonetic: "rɔɔ", translations: { [LanguageCode.ENGLISH]: "wait", [LanguageCode.FRENCH]: "attendre", [LanguageCode.PORTUGUESE]: "esperar", [LanguageCode.MANDARIN]: "等" } },
-        { thai: "เดิน", phonetic: "dteun", translations: { [LanguageCode.ENGLISH]: "walk", [LanguageCode.FRENCH]: "marcher", [LanguageCode.PORTUGUESE]: "andar/caminhar", [LanguageCode.MANDARIN]: "走路" } },
+        { thai: "เดิน", phonetic: "dəən", translations: { [LanguageCode.ENGLISH]: "walk", [LanguageCode.FRENCH]: "marcher", [LanguageCode.PORTUGUESE]: "andar/caminhar", [LanguageCode.MANDARIN]: "走路" } },
         { thai: "นั่ง", phonetic: "nâng", translations: { [LanguageCode.ENGLISH]: "sit", [LanguageCode.FRENCH]: "s'asseoir", [LanguageCode.PORTUGUESE]: "sentar", [LanguageCode.MANDARIN]: "坐" } },
         { thai: "ยืน", phonetic: "yʉʉn", translations: { [LanguageCode.ENGLISH]: "stand", [LanguageCode.FRENCH]: "se tenir debout", [LanguageCode.PORTUGUESE]: "ficar em pé", [LanguageCode.MANDARIN]: "站" } },
         { thai: "ขึ้น", phonetic: "khʉ̂n", translations: { [LanguageCode.ENGLISH]: "get on/go up", [LanguageCode.FRENCH]: "monter", [LanguageCode.PORTUGUESE]: "subir", [LanguageCode.MANDARIN]: "上" } },
@@ -279,7 +279,8 @@ export const lesson_1_6: Lesson = {
             [LanguageCode.FRENCH]: "Enregistrez 4 commandes utilisant bpurt (ouvrir) et bpìt (fermer). Exemple : chûay bpurt fai nɔ̀y (Allume la lumière s'il te plaît)",
             [LanguageCode.PORTUGUESE]: "Grave 4 comandos usando bpurt (abrir) e bpìt (fechar). Exemplo: chûay bpurt fai nɔ̀y (Por favor, ligue a luz)",
             [LanguageCode.MANDARIN]: "錄製 4 個使用 bpurt（開）和 bpìt（關）的命令。例子：chûay bpurt fai nɔ̀y（請開燈）",
-        }
+        },
+        speakingType: 'open-ended'
     }
 };
 

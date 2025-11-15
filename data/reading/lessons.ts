@@ -15,6 +15,7 @@ import {
   type ThaiConsonant,
   VOWEL_PLACEMENT_EXAMPLES,
   LONG_VOWELS,
+  OTHER_LONG_VOWELS,
   type ThaiVowel,
   LIVE_ENDING_CONSONANTS,
   DEAD_ENDING_CONSONANTS,
@@ -557,6 +558,51 @@ export const LESSON_7_ENDING_CONSONANTS: ReadingLesson = {
 };
 
 // =============================================================================
+// LESSON 6: OTHER LONG VOWELS
+// =============================================================================
+
+export const LESSON_6_OTHER_LONG_VOWELS: ReadingLesson = {
+  id: '6',
+  type: ReadingLessonType.VOWEL_LESSON,
+  title: {
+    [LanguageCode.ENGLISH]: 'Other Long Vowels',
+    [LanguageCode.FRENCH]: 'Autres voyelles longues',
+    [LanguageCode.PORTUGUESE]: 'Outras vogais longas',
+    [LanguageCode.MANDARIN]: '其他長元音',
+  },
+  pages: [
+    {
+      title: 'reading.lesson6.page1.title',
+      body: 'reading.lesson6.page1.body',
+      type: 'character-list',
+      data: {
+        vowels: OTHER_LONG_VOWELS
+      }
+    },
+    {
+      title: 'reading.lesson6.page2.title',
+      body: 'reading.lesson6.page2.body',
+      type: 'special',
+      data: {
+        specialWords: [
+          { thai: 'ใคร', phonetic: 'khrai', meaning: 'who' },
+          { thai: 'ใช่', phonetic: 'châi', meaning: 'yes' },
+          { thai: 'ใหญ่', phonetic: 'yài', meaning: 'big' },
+          { thai: 'ใน', phonetic: 'nai', meaning: 'in' },
+          { thai: 'ใหม่', phonetic: 'mài', meaning: 'new' },
+          { thai: 'ใส่', phonetic: 'sài', meaning: 'to wear' },
+          { thai: 'ใกล้', phonetic: 'klái', meaning: 'near' },
+          { thai: 'ใจ', phonetic: 'jai', meaning: 'heart' }
+        ]
+      }
+    }
+  ],
+  practiceVowels: OTHER_LONG_VOWELS,
+  practiceAnswerOptions: ['ai', 'ao', 'am', 'ia', 'ua', 'ɯa'],
+  isVowelPractice: true
+};
+
+// =============================================================================
 // ALL LESSONS
 // =============================================================================
 
@@ -571,5 +617,6 @@ export const ALL_READING_LESSONS: ReadingLesson[] = [
   LESSON_4_3_PRACTICE,
   LESSON_4_6_PRACTICE,
   LESSON_5_LONG_VOWELS,
+  LESSON_6_OTHER_LONG_VOWELS,
   LESSON_7_ENDING_CONSONANTS
 ];

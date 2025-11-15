@@ -278,7 +278,8 @@ export const lesson_1_7: Lesson = {
             [LanguageCode.FRENCH]: "Commandez 3 plats au restaurant. Exemple : khɔ̌ɔ phàt thai, dtôm yam gûng, geng khǐao wǎan gài (Je voudrais du pad thaï, de la soupe tom yum aux crevettes et du curry vert au poulet)",
             [LanguageCode.PORTUGUESE]: "Peça 3 pratos em um restaurante. Exemplo: khɔ̌ɔ phàt thai, dtôm yam gûng, geng khǐao wǎan gài (Eu gostaria de pad thai, sopa tom yum com camarão e curry verde com frango)",
             [LanguageCode.MANDARIN]: "在餐廳點 3 道菜。例子：khɔ̌ɔ phàt thai, dtôm yam gûng, geng khǐao wǎan gài（我想要泰式炒麵、蝦冬陰湯和雞肉綠咖哩）",
-        }
+        },
+        speakingType: 'open-ended'
     }
 };
 

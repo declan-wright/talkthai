@@ -33,7 +33,7 @@ const ChatAvatar: React.FC<{ message: ChatMessage }> = ({ message }) => {
         fetchCurrentProfile();
     }, [message.uid, message.photoURL]);
 
-    const avatarSrc = currentPhotoURL || getFallbackAvatar(currentFallbackAvatar);
+    const avatarSrc = currentFallbackAvatar || currentPhotoURL || getFallbackAvatar(currentFallbackAvatar);
 
     return (
         <img
@@ -79,7 +79,7 @@ export const ChatFeed: React.FC<ChatFeedProps> = ({ currentUser, currentUserProf
             await firestoreService.postChatMessage({
                 uid: currentUser!.uid,
                 displayName: currentUserProfile!.displayName || currentUserProfile!.firstName,
-                photoURL: currentUserProfile!.photoURL || null,
+                photoURL: currentUserProfile!.fallbackAvatar || currentUserProfile!.photoURL || null,
                 text: content,
                 isSystem: false,
             });

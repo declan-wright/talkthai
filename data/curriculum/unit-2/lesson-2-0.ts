@@ -337,7 +337,8 @@ export const lesson_2_0: Lesson = {
             [LanguageCode.FRENCH]: "Décrivez votre routine quotidienne en utilisant les verbes de cette leçon. Incluez au moins 10 activités du matin au soir. Par exemple :\n\n'Chaque matin, je me réveille (dtʉ̀ʉn), puis je me douche (àap-náam). Après ça, je me brosse les dents (bprɛɛng-fan) et je me peigne (wǐi phǒm). Je m'habille (dtɛ̀ng-dtuua) et je mets des vêtements (sài sʉ̂a). Je prends le petit-déjeuner (gin-khâao-cháao) et je bois du café (dʉ̀ʉm gaa-fɛɛ). Puis je conduis au travail (khàp rót bpai tham-ngaan)...\n\nContinuez à décrire vos activités de l'après-midi, votre routine du soir et ce que vous faites avant de vous coucher. Utilisez autant de verbes de cette leçon que possible !",
             [LanguageCode.PORTUGUESE]: "Descreva sua rotina diária usando os verbos desta lição. Inclua pelo menos 10 atividades da manhã à noite. Por exemplo:\n\n'Toda manhã, eu acordo (dtʉ̀ʉn), depois tomo banho (àap-náam). Depois disso, escovo os dentes (bprɛɛng-fan) e penteio o cabelo (wǐi phǒm). Me visto (dtɛ̀ng-dtuua) e coloco roupas (sài sʉ̂a). Tomo café da manhã (gin-khâao-cháao) e bebo café (dʉ̀ʉm gaa-fɛɛ). Depois dirijo para o trabalho (khàp rót bpai tham-ngaan)...\n\nContinue descrevendo suas atividades da tarde, rotina da noite e o que você faz antes de dormir. Use o máximo de verbos desta lição que puder!",
             [LanguageCode.MANDARIN]: "用本課的動詞描述你的日常作息。包括從早到晚至少 10 個活動。例如：\n\n'每天早上，我起床（dtʉ̀ʉn），然後洗澡（àap-náam）。之後，我刷牙（bprɛɛng-fan）和梳頭（wǐi phǒm）。我穿衣服（dtɛ̀ng-dtuua）和穿衣服（sài sʉ̂a）。我吃早餐（gin-khâao-cháao）和喝咖啡（dʉ̀ʉm gaa-fɛɛ）。然後我開車去上班（khàp rót bpai tham-ngaan）...\n\n繼續描述你的下午活動、晚上的例行活動和睡前做什麼。盡可能多地使用本課的動詞！",
-        }
+        },
+        speakingType: 'open-ended'
     }
 };
 

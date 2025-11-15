@@ -1,0 +1,15 @@
+# Thai Audio Generation Requirements
+# Install with: pip install -r requirements.txt
+
+# Vertex AI TTS (used by generate_audio.py)
+google-cloud-texttospeech>=2.29.0
+
+# Gemini API TTS (used by generateAudioUnrestricted.py)
+google-genai>=0.8.0
+
+# Audio processing
+pydub>=0.25.1
+
+# Note: ffmpeg is also required as a system package
+# Install on macOS: brew install ffmpeg
+# Install on Ubuntu: sudo apt-get install ffmpeg

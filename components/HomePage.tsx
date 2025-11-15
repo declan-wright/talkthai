@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import type { Language, Lesson, LeaderboardEntry, ShameWallEntry } from '../types';
 import { UNITS } from '../data/curriculum/units';
 import { UI_STRINGS } from '../data/uiStrings';
@@ -13,7 +13,9 @@ import { ChatFeed } from './ChatFeed';
 import EditProfileModal from './EditProfileModal';
 import { findAvailableAvatar } from '../utils/avatarUtils';
 import { Changelog } from './Changelog';
-import { UpdateNotification, hasNewVersion } from './UpdateNotification';
+import { UpdateNotification, hasNewVersion, getLatestVersion } from './UpdateNotification';
+import { StreakCelebration } from './StreakCelebration';
+import { getTodayDateString } from '../utils/dateUtils';
 
 interface HomePageProps {
     language: Language;
@@ -25,9 +27,10 @@ interface HomePageProps {
     onRestartOnboarding?: () => void;
     onShowInstallInstructions?: () => void;
     onChangeLanguage?: (language: Language) => void;
+    onStartZhuyinBeta?: () => void;
 }
 
-export const HomePage: React.FC<HomePageProps> = ({ language, onSelectLesson, onStartConversationPractice, onStartWritingPractice, onStartReadingPractice, onBack, onRestartOnboarding, onShowInstallInstructions, onChangeLanguage }) => {
+export const HomePage: React.FC<HomePageProps> = ({ language, onSelectLesson, onStartConversationPractice, onStartWritingPractice, onStartReadingPractice, onBack, onRestartOnboarding, onShowInstallInstructions, onChangeLanguage, onStartZhuyinBeta }) => {
     const { user, userProfile, signOut } = useAuth();
     const [expandedUnit, setExpandedUnit] = useState<number | null>(UNITS[0]?.id ?? null);
     
@@ -39,6 +42,7 @@ export const HomePage: React.FC<HomePageProps> = ({ language, onSelectLesson, on
     const [showEditProfile, setShowEditProfile] = useState<boolean>(false);
     const [showVersionModal, setShowVersionModal] = useState<boolean>(false);
     const [showUpdateNotification, setShowUpdateNotification] = useState<boolean>(false);
+    const [showStreakCelebration, setShowStreakCelebration] = useState<boolean>(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -46,6 +50,8 @@ export const HomePage: React.FC<HomePageProps> = ({ language, onSelectLesson, on
                 await refreshLeaderboard();
                 // This logic would ideally be in a secure backend.
                 await firestoreService.updateWeeklyLoserOnShameWall();
+                // Clean up expired shame wall entries from database
+                await firestoreService.cleanupExpiredShameWallEntries();
                 const shameWallEntries = await firestoreService.getShameWall();
                 setShameWall(shameWallEntries);
                 // Announce weekly winner if not already
@@ -53,6 +59,17 @@ export const HomePage: React.FC<HomePageProps> = ({ language, onSelectLesson, on
             }
         };
         fetchData();
+
+        // Refresh shame wall periodically to remove expired entries
+        const shameWallRefreshInterval = setInterval(async () => {
+            if (user) {
+                await firestoreService.cleanupExpiredShameWallEntries();
+                const shameWallEntries = await firestoreService.getShameWall();
+                setShameWall(shameWallEntries);
+            }
+        }, 5 * 60 * 1000); // Refresh every 5 minutes
+
+        return () => clearInterval(shameWallRefreshInterval);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user]);
 
@@ -67,6 +84,39 @@ export const HomePage: React.FC<HomePageProps> = ({ language, onSelectLesson, on
             setShowUpdateNotification(true);
         }
     }, []);
+
+    // Check if we should show streak celebration when component mounts/updates
+    useEffect(() => {
+        const checkStreakCelebration = () => {
+            if (!userProfile) return;
+
+            const today = getTodayDateString();
+            const lastSeenKey = 'thai-talk-streak-celebration-seen';
+            const pointsEarnedTodayKey = 'thai-talk-points-earned-today';
+
+            const lastSeen = localStorage.getItem(lastSeenKey);
+            const pointsEarnedToday = sessionStorage.getItem(pointsEarnedTodayKey);
+
+            // Show celebration if:
+            // 1. User earned points today (flag set in session storage)
+            // 2. Haven't shown celebration yet today (localStorage)
+            // 3. User was active today
+            // 4. Has a streak of at least 1 day
+            if (
+                pointsEarnedToday === 'true' &&
+                lastSeen !== today &&
+                userProfile.lastActivityDate === today &&
+                userProfile.currentStreak >= 1
+            ) {
+                setShowStreakCelebration(true);
+                localStorage.setItem(lastSeenKey, today);
+                // Clear the flag so we don't show again
+                sessionStorage.removeItem(pointsEarnedTodayKey);
+            }
+        };
+
+        checkStreakCelebration();
+    }, [userProfile]);
 
     const refreshLeaderboard = async () => {
         const { leaderboard, weeklyWinner } = await firestoreService.getLeaderboard();
@@ -236,13 +286,18 @@ export const HomePage: React.FC<HomePageProps> = ({ language, onSelectLesson, on
                             {UI_STRINGS.installApp?.[language.code] || 'Install App'}
                         </button>
                     )}
+                    {onStartZhuyinBeta && (
+                        <button onClick={onStartZhuyinBeta} className="text-warm-white/80 hover:underline text-sm">
+                            {language.code === 'zh-TW' ? '試用注音測試版' : 'Try Zhuyin Beta'}
+                        </button>
+                    )}
                     <button onClick={toggleThaiLooped} className="text-warm-white/60 hover:text-warm-white hover:underline text-sm" aria-pressed={isThaiLooped}>
                         {isThaiLooped ? UI_STRINGS.thaiLoopsOn[language.code] : UI_STRINGS.thaiLoopsOff[language.code]}
                     </button>
                 </div>
                 <div className="mt-4">
                     <button onClick={() => setShowVersionModal(true)} className="text-warm-white/40 hover:text-warm-white/60 hover:underline text-xs">
-                        version 1.2.2
+                        version {getLatestVersion()}
                     </button>
                 </div>
             </div>
@@ -283,6 +338,16 @@ export const HomePage: React.FC<HomePageProps> = ({ language, onSelectLesson, on
             />
 
             <Changelog isOpen={showVersionModal} onClose={() => setShowVersionModal(false)} language={language} />
+
+            {userProfile && (
+                <StreakCelebration
+                    isOpen={showStreakCelebration}
+                    onClose={() => setShowStreakCelebration(false)}
+                    streakDays={userProfile.currentStreak}
+                    bonusPoints={Math.round(100 * (1 - Math.exp(-userProfile.currentStreak / 15)))}
+                    language={language}
+                />
+            )}
         </div>
     );
 };

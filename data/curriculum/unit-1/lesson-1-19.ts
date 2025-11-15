@@ -160,7 +160,8 @@ export const lesson_1_19: Lesson = {
             [LanguageCode.FRENCH]: "Expliquez comment vous vous rendez à 3 endroits courants. Exemple : phǒm pai tham-ŋaan nâŋ grɛ́p, phǒm pai dtà-làat dəən pai, phǒm pai sà-nǎam bin nâŋ thɛ́k-sîi (Je vais au travail en Grab, je marche au marché, je prends un taxi pour l'aéroport)",
             [LanguageCode.PORTUGUESE]: "Explique como você chega a 3 lugares comuns. Exemplo: phǒm pai tham-ŋaan nâŋ grɛ́p, phǒm pai dtà-làat dəən pai, phǒm pai sà-nǎam bin nâŋ thɛ́k-sîi (Eu vou para o trabalho de Grab, eu ando até o mercado, eu pego um táxi para o aeroporto)",
             [LanguageCode.MANDARIN]: "解釋你如何到達3個常見地點。例子：phǒm pai tham-ŋaan nâŋ grɛ́p, phǒm pai dtà-làat dəən pai, phǒm pai sà-nǎam bin nâŋ thɛ́k-sîi（我搭Grab去上班，我走路去市場，我搭計程車去機場）",
-        }
+        },
+        speakingType: 'open-ended'
     }
 };
 

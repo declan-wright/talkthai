@@ -173,7 +173,8 @@ export const lesson_1_20: Lesson = {
             [LanguageCode.FRENCH]: "Enregistrez une introduction de 2 minutes sur vous-même. Incluez : 1) Qui vous êtes (nom, d'où vous venez, ce que vous faites), 2) Votre routine quotidienne (quand vous vous réveillez, allez au travail/à l'école, mangez, etc.), 3) Vos projets (ce que vous voulez faire aujourd'hui/cette semaine/en Thaïlande). Utilisez autant de vocabulaire de l'Unité 1 que possible, et essayez d'inclure des mots de remplissage familiers comme คือ, นะ, ou เลย pour paraître naturel !",
             [LanguageCode.PORTUGUESE]: "Grave uma introdução de 2 minutos sobre você. Inclua: 1) Quem você é (nome, de onde você é, o que você faz), 2) Sua rotina diária (quando você acorda, vai para o trabalho/escola, come, etc.), 3) Seus planos (o que você quer fazer hoje/esta semana/na Tailândia). Use o máximo de vocabulário da Unidade 1 possível, e tente incluir alguns preenchimentos casuais como คือ, นะ, ou เลย para soar natural!",
             [LanguageCode.MANDARIN]: "錄製一個2分鐘的自我介紹。包括：1）你是誰（姓名、來自哪裡、做什麼），2）你的日常生活（什麼時候起床、去上班/上學、吃飯等），3）你的計劃（你今天/本週/在泰國想做什麼）。盡可能使用單元1的詞彙，並嘗試包含一些隨意的填充詞，如 คือ、นะ 或 เลย，以聽起來自然！",
-        }
+        },
+        speakingType: 'open-ended'
     }
 };
 

@@ -214,7 +214,8 @@ export const lesson_1_5: Lesson = {
             [LanguageCode.FRENCH]: "Décris ta semaine en utilisant cinq mots temporels.",
             [LanguageCode.PORTUGUESE]: "Descreva sua semana usando cinco palavras temporais.",
             [LanguageCode.MANDARIN]: "用五個時間詞描述你的這一週。",
-        }
+        },
+        speakingType: 'open-ended'
     }
 };
 

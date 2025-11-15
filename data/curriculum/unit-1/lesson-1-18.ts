@@ -316,6 +316,7 @@ export const lesson_1_18: Lesson = {
             [LanguageCode.FRENCH]: "Décrivez votre téléphone/technologie en 3 phrases. Exemple : phǒm mii toh-rá-sàp, phǒm lên ai-jii thúk wan, bɛ̀ɛt mòt bɔ̀i bɔ̀i (J'ai un téléphone, j'utilise IG tous les jours, la batterie meurt souvent)",
             [LanguageCode.PORTUGUESE]: "Descreva seu telefone/tecnologia em 3 frases. Exemplo: phǒm mii toh-rá-sàp, phǒm lên ai-jii thúk wan, bɛ̀ɛt mòt bɔ̀i bɔ̀i (Eu tenho um celular, uso IG todos os dias, a bateria acaba frequentemente)",
             [LanguageCode.MANDARIN]: "用3句話描述你的手機/科技。例子：phǒm mii toh-rá-sàp, phǒm lên ai-jii thúk wan, bɛ̀ɛt mòt bɔ̀i bɔ̀i（我有手機，我每天用IG，電池經常沒電）",
-        }
+        },
+        speakingType: 'open-ended'
     }
 };

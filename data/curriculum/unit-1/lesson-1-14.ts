@@ -203,6 +203,7 @@ export const lesson_1_14: Lesson = {
             [LanguageCode.FRENCH]: "Donnez des directions depuis votre maison vers 2 endroits (par exemple, le marché le plus proche, le centre commercial ou le restaurant). Utilisez des mots de direction comme ตรงไป (aller tout droit), เลี้ยวซ้าย (tourner à gauche), เลี้ยวขวา (tourner à droite), ใกล้ (près), ไกล (loin).",
             [LanguageCode.PORTUGUESE]: "Dê direções da sua casa para 2 lugares (por exemplo, mercado mais próximo, shopping ou restaurante). Use palavras de direção como ตรงไป (vá em frente), เลี้ยวซ้าย (vire à esquerda), เลี้ยวขวา (vire à direita), ใกล้ (perto), ไกล (longe).",
             [LanguageCode.MANDARIN]: "從您家到2個地方的方向指示（例如，最近的市場、購物中心或餐廳）。使用方向詞如 ตรงไป（直走）、เลี้ยวซ้าย（左轉）、เลี้ยวขวา（右轉）、ใกล้（近）、ไกล（遠）。",
-        }
+        },
+        speakingType: 'open-ended'
     }
 };

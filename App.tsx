@@ -14,6 +14,7 @@ import { WritingAnalysisView } from './components/WritingAnalysisView';
 import { ReadingLessonSelector } from './components/ReadingLessonSelector';
 import { ReadingLessonView } from './components/ReadingLessonView';
 import { ReadingPractice } from './components/ReadingPractice';
+import { ZhuyinBeta } from './components/ZhuyinBeta';
 import type { ReadingLesson } from './data/reading/lessons';
 import { useAuth } from './contexts/AuthContext';
 import { usePoints } from './contexts/PointsContext';
@@ -42,6 +43,7 @@ enum AppState {
   SELECTING_READING_LESSON,
   VIEWING_READING_LESSON,
   IN_READING_PRACTICE,
+  ZHUYIN_BETA,
 }
 
 interface NavigationHistoryItem {
@@ -311,6 +313,10 @@ const App: React.FC = () => {
     navigateToState(AppState.IN_READING_PRACTICE, { showReadingPractice: true });
   };
 
+  const handleStartZhuyinBeta = () => {
+    navigateToState(AppState.ZHUYIN_BETA);
+  };
+
   const handleRestartOnboarding = () => {
     // Allow users to revisit the onboarding screens at any time
     navigateToState(AppState.ONBOARDING_INTRO);
@@ -455,17 +461,23 @@ const App: React.FC = () => {
   }, [appState, feedback, isLoadingFeedback, generateAudioFeedback]);
 
   useEffect(() => {
-    if (appState === AppState.ANALYZING_WRITING_FEEDBACK) {
-        // Clear old feedback when new writing data arrives
-        if (feedback || feedbackError) {
+    if (appState === AppState.ANALYZING_WRITING_FEEDBACK && analysisWritingData) {
+        // Always clear old feedback when entering writing feedback state
+        setFeedback(null);
+        setFeedbackError(null);
+        setIsLoadingFeedback(false);
+
+        // Generate new feedback
+        generateWritingFeedback();
+    } else if (appState !== AppState.ANALYZING_WRITING_FEEDBACK) {
+        // Clear feedback state when leaving the analysis view
+        if (feedback || feedbackError || isLoadingFeedback) {
             setFeedback(null);
             setFeedbackError(null);
-        }
-        if (!isLoadingFeedback) {
-            generateWritingFeedback();
+            setIsLoadingFeedback(false);
         }
     }
-  }, [appState, analysisWritingData]);
+  }, [appState, analysisWritingData, generateWritingFeedback]);
 
   const renderContent = () => {
     if (authLoading) {
@@ -488,7 +500,7 @@ const App: React.FC = () => {
       case AppState.SHOWING_INSTALL_INSTRUCTIONS:
         return <InstallInstructions onComplete={handleInstallComplete} language={selectedLanguage} installPrompt={installPrompt} />;
       case AppState.HOME:
-        return <HomePage language={selectedLanguage} onSelectLesson={handleLessonSelect} onStartConversationPractice={handleStartConversationPractice} onStartWritingPractice={handleStartWritingPractice} onStartReadingPractice={handleStartReadingPractice} onBack={handleBackToLanguage} onRestartOnboarding={handleRestartOnboarding} onShowInstallInstructions={handleShowInstallInstructions} onChangeLanguage={handleChangeLanguage}/>;
+        return <HomePage language={selectedLanguage} onSelectLesson={handleLessonSelect} onStartConversationPractice={handleStartConversationPractice} onStartWritingPractice={handleStartWritingPractice} onStartReadingPractice={handleStartReadingPractice} onBack={handleBackToLanguage} onRestartOnboarding={handleRestartOnboarding} onShowInstallInstructions={handleShowInstallInstructions} onChangeLanguage={handleChangeLanguage} onStartZhuyinBeta={handleStartZhuyinBeta}/>;
       case AppState.VIEWING_LESSON:
         return <LessonView lesson={selectedLesson!} language={selectedLanguage} onBack={handleBackToHome} />;
       case AppState.SELECTING_CONVERSATION_TOPIC:
@@ -502,18 +514,14 @@ const App: React.FC = () => {
       case AppState.IN_WRITING_PRACTICE:
         return <WritingPractice lesson={selectedWritingLesson!} language={selectedLanguage} onFinish={handleFinishWriting} onBack={() => window.history.back()} />;
       case AppState.ANALYZING_WRITING_FEEDBACK:
-        return <WritingAnalysisView 
-                  word={analysisWritingData!.word} 
-                  language={selectedLanguage} 
-                  isLoading={isLoadingFeedback} 
-                  feedback={feedback as HandwritingFeedback | null} 
-                  error={feedbackError} 
+        return <WritingAnalysisView
+                  word={analysisWritingData!.word}
+                  language={selectedLanguage}
+                  isLoading={isLoadingFeedback}
+                  feedback={feedback as HandwritingFeedback | null}
+                  error={feedbackError}
                   imageSrc={`data:${analysisWritingData!.mimeType};base64,${analysisWritingData!.imageData}`}
-                  onBackToPractice={() => {
-                    setFeedback(null);
-                    setFeedbackError(null);
-                    window.history.back();
-                  }}
+                  onBackToPractice={() => window.history.back()}
                   onBackToLessons={() => window.history.back()}
                   onAnalyzed={handleWritingAnalyzed}
                 />
@@ -523,6 +531,8 @@ const App: React.FC = () => {
         return <ReadingLessonView lesson={selectedReadingLesson!} language={selectedLanguage} onBack={() => window.history.back()} onStartPractice={handleStartReadingPracticeMode} />;
       case AppState.IN_READING_PRACTICE:
         return <ReadingPractice lesson={selectedReadingLesson!} language={selectedLanguage} onBack={() => window.history.back()} />;
+      case AppState.ZHUYIN_BETA:
+        return <ZhuyinBeta language={selectedLanguage} onBack={() => window.history.back()} />;
       default:
         return <LanguageSelector onSelect={handleLanguageSelect} />;
     }

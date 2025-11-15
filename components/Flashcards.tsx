@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import type { Language, VocabularyItem } from '../types';
 import { CheckIcon, XIcon, KeyboardIcon } from './Icons';
 import { UI_STRINGS } from '../data/uiStrings';
+import { romanizationToZhuyin, isZhuyinEnabled } from '../services/zhuyinService';
 
 interface FlashcardsProps {
   cardSet: VocabularyItem[];
@@ -20,7 +21,8 @@ export const Flashcards: React.FC<FlashcardsProps> = ({ cardSet, language, onCar
     const [isFlipped, setIsFlipped] = useState(false);
     const [showPhoneticOnFront, setShowPhoneticOnFront] = useState(true);
     const [showShortcuts, setShowShortcuts] = useState(true);
-    
+    const [zhuyinEnabled, setZhuyinEnabledState] = useState(false);
+
     const [unseenDeck, setUnseenDeck] = useState<VocabularyItem[]>(() => shuffleArray(cardSet));
     const [mistakeDeck, setMistakeDeck] = useState<VocabularyItem[]>([]);
 
@@ -29,6 +31,17 @@ export const Flashcards: React.FC<FlashcardsProps> = ({ cardSet, language, onCar
 
     const currentCard = unseenDeck[0];
     const isReviewCard = reviewCards ? reviewCards.has(currentCard?.thai) : false;
+
+    // Check Zhuyin preference on mount
+    useEffect(() => {
+        setZhuyinEnabledState(isZhuyinEnabled());
+    }, []);
+
+    // Convert phonetic to Zhuyin if enabled
+    const displayPhonetic = useMemo(() => {
+        if (!currentCard) return '';
+        return zhuyinEnabled ? romanizationToZhuyin(currentCard.phonetic) : currentCard.phonetic;
+    }, [currentCard, zhuyinEnabled]);
 
     const processAnswer = useCallback((isCorrect: boolean) => {
         if (!currentCard) return;
@@ -104,14 +117,14 @@ export const Flashcards: React.FC<FlashcardsProps> = ({ cardSet, language, onCar
     const FrontContent = (
         <>
             <p className="font-thai text-5xl">{currentCard.thai}</p>
-            {showPhoneticOnFront && <p className="text-xl text-charcoal-ink/50 mt-2">{currentCard.phonetic}</p>}
+            {showPhoneticOnFront && <p className="text-xl text-charcoal-ink/50 mt-2">{displayPhonetic}</p>}
         </>
     );
 
     const BackContent = (
         <>
             <p className="text-3xl font-bold">{currentCard.translations[language.code]}</p>
-            {!showPhoneticOnFront && <p className="text-xl text-warm-white/70 mt-2">{currentCard.phonetic}</p>}
+            {!showPhoneticOnFront && <p className="text-xl text-warm-white/70 mt-2">{displayPhonetic}</p>}
         </>
     );
 

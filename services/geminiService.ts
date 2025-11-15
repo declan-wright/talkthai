@@ -1,6 +1,6 @@
 import { GoogleGenAI, Type, Modality } from '@google/genai';
 // Fix: Moved `TestQuestionType` from a type-only import to a value import to allow its use at runtime.
-import type { Language, ConversationTopic, Transcript, VocabularyItem, HandwritingFeedback, ListeningSpeakingExercise, SpeakingFeedback, ConversationFeedback, LocalizedString, ConversationScriptItem, Lesson, TestQuestion, VocabMCQuestion, AppMCQuestion, AppFillBlankQuestion, ListeningSection } from '../types';
+import type { Language, ConversationTopic, Transcript, VocabularyItem, HandwritingFeedback, ListeningSpeakingExercise, SpeakingFeedback, ConversationFeedback, LocalizedString, ConversationScriptItem, Lesson, TestQuestion, VocabMCQuestion, AppMCQuestion, AppFillBlankQuestion, ListeningSection, RegradeQuestionData, RegradeResult } from '../types';
 import { LanguageCode, ExerciseType, TestQuestionType } from '../types';
 import { blobToBase64 } from '../utils/fileUtils';
 import { getGeminiApiKey } from '../utils/env';
@@ -9,12 +9,31 @@ import { UNITS } from '../data/curriculum/units';
 // Initialize the Gemini client once with robust API key resolution.
 const ai = new GoogleGenAI({ apiKey: getGeminiApiKey() });
 
+// Retry wrapper for handling 409 conflict errors from Gemini API
+const retryWithBackoff = async <T>(fn: () => Promise<T>, maxRetries = 3): Promise<T> => {
+    for (let i = 0; i < maxRetries; i++) {
+        try {
+            return await fn();
+        } catch (error: any) {
+            const is409 = error?.status === 409 || error?.message?.includes('409');
+            if (is409 && i < maxRetries - 1) {
+                const delay = Math.pow(2, i) * 1000; // 1s, 2s, 4s
+                console.warn(`Gemini API 409 conflict, retrying in ${delay}ms (attempt ${i + 1}/${maxRetries})...`);
+                await new Promise(resolve => setTimeout(resolve, delay));
+                continue;
+            }
+            throw error;
+        }
+    }
+    throw new Error('Max retries exceeded');
+};
+
 // --- Service for AuthScreen (Thai Name Translation) ---
 
 export const translateNameToThai = async (firstName: string, lastName: string): Promise<string> => {
     const prompt = `Convert the phonetic Thai first name "${firstName}" and last name "${lastName}" into proper Thai script. The output should only be in Thai script.`;
     
-    const response = await ai.models.generateContent({
+    const response = await retryWithBackoff(() => ai.models.generateContent({
         model: 'gemini-2.5-pro',
         contents: prompt,
         config: {
@@ -28,7 +47,7 @@ export const translateNameToThai = async (firstName: string, lastName: string): 
                 required: ['firstNameThai', 'lastNameThai']
             }
         }
-    });
+    }));
 
     const jsonResponse = JSON.parse(response.text);
     return `${jsonResponse.firstNameThai} ${jsonResponse.lastNameThai}`;
@@ -42,7 +61,7 @@ export const convertRomanizationToThai = async (romanizedText: string): Promise<
     
     const prompt = `Convert the following romanized (phonetic) Thai text into a single, accurate Thai script phrase: "${romanizedText}"`;
 
-    const response = await ai.models.generateContent({
+    const response = await retryWithBackoff(() => ai.models.generateContent({
         model: 'gemini-2.5-flash', // Using gemini-2.5-flash as requested
         contents: prompt,
         config: {
@@ -50,15 +69,15 @@ export const convertRomanizationToThai = async (romanizedText: string): Promise<
             responseSchema: {
                 type: Type.OBJECT,
                 properties: {
-                    thaiScript: { 
-                        type: Type.STRING, 
-                        description: 'The converted Thai script. Should contain only Thai characters and spaces.' 
+                    thaiScript: {
+                        type: Type.STRING,
+                        description: 'The converted Thai script. Should contain only Thai characters and spaces.'
                     },
                 },
                 required: ['thaiScript']
             }
         }
-    });
+    }));
 
     const jsonResponse = JSON.parse(response.text);
     return jsonResponse.thaiScript || '';
@@ -140,23 +159,23 @@ Your task is to provide structured feedback in JSON format by analyzing the AUDI
 - The scores (1-5 stars) and feedback paragraphs must be consistent with each other.
 - Focus on the user's speaking performance in the conversation, not the AI tutor's responses.`;
 
-    const audioPart = { 
-        inlineData: { 
-            mimeType: audioBlob.type || 'audio/wav', 
-            data: audioBase64 
-        } 
+    const audioPart = {
+        inlineData: {
+            mimeType: audioBlob.type || 'audio/wav',
+            data: audioBase64
+        }
     };
     const textPart = { text: prompt };
 
-    const response = await ai.models.generateContent({
+    const response = await retryWithBackoff(() => ai.models.generateContent({
         model: 'gemini-2.5-pro',
         contents: { parts: [textPart, audioPart] },
         config: {
             responseMimeType: "application/json",
             responseSchema: feedbackSchema,
         },
-    });
-    
+    }));
+
     return JSON.parse(response.text) as ConversationFeedback;
 };
 
@@ -223,14 +242,14 @@ Your task is to evaluate their attempt based on standard Thai typography and pro
     };
     const textPart = { text: prompt };
 
-    const response = await ai.models.generateContent({
+    const response = await retryWithBackoff(() => ai.models.generateContent({
         model: 'gemini-2.5-pro',
         contents: { parts: [textPart, imagePart] },
         config: {
             responseMimeType: "application/json",
             responseSchema: feedbackSchema,
         },
-    });
+    }));
 
     return JSON.parse(response.text) as HandwritingFeedback;
 };
@@ -350,14 +369,14 @@ The speakers should have simple names, like "A" and "B", or "Tourist" and "Shopk
 After the conversation, create exactly 3 multiple-choice comprehension questions in ${language.name} based on the dialogue. Each question must have 3 distinct options. Provide the correct 0-based index for the answer.
 Format the entire output as a single, valid JSON object that strictly adheres to the provided JSON schema. Ensure all text for prompts, questions, and options is in ${language.name}.`;
 
-    const response = await ai.models.generateContent({
+    const response = await retryWithBackoff(() => ai.models.generateContent({
         model: 'gemini-2.5-pro',
         contents: prompt,
         config: {
             responseMimeType: "application/json",
             responseSchema: schema,
         }
-    });
+    }));
 
     const parsedContent = JSON.parse(response.text);
     
@@ -398,7 +417,7 @@ export const generateSpeechForConversation = async (conversation: ConversationSc
         voiceConfig: { prebuiltVoiceConfig: { voiceName: speakerVoices[index % speakerVoices.length] } }
     }));
 
-    const response = await ai.models.generateContent({
+    const response = await retryWithBackoff(() => ai.models.generateContent({
         model: "gemini-2.5-flash-preview-tts",
         contents: [{ parts: [{ text: prompt }] }],
         config: {
@@ -409,7 +428,7 @@ export const generateSpeechForConversation = async (conversation: ConversationSc
                 }
             }
         }
-    });
+    }));
 
     const base64Audio = response.candidates?.[0]?.content?.parts?.[0]?.inlineData?.data;
     if (!base64Audio) {
@@ -422,14 +441,15 @@ export const analyzeSpokenPhrase = async (
     audioBlob: Blob,
     speakingPrompt: LocalizedString,
     phoneticPrompt: LocalizedString,
-    language: Language
+    language: Language,
+    speakingType?: 'read' | 'open-ended'
 ): Promise<SpeakingFeedback> => {
     const audioBase64 = await blobToBase64(audioBlob);
-    
+
     const feedbackSchema = {
         type: Type.OBJECT,
         properties: {
-            isRecognizable: { type: Type.BOOLEAN, description: "Set to true if the audio is a genuine attempt to say the target phrase, even if poorly pronounced. Set to false ONLY if the audio contains completely different words, a different language, or is just noise." },
+            isRecognizable: { type: Type.BOOLEAN, description: "Set to true if the audio is a genuine attempt at Thai speech related to the task, even if poorly pronounced. Set to false ONLY if the audio contains a completely different language or is just noise." },
             reasoning: { type: Type.STRING, description: `If 'isRecognizable' is false, a brief explanation why in ${language.name}. If true, this can be an empty string.` },
             overallScore: { type: Type.INTEGER, description: "Overall score from 1-5." },
             overallFeedback: { type: Type.STRING, description: `A concise paragraph summarizing the overall performance and offering encouragement. Must be in ${language.name}.` },
@@ -444,32 +464,56 @@ export const analyzeSpokenPhrase = async (
         required: ["isRecognizable", "reasoning", "overallScore", "overallFeedback", "pronunciationScore", "pronunciationFeedback", "fluencyScore", "fluencyFeedback", "toneScore", "toneFeedback", "keyRecommendation"]
     };
 
-    const prompt = `You are an expert Thai language pronunciation coach. Analyze the user's audio recording where they attempt to say the following Thai phrase:
+    let prompt: string;
+
+    if (speakingType === 'open-ended') {
+        // For open-ended prompts, the user should respond freely to the English prompt
+        prompt = `You are an expert Thai language coach. Analyze the user's audio recording where they respond to the following prompt in Thai:
+**Prompt:** ${phoneticPrompt[language.code]}
+**User's native language:** ${language.name}
+
+Your task is to provide structured feedback in JSON format. All text feedback must be in ${language.name}.
+
+**Analysis Rules:**
+- **CRITICAL**: This is an OPEN-ENDED speaking exercise. The user should respond FREELY in Thai to the prompt above. They are NOT required to read a specific Thai phrase.
+- Be lenient. If the audio contains a genuine attempt at Thai speech that addresses the prompt (even if basic, short, or poorly pronounced), set 'isRecognizable' to true.
+- **DO NOT** expect them to say any specific Thai words or phrases. Any relevant Thai response is valid.
+- **DO NOT** penalize them for not reading a specific sentence - they should be speaking freely.
+- Only set 'isRecognizable' to false if the audio contains a completely different language, is just noise, or is completely unrelated to the prompt.
+- **IMPORTANT**: Do not penalize the user for common pronunciation shortcuts that native Thai speakers use, like dropping 'r' (ร) or 'l' (ล) sounds in consonant clusters (e.g., 'krap' as 'kap').
+- Provide a paragraph of feedback for each category: Pronunciation, Fluency, and Tone.
+- The feedback should be constructive, clear, and encouraging.
+- The scores (1-5) and feedback paragraphs must be consistent with each other.
+- Focus on how well they expressed themselves in Thai, not on matching any specific script.`;
+    } else {
+        // For read-aloud exercises, expect them to read the specific Thai phrase
+        prompt = `You are an expert Thai language pronunciation coach. Analyze the user's audio recording where they attempt to read aloud the following Thai phrase:
 **Phrase:** ${speakingPrompt[language.code]} (phonetic: ${phoneticPrompt[language.code]})
 **User's native language:** ${language.name}
 
 Your task is to provide structured feedback in JSON format. All text feedback must be in ${language.name}.
 
 **Analysis Rules:**
-- Be lenient. If the audio is a recognizable attempt at the target phrase, set 'isRecognizable' to true and provide a full analysis.
+- Be lenient. If the audio is a recognizable attempt at reading the target phrase, set 'isRecognizable' to true and provide a full analysis.
 - **IMPORTANT**: Do not penalize the user for common pronunciation shortcuts that native Thai speakers use. A key example is dropping 'r' (ร) or 'l' (ล) sounds in consonant clusters (e.g., pronouncing 'krap' as 'kap', or 'klong' as 'kong'). If you detect this, either ignore it or praise it as sounding natural.
-- Only set 'isRecognizable' to false if the audio is clearly not the target phrase (e.g., different words, noise, etc.).
-- Instead of a word-by-word breakdown, provide a paragraph of feedback for each category: Pronunciation, Fluency, and Tone.
+- Only set 'isRecognizable' to false if the audio is clearly not an attempt at the target phrase (e.g., different words, noise, etc.).
+- Provide a paragraph of feedback for each category: Pronunciation, Fluency, and Tone.
 - The feedback should be constructive, clear, and encouraging.
 - The scores (1-5) and feedback paragraphs must be consistent with each other.`;
+    }
 
     const audioPart = { inlineData: { mimeType: audioBlob.type || 'audio/webm', data: audioBase64 } };
     const textPart = { text: prompt };
 
-    const response = await ai.models.generateContent({
+    const response = await retryWithBackoff(() => ai.models.generateContent({
         model: 'gemini-2.5-pro',
         contents: { parts: [textPart, audioPart] },
         config: {
             responseMimeType: "application/json",
             responseSchema: feedbackSchema,
         },
-    });
-    
+    }));
+
     return JSON.parse(response.text) as SpeakingFeedback;
 };
 
@@ -549,20 +593,44 @@ Provide the output as a single, valid JSON object following this schema.
 - Generate a new, simple, 2-4 line dialogue **IN THAI SCRIPT**. The first speaker must be female, and the second male. Use simple speaker names like 'A' and 'B'.
 - Generate exactly 3 multiple choice comprehension questions about the dialogue. Each must have 3 options.
 
+**CRITICAL RULES FOR MULTIPLE CHOICE QUESTIONS:**
+- **NEVER include translations, phonetics, or meanings in the answer options.** Options must ONLY contain the Thai script word/phrase itself.
+- **BAD EXAMPLE:** "Sawatdee (hello)", "khor thot (sorry)", "sabai dee (I'm fine)" ❌
+- **BAD EXAMPLE:** "Hello", "Sorry", "I'm fine" ❌
+- **GOOD EXAMPLE:** "สวัสดี", "ขอโทษ", "สบายดี" ✓
+- **Prefer contextual, situational questions over basic recall questions.**
+- **BAD EXAMPLE:** "What is the word for hello in Thai?" (basic vocab recall) ❌
+- **GOOD EXAMPLE:** "A teacher stops you in the hallway and says 'สวัสดี'. If you are a girl, how would you reply?" (tests situational awareness, gender-appropriate particles, cultural context) ✓
+- **GOOD EXAMPLE:** "You accidentally bump into someone at the market. What should you say?" (real-world scenario) ✓
+- Questions should test the student's ability to apply Thai vocabulary in realistic situations, NOT just memorize translations.
+- Create scenarios that feel authentic to daily life in Thailand (markets, restaurants, greetings, etc.).
+- Make wrong answers plausible - use vocabulary from the same lesson or related themes.
+- Ensure all three options are grammatically appropriate for the question context.
+
+**CRITICAL RULES FOR FILL-IN-THE-BLANK QUESTIONS:**
+- The blank must be UNAMBIGUOUS - it should be crystal clear what type of word/phrase belongs in the blank.
+- Provide enough context in both "start" and "end" segments so there is only ONE logical answer.
+- **BAD EXAMPLE:** "I want ___" (too vague - want what? food? water? to go?) ❌
+- **GOOD EXAMPLE:** "When someone sneezes, you say ___ to wish them health" (clearly asking for a specific blessing phrase) ✓
+- **GOOD EXAMPLE:** "To ask someone's name politely, you say: ___ khrap/kha?" (clearly asking for "what is your name" phrase) ✓
+- Test meaningful vocabulary application, not random word recall.
+- Make the sentence natural and conversational, not artificial.
+
 **Language Rules:**
 - All text for questions, options, and sentence parts ("start", "end") MUST be in **${language.name}**.
 - All "correctAnswer" values for fill-in-the-blank MUST be in **Thai script**.
 - All dialogue lines MUST be in **Thai script**.
+- All multiple choice options MUST be in **Thai script only** (no translations, no phonetics, no meanings).
 `;
 
-    const textResponse = await ai.models.generateContent({
+    const textResponse = await retryWithBackoff(() => ai.models.generateContent({
         model: 'gemini-2.5-pro',
         contents: prompt,
         config: {
             responseMimeType: "application/json",
             responseSchema: schema,
         }
-    });
+    }));
     const parsedText = JSON.parse(textResponse.text);
 
     const listeningDialogueForTts: ConversationScriptItem[] = parsedText.listeningDialogue.map((line: { speaker: string, line: string }) => ({
@@ -575,15 +643,15 @@ Provide the output as a single, valid JSON object following this schema.
     const appMCQuestions: AppMCQuestion[] = parsedText.applicationMC.map((q: any) => ({
         ...q,
         type: TestQuestionType.APP_MC,
-        points: 6,
+        points: 7,
     }));
 
     const appFillBlankQuestions: AppFillBlankQuestion[] = parsedText.applicationFillBlank.map((q: any) => ({
         ...q,
         type: TestQuestionType.APP_FILL_BLANK,
-        points: 5,
+        points: 7,
     }));
-    
+
     const listeningSection: ListeningSection = {
         type: TestQuestionType.LISTENING,
         audioBase64,
@@ -595,4 +663,80 @@ Provide the output as a single, valid JSON object following this schema.
         applicationQuestions: [...appMCQuestions, ...appFillBlankQuestions],
         listeningSection
     };
+};
+
+// --- Service for Test Regrading ---
+
+export const regradeTestQuestions = async (
+    questions: RegradeQuestionData[],
+    language: Language
+): Promise<RegradeResult[]> => {
+    const langCode = language.code;
+    
+    const schema = {
+        type: Type.OBJECT,
+        properties: {
+            results: {
+                type: Type.ARRAY,
+                items: {
+                    type: Type.OBJECT,
+                    properties: {
+                        newIsCorrect: { 
+                            type: Type.BOOLEAN, 
+                            description: "Whether the user's answer should be considered correct after intelligent analysis" 
+                        },
+                        explanation: { 
+                            type: Type.STRING, 
+                            description: `A single sentence explanation in ${language.name} for why the answer was marked correct or incorrect` 
+                        }
+                    },
+                    required: ["newIsCorrect", "explanation"]
+                }
+            }
+        },
+        required: ["results"]
+    };
+
+    const questionsText = questions.map((q, idx) => 
+        `Question ${idx + 1} (Test Question ${q.questionIndex + 1}):\nQuestion Text: "${q.questionText}"\nUser's Answer: "${q.userAnswer}"\nExpected Answer: "${q.correctAnswer}"`
+    ).join('\n\n');
+
+    const prompt = `You are an expert Thai language grading assistant. Analyze the following fill-in-the-blank test questions where the user was marked as incorrect by simple string matching. Your task is to determine if their answers should actually be considered correct. The goal is to give the user points whenever possible if they demonstrate understanding.
+
+User's native language: ${language.name}
+
+Questions to regrade:
+${questionsText}
+
+**Grading Rules - Be Very Lenient:**
+- Accept answers with typos (up to 3-4 character mistakes)
+- Accept answers with extra or missing spaces, punctuation, or formatting differences
+- **IMPORTANT:** Answers are expected in Thai script, but if the user wrote in romanization (English letters) and it's clear what Thai word/phrase they meant, mark it as CORRECT
+- Accept phonetically equivalent spellings, alternative romanizations, or any recognizable attempt to write the Thai word
+- Accept any alternative correct Thai words/phrases that appropriately answer the question
+- Accept partial answers if they show understanding of the core concept
+- **Philosophy:** If there is ANY clear link between what the user wrote and understanding of the question, give them the point
+- Only mark as incorrect if the answer is completely unrelated, nonsensical, or shows fundamental misunderstanding of the question
+- Provide a brief, single-sentence explanation in ${language.name} for each decision
+
+**Important:** Return results in the same order as the questions above. The array order must match the question order.`;
+
+    const response = await retryWithBackoff(() => ai.models.generateContent({
+        model: 'gemini-2.5-flash',
+        contents: prompt,
+        config: {
+            responseMimeType: "application/json",
+            responseSchema: schema,
+        }
+    }));
+
+    const parsed = JSON.parse(response.text);
+    
+    // Map the indices back to the original question indices
+    return parsed.results.map((result: any, idx: number) => ({
+        questionIndex: questions[idx].questionIndex, // Use the original question index from our input
+        originallyIncorrect: true,
+        newIsCorrect: result.newIsCorrect,
+        explanation: result.explanation
+    }));
 };

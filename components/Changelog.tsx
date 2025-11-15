@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Language } from '../types';
 import { XIcon } from './Icons';
-import { CHANGELOG_ENTRIES, CHANGELOG_HIGHLIGHTS, CHANGELOG_UI_STRINGS } from '../data/changelogData';
+import { CHANGELOG_ENTRIES, CHANGELOG_UI_STRINGS } from '../data/changelogData';
 
 interface ChangelogProps {
     isOpen: boolean;
@@ -26,27 +26,21 @@ export const Changelog: React.FC<ChangelogProps> = ({ isOpen, onClose, language 
                     </button>
                 </div>
                 <div className="p-6 space-y-8">
-                    {CHANGELOG_HIGHLIGHTS.length > 0 && (
-                        <div className="bg-vibrant-orange/10 border-2 border-vibrant-orange p-4">
-                            <p className="text-warm-white/90 font-semibold mb-2 text-sm uppercase">
-                                {CHANGELOG_UI_STRINGS.highlight[langCode]}
-                            </p>
-                            {CHANGELOG_HIGHLIGHTS.map((highlight, idx) => (
-                                <div key={idx} className="text-warm-white/80 text-sm">
-                                    {highlight.message[langCode]}
-                                </div>
-                            ))}
-                        </div>
-                    )}
-
                     {CHANGELOG_ENTRIES.map((entry, idx) => (
                         <div key={idx}>
+                            {idx > 0 && <div className="border-t border-warm-white/10 -mx-6 mb-8"></div>}
                             <div className="flex items-center justify-between mb-4">
                                 <h3 className="text-warm-white/80 text-sm font-bold">
                                     {CHANGELOG_UI_STRINGS.version[langCode]} {entry.version}
                                 </h3>
                                 <span className="text-warm-white/50 text-xs">{entry.date}</span>
                             </div>
+
+                            {entry.highlight && (
+                                <p className="text-warm-white/70 text-sm mb-4">
+                                    {entry.highlight[langCode]}
+                                </p>
+                            )}
 
                             {entry.description && (
                                 <p className="text-warm-white/70 text-sm">{entry.description[langCode]}</p>

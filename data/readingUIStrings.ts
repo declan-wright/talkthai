@@ -404,6 +404,32 @@ export const READING_UI_STRINGS = {
     [LanguageCode.MANDARIN]: '讓我們檢查要練習的長元音！練習包括不同的輔音和聲調標記以習慣實際發音，但在回答時請專注於元音。',
   },
 
+  // Lesson 6: Other Long Vowels
+  'reading.lesson6.page1.title': {
+    [LanguageCode.ENGLISH]: 'Other Long Vowels',
+    [LanguageCode.FRENCH]: 'Autres voyelles longues',
+    [LanguageCode.PORTUGUESE]: 'Outras vogais longas',
+    [LanguageCode.MANDARIN]: '其他長元音',
+  },
+  'reading.lesson6.page1.body': {
+    [LanguageCode.ENGLISH]: 'There are vowels that combine two sounds. They are considered long vowels. Depending on the textbook or dictionary, "ai" may be written as "ay" and "ao" as "aw", but the pronunciation remains the same.',
+    [LanguageCode.FRENCH]: 'Il y a des voyelles qui combinent deux sons. Elles sont considérées comme des voyelles longues. Selon le manuel ou le dictionnaire, "ai" peut être écrit "ay" et "ao" peut être écrit "aw", mais la prononciation reste la même.',
+    [LanguageCode.PORTUGUESE]: 'Existem vogais que combinam dois sons. Elas são consideradas vogais longas. Dependendo do livro didático ou dicionário, "ai" pode ser escrito como "ay" e "ao" como "aw", mas a pronúncia permanece a mesma.',
+    [LanguageCode.MANDARIN]: '有一些元音組合了兩個音。它們被視為長元音。根據教科書或詞典的不同，"ai" 可能寫為 "ay"，"ao" 可能寫為 "aw"，但發音保持不變。',
+  },
+  'reading.lesson6.page2.title': {
+    [LanguageCode.ENGLISH]: 'The Two "ai" Vowels',
+    [LanguageCode.FRENCH]: 'Les deux voyelles "ai"',
+    [LanguageCode.PORTUGUESE]: 'As duas vogais "ai"',
+    [LanguageCode.MANDARIN]: '兩個 "ai" 元音',
+  },
+  'reading.lesson6.page2.body': {
+    [LanguageCode.ENGLISH]: 'ไ and ใ are both vowels for "ai". However, ใ is used only in 20 specific words, while ไ is used in all other words. All of them are very commonly used words.',
+    [LanguageCode.FRENCH]: 'ไ et ใ sont tous deux des voyelles pour "ai". Cependant, ใ est utilisé seulement dans 20 mots spécifiques, tandis que ไ est utilisé dans tous les autres mots. Tous sont des mots très couramment utilisés.',
+    [LanguageCode.PORTUGUESE]: 'ไ e ใ são ambas vogais para "ai". No entanto, ใ é usado apenas em 20 palavras específicas, enquanto ไ é usado em todas as outras palavras. Todas elas são palavras muito comumente usadas.',
+    [LanguageCode.MANDARIN]: 'ไ 和 ใ 都是 "ai" 的元音。然而，ใ 僅用於 20 個特定詞語中，而 ไ 則用於所有其他詞語。它們都是非常常用的詞語。',
+  },
+
   // Lesson 7: Long Vowels + Ending Consonants
   'reading.lesson7.page1.title': {
     [LanguageCode.ENGLISH]: 'Ending Consonants',

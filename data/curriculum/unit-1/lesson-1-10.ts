@@ -173,7 +173,8 @@ export const lesson_1_10: Lesson = {
             [LanguageCode.FRENCH]: "Présentez quatre personnes dans votre vie avec leurs relations avec vous. Utilisez des termes familiaux comme พี่, น้อง, พ่อ, แม่, เพื่อน, etc.",
             [LanguageCode.PORTUGUESE]: "Apresente quatro pessoas em sua vida com seus relacionamentos com você. Use termos familiares como พี่, น้อง, พ่อ, แม่, เพื่อน, etc.",
             [LanguageCode.MANDARIN]: "介紹你生活中的四個人以及他們與你的關係。使用家庭術語如 พี่、น้อง、พ่อ、แม่、เพื่อน 等。",
-        }
+        },
+        speakingType: 'open-ended'
     }
 };
 

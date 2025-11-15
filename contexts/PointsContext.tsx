@@ -19,6 +19,9 @@ export const PointsProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         // Fix: Use functional updates to avoid race conditions
         const id = Date.now() + Math.random(); // Use timestamp + random for unique IDs
         setNotifications(prevNotifications => [...prevNotifications, { id, points }]);
+
+        // Set flag to indicate points were earned today (for streak celebration)
+        sessionStorage.setItem('thai-talk-points-earned-today', 'true');
     }, []);
 
     const value = { showPoints };

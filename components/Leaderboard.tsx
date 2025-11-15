@@ -100,11 +100,11 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({ entries, weeklyWinner,
             </p>
 
             {weeklyWinner && (
-                <div className="mb-4 p-3 bg-vibrant-orange/10 border border-vibrant-orange text-center">
+                <div className="mb-4 p-3 border-2 border-vibrant-orange text-center">
                     <p className="text-sm font-bold uppercase text-vibrant-orange">{UI_STRINGS.lastWeekWinner[language.code]}</p>
                     <div className="flex items-center justify-center gap-2">
                          <CrownIcon className="w-5 h-5 text-vibrant-orange" />
-                         <p className="font-bold text-warm-white">{weeklyWinner.thaiName || weeklyWinner.firstName || weeklyWinner.displayName}</p>
+                         <p className="font-bold text-warm-white">{weeklyWinner.firstName || weeklyWinner.displayName}</p>
                     </div>
                 </div>
             )}

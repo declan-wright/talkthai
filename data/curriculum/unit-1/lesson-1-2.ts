@@ -195,7 +195,8 @@ export const lesson_1_2: Lesson = {
             [LanguageCode.FRENCH]: "Compte de 1 à 20, puis dis cinq nombres à deux chiffres.",
             [LanguageCode.PORTUGUESE]: "Conte de 1 a 20 e diga cinco números de dois dígitos.",
             [LanguageCode.MANDARIN]: "從1數到20，然後說五個兩位數。",
-        }
+        },
+        speakingType: 'open-ended'
     }
 };
 

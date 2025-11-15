@@ -317,7 +317,8 @@ export const lesson_1_4: Lesson = {
             [LanguageCode.FRENCH]: "Dis 5 phrases avec des verbes différents de cette leçon.",
             [LanguageCode.PORTUGUESE]: "Diga 5 frases com verbos diferentes desta lição.",
             [LanguageCode.MANDARIN]: "用本課不同動詞說5句話。",
-        }
+        },
+        speakingType: 'open-ended'
     }
 };
 

@@ -201,7 +201,8 @@ export const lesson_1_17: Lesson = {
             [LanguageCode.FRENCH]: "Décrivez la météo d'aujourd'hui en 3 phrases. Exemple : wan-níi aa-gàat rɔ́ɔn mâak, mii dɛ̀ɛt ɔ̀ɔk, fáa sǎai (Aujourd'hui il fait très chaud, il y a du soleil, le ciel est clair)",
             [LanguageCode.PORTUGUESE]: "Descreva o clima de hoje em 3 frases. Exemplo: wan-níi aa-gàat rɔ́ɔn mâak, mii dɛ̀ɛt ɔ̀ɔk, fáa sǎai (Hoje está muito quente, está ensolarado, o céu está claro)",
             [LanguageCode.MANDARIN]: "用3句話描述今天的天氣。例子：wan-níi aa-gàat rɔ́ɔn mâak, mii dɛ̀ɛt ɔ̀ɔk, fáa sǎai（今天天氣很熱，陽光明媚，天空晴朗）",
-        }
+        },
+        speakingType: 'open-ended'
     }
 };
 

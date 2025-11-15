@@ -17,10 +17,10 @@ export const lesson_1_9: Lesson = {
         { thai: "ชามัทฉะ", phonetic: "chaa mát-chá", translations: { [LanguageCode.ENGLISH]: "matcha", [LanguageCode.FRENCH]: "matcha", [LanguageCode.PORTUGUESE]: "matcha", [LanguageCode.MANDARIN]: "抹茶" } },
         
         // Coffee
-        { thai: "กาแฟ", phonetic: "gaa-faee", translations: { [LanguageCode.ENGLISH]: "coffee", [LanguageCode.FRENCH]: "café", [LanguageCode.PORTUGUESE]: "café", [LanguageCode.MANDARIN]: "咖啡" } },
-        { thai: "กาแฟร้อน", phonetic: "gaa-faee rɔ́ɔn", translations: { [LanguageCode.ENGLISH]: "hot coffee", [LanguageCode.FRENCH]: "café chaud", [LanguageCode.PORTUGUESE]: "café quente", [LanguageCode.MANDARIN]: "熱咖啡" } },
-        { thai: "กาแฟเย็น", phonetic: "gaa-faee yen", translations: { [LanguageCode.ENGLISH]: "iced coffee", [LanguageCode.FRENCH]: "café glacé", [LanguageCode.PORTUGUESE]: "café gelado", [LanguageCode.MANDARIN]: "冰咖啡" } },
-        { thai: "กาแฟบราซิล", phonetic: "gaa-faee braa-sin", translations: { [LanguageCode.ENGLISH]: "Brazilian coffee", [LanguageCode.FRENCH]: "café brésilien", [LanguageCode.PORTUGUESE]: "café brasileiro", [LanguageCode.MANDARIN]: "巴西咖啡" } },
+        { thai: "กาแฟ", phonetic: "gaa-fɛɛ", translations: { [LanguageCode.ENGLISH]: "coffee", [LanguageCode.FRENCH]: "café", [LanguageCode.PORTUGUESE]: "café", [LanguageCode.MANDARIN]: "咖啡" } },
+        { thai: "กาแฟร้อน", phonetic: "gaa-fɛɛ rɔ́ɔn", translations: { [LanguageCode.ENGLISH]: "hot coffee", [LanguageCode.FRENCH]: "café chaud", [LanguageCode.PORTUGUESE]: "café quente", [LanguageCode.MANDARIN]: "熱咖啡" } },
+        { thai: "กาแฟเย็น", phonetic: "gaa-fɛɛ yen", translations: { [LanguageCode.ENGLISH]: "iced coffee", [LanguageCode.FRENCH]: "café glacé", [LanguageCode.PORTUGUESE]: "café gelado", [LanguageCode.MANDARIN]: "冰咖啡" } },
+        { thai: "กาแฟบราซิล", phonetic: "gaa-fɛɛ braa-sin", translations: { [LanguageCode.ENGLISH]: "Brazilian coffee", [LanguageCode.FRENCH]: "café brésilien", [LanguageCode.PORTUGUESE]: "café brasileiro", [LanguageCode.MANDARIN]: "巴西咖啡" } },
         { thai: "อเมริกาโน่", phonetic: "à-meh-rí-gaa-nôh", translations: { [LanguageCode.ENGLISH]: "americano", [LanguageCode.FRENCH]: "americano", [LanguageCode.PORTUGUESE]: "americano", [LanguageCode.MANDARIN]: "美式咖啡" } },
         { thai: "ลาเต้", phonetic: "laa-dtêe", translations: { [LanguageCode.ENGLISH]: "latte", [LanguageCode.FRENCH]: "latte", [LanguageCode.PORTUGUESE]: "latte", [LanguageCode.MANDARIN]: "拿鐵" } },
         { thai: "คาปูชิโน่", phonetic: "khaa-bpuu-chí-nôh", translations: { [LanguageCode.ENGLISH]: "cappuccino", [LanguageCode.FRENCH]: "cappuccino", [LanguageCode.PORTUGUESE]: "cappuccino", [LanguageCode.MANDARIN]: "卡布奇諾" } },
@@ -232,7 +232,8 @@ export const lesson_1_9: Lesson = {
             [LanguageCode.FRENCH]: "Commandez votre boisson préférée avec des spécifications exactes. Ex : ao chaa nom wǎan hâa-sìp bpəə-sen mii khài-mùk mâi sài náam-khǎeng nʉ̀ng gâew",
             [LanguageCode.PORTUGUESE]: "Peça sua bebida favorita com especificações exatas. Ex.: ao chaa nom wǎan hâa-sìp bpəə-sen mii khài-mùk mâi sài náam-khǎeng nʉ̀ng gâew",
             [LanguageCode.MANDARIN]: "用精確規格點你最喜歡的飲料。例：ao chaa nom wǎan hâa-sìp bpəə-sen mii khài-mùk mâi sài náam-khǎeng nʉ̀ng gâew（我要五分糖珍珠奶茶不要冰一杯）",
-        }
+        },
+        speakingType: 'open-ended'
     }
 };
 

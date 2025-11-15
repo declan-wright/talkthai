@@ -191,7 +191,8 @@ export const lesson_1_12: Lesson = {
             [LanguageCode.FRENCH]: "Décrivez votre journée scolaire en 4 phrases. Incluez l'heure à laquelle vous arrivez à l'école, quelles matières vous étudiez, où vous mangez le déjeuner et quand vous faites vos devoirs. Utilisez le vocabulaire scolaire comme โรงเรียน, วิชา, โรงอาหาร, et การบ้าน.",
             [LanguageCode.PORTUGUESE]: "Descreva seu dia escolar em 4 frases. Inclua que horas você chega à escola, quais matérias você estuda, onde você almoça e quando você faz o dever de casa. Use vocabulário escolar como โรงเรียน, วิชา, โรงอาหาร, e การบ้าน.",
             [LanguageCode.MANDARIN]: "用4句話描述你的學校日。包括你幾點到學校、你學習什麼科目、你在哪裡吃午餐，以及你什麼時候做作業。使用學校詞彙如 โรงเรียน、วิชา、โรงอาหาร 和 การบ้าน。",
-        }
+        },
+        speakingType: 'open-ended'
     }
 };
 

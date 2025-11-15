@@ -25,6 +25,9 @@ export const LessonView: React.FC<LessonViewProps> = ({ lesson, language, onBack
   const [isTakingTest, setIsTakingTest] = useState(false);
 
   const hasTakenTest = userProfile?.testScores?.[lesson.id] !== undefined;
+  const testScore = userProfile?.testScores?.[lesson.id];
+  const hasRetaken = userProfile?.testRetakes?.[lesson.id] ?? false;
+  const canRetake = hasTakenTest && !hasRetaken;
 
   const handleStartTest = () => {
     setIsTakingTest(true);
@@ -101,10 +104,34 @@ export const LessonView: React.FC<LessonViewProps> = ({ lesson, language, onBack
                 ) : (
                     <div className="flex flex-col items-center justify-center h-full text-center text-charcoal-ink p-6">
                         {hasTakenTest ? (
-                            <div>
+                            <div className="max-w-md">
                                 <h3 className="text-2xl font-bold mb-4">{UI_STRINGS.testCompletedTitle[language.code]}</h3>
-                                <p className="text-charcoal-ink/80 mb-8 max-w-md">{UI_STRINGS.testCompletedMessage[language.code]}</p>
-                                 <button
+                                <div className="mb-6">
+                                    <p className="text-charcoal-ink/60 mb-2">Your Score</p>
+                                    <p className="text-6xl font-bold text-vibrant-orange">{testScore}<span className="text-3xl text-charcoal-ink/50">/100</span></p>
+                                </div>
+                                {canRetake && (
+                                    <div className="mb-6 p-6 bg-warm-white border-2 border-charcoal-ink rounded-none">
+                                        <p className="text-sm text-charcoal-ink font-bold mb-2 uppercase">
+                                            Retake Available
+                                        </p>
+                                        <p className="text-sm text-charcoal-ink mb-4">
+                                            You can retake this test once. Maximum score: 80 points
+                                        </p>
+                                        <button
+                                            onClick={handleStartTest}
+                                            className="bg-vibrant-orange text-warm-white font-bold py-2 px-6 uppercase text-base active:scale-95 transition-transform rounded-none w-full"
+                                        >
+                                            Retake Test
+                                        </button>
+                                    </div>
+                                )}
+                                {hasRetaken && (
+                                    <p className="text-sm text-charcoal-ink/60 mb-6">
+                                        You have used your retake for this test
+                                    </p>
+                                )}
+                                <button
                                     onClick={onBack}
                                     className="bg-charcoal-ink text-warm-white font-bold py-3 px-8 uppercase text-lg active:scale-95 transition-transform rounded-none"
                                 >

@@ -170,6 +170,7 @@ export const lesson_1_16: Lesson = {
             [LanguageCode.FRENCH]: "Décrivez comment vous vous sentez en utilisant 4 phrases. Exemple : mâi sà-baai, pùat hǔa, nʉ̀ai mâak, yàak nɔɔn (Je ne me sens pas bien, j'ai mal à la tête, je suis très fatigué, je veux dormir)",
             [LanguageCode.PORTUGUESE]: "Descreva como você está se sentindo usando 4 frases. Exemplo: mâi sà-baai, pùat hǔa, nʉ̀ai mâak, yàak nɔɔn (Eu não estou bem, tenho dor de cabeça, estou muito cansado, quero dormir)",
             [LanguageCode.MANDARIN]: "用 4 個短語描述你的感受。例子：mâi sà-baai, pùat hǔa, nʉ̀ai mâak, yàak nɔɔn（我不舒服，我頭痛，我很累，我想睡覺）",
-        }
+        },
+        speakingType: 'open-ended'
     }
 };

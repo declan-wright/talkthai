@@ -173,7 +173,8 @@ export const lesson_1_11: Lesson = {
             [LanguageCode.FRENCH]: "Décrivez trois personnes en utilisant des pronoms et des descripteurs. Incluez leur nationalité (par ex., คนไทย, คนฝรั่ง) et utilisez différents pronoms (เขา, เธอ, etc.).",
             [LanguageCode.PORTUGUESE]: "Descreva três pessoas usando pronomes e descritores. Inclua sua nacionalidade (por exemplo, คนไทย, คนฝรั่ง) e use diferentes pronomes (เขา, เธอ, etc.).",
             [LanguageCode.MANDARIN]: "使用代詞和描述詞描述三個人。包括他們的國籍（例如，คนไทย、คนฝรั่ง）並使用不同的代詞（เขา、เธอ 等）。",
-        }
+        },
+        speakingType: 'open-ended'
     }
 };
 

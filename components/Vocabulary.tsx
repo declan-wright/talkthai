@@ -8,6 +8,7 @@ import { usePoints } from '../contexts/PointsContext';
 import * as firestoreService from '../services/firestoreService';
 import { UNITS } from '../data/curriculum/units';
 import { getReviewVocabulary } from '../utils/spacedRepetition';
+import { romanizationToZhuyin, isZhuyinEnabled } from '../services/zhuyinService';
 
 interface VocabularyProps {
     lesson: Lesson;
@@ -61,6 +62,12 @@ export const Vocabulary: React.FC<VocabularyProps> = ({ lesson, language, onStud
     const [seenInSession, setSeenInSession] = useState<Set<string>>(new Set());
     const [activeSet, setActiveSet] = useState<VocabularyItem[]>([]);
     const [reviewCards, setReviewCards] = useState<Set<string>>(new Set()); // Track which cards are review cards
+    const [zhuyinEnabled, setZhuyinEnabledState] = useState(false);
+
+    // Check Zhuyin preference on mount
+    useEffect(() => {
+        setZhuyinEnabledState(isZhuyinEnabled());
+    }, []);
     
     const studyProgress = useMemo(() => {
         return userProfile?.flashcardProgress?.[lesson.id] || {};
@@ -218,13 +225,16 @@ export const Vocabulary: React.FC<VocabularyProps> = ({ lesson, language, onStud
                 </button>
             </div>
             <div className="space-y-3">
-                {lesson.vocabulary.map((item, index) => (
-                    <div key={index} className="grid grid-cols-3 gap-4 p-3 border-b border-light-grey items-center">
-                        <div className="font-thai text-xl">{item.thai}</div>
-                        <div className="text-charcoal-ink/60">{item.phonetic}</div>
-                        <div className="text-charcoal-ink/80">{item.translations[language.code]}</div>
-                    </div>
-                ))}
+                {lesson.vocabulary.map((item, index) => {
+                    const displayPhonetic = zhuyinEnabled ? romanizationToZhuyin(item.phonetic) : item.phonetic;
+                    return (
+                        <div key={index} className="grid grid-cols-3 gap-4 p-3 border-b border-light-grey items-center">
+                            <div className="font-thai text-xl">{item.thai}</div>
+                            <div className="text-charcoal-ink/60">{displayPhonetic}</div>
+                            <div className="text-charcoal-ink/80">{item.translations[language.code]}</div>
+                        </div>
+                    );
+                })}
             </div>
         </div>
     );

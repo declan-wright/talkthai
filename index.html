@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" translate="no">
   <head>
     <meta charset="UTF-8" />
+    <meta name="google" content="notranslate" />
     <link rel="icon" type="image/jpeg" href="/logo.jpg" />
     <link rel="shortcut icon" type="image/jpeg" href="/logo.jpg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -77,6 +78,18 @@
       }
       .animate-progress-bar {
         animation: progress-bar-load 15s ease-out forwards;
+      }
+
+      @keyframes fadeIn {
+        from { 
+          opacity: 0;
+        }
+        to { 
+          opacity: 1;
+        }
+      }
+      .animate-fadeIn {
+        animation: fadeIn 0.3s ease-in-out;
       }
 
       /* Mandarin Font Overrides */

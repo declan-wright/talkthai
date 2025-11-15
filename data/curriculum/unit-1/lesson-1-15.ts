@@ -189,6 +189,7 @@ export const lesson_1_15: Lesson = {
             [LanguageCode.FRENCH]: "Négociez pour un article au marché. Exemple : nîi thâo-rài khráp? (Combien coûte ceci ?) ... pheng bpai! lót dâai mái? (Trop cher ! Vous pouvez faire une réduction ?)",
             [LanguageCode.PORTUGUESE]: "Pechinche por um item no mercado. Exemplo: nîi thâo-rài khráp? (Quanto custa isto?) ... pheng bpai! lót dâai mái? (Muito caro! Pode dar desconto?)",
             [LanguageCode.MANDARIN]: "在市場討價還價。例子：nîi thâo-rài khráp?（這個多少錢？）... pheng bpai! lót dâai mái?（太貴了！可以打折嗎？）",
-        }
+        },
+        speakingType: 'open-ended'
     }
 };

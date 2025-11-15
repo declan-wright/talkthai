@@ -28,19 +28,19 @@ export const lesson_1_0: Lesson = {
         { thai: "ไม่ใช่", phonetic: "mâi châi", translations: { [LanguageCode.ENGLISH]: "No", [LanguageCode.FRENCH]: "Non", [LanguageCode.PORTUGUESE]: "Não", [LanguageCode.MANDARIN]: "不是" } },
         { thai: "เข้าใจ", phonetic: "khâo-jai", translations: { [LanguageCode.ENGLISH]: "Understand", [LanguageCode.FRENCH]: "Comprendre", [LanguageCode.PORTUGUESE]: "Entender", [LanguageCode.MANDARIN]: "明白" } },
         { thai: "ไม่เข้าใจ", phonetic: "mâi khâo-jai", translations: { [LanguageCode.ENGLISH]: "Don't understand", [LanguageCode.FRENCH]: "Ne pas comprendre", [LanguageCode.PORTUGUESE]: "Não entender", [LanguageCode.MANDARIN]: "不明白" } },
-        { thai: "สบายดีไหม", phonetic: "sà-baai-dii mái", translations: { [LanguageCode.ENGLISH]: "How are you?", [LanguageCode.FRENCH]: "Comment ça va ?", [LanguageCode.PORTUGUESE]: "Como vai?", [LanguageCode.MANDARIN]: "你好吗？" } },
+        { thai: "สบายดีไหม", phonetic: "sà-baai-dii mǎi", translations: { [LanguageCode.ENGLISH]: "How are you?", [LanguageCode.FRENCH]: "Comment ça va ?", [LanguageCode.PORTUGUESE]: "Como vai?", [LanguageCode.MANDARIN]: "你好吗？" } },
         { thai: "สบายดี", phonetic: "sà-baai-dii", translations: { [LanguageCode.ENGLISH]: "I'm fine", [LanguageCode.FRENCH]: "Je vais bien", [LanguageCode.PORTUGUESE]: "Estou bem", [LanguageCode.MANDARIN]: "我很好" } },
         { thai: "ชื่ออะไร", phonetic: "chʉ̂ʉ à-rai", translations: { [LanguageCode.ENGLISH]: "What is your name?", [LanguageCode.FRENCH]: "Comment tu t'appelles ?", [LanguageCode.PORTUGUESE]: "Como você se chama?", [LanguageCode.MANDARIN]: "你叫什麼名字？" } },
         { thai: "ยินดีที่ได้รู้จัก", phonetic: "yin-dii thîi dâai rúu-jàk", translations: { [LanguageCode.ENGLISH]: "Nice to meet you", [LanguageCode.FRENCH]: "Ravi de te rencontrer", [LanguageCode.PORTUGUESE]: "Prazer em conhecer", [LanguageCode.MANDARIN]: "很高興認識你" } },
         { thai: "เจอกัน", phonetic: "jəə gan", translations: { [LanguageCode.ENGLISH]: "See you later", [LanguageCode.FRENCH]: "À plus tard", [LanguageCode.PORTUGUESE]: "Até mais", [LanguageCode.MANDARIN]: "待會見" } },
-        { thai: "พูดช้าๆหน่อยได้ไหม", phonetic: "phûut cháa-cháa nòi dâai mái", translations: { [LanguageCode.ENGLISH]: "Please speak slowly", [LanguageCode.FRENCH]: "Parlez lentement, s'il vous plaît", [LanguageCode.PORTUGUESE]: "Fale devagar, por favor", [LanguageCode.MANDARIN]: "請說慢一點" } },
+        { thai: "พูดช้าๆหน่อยได้ไหม", phonetic: "phûut chǎa-chǎa nòi dâai mǎi", translations: { [LanguageCode.ENGLISH]: "Please speak slowly", [LanguageCode.FRENCH]: "Parlez lentement, s'il vous plaît", [LanguageCode.PORTUGUESE]: "Fale devagar, por favor", [LanguageCode.MANDARIN]: "請說慢一點" } },
         { thai: "อีกรอบ", phonetic: "ìik rɔ̂ɔp", translations: { [LanguageCode.ENGLISH]: "Again", [LanguageCode.FRENCH]: "Encore", [LanguageCode.PORTUGUESE]: "De novo", [LanguageCode.MANDARIN]: "再一次" } },
         { thai: "ห้องน้ำอยู่ไหน", phonetic: "hɔ̂ŋ-náam yùu năi", translations: { [LanguageCode.ENGLISH]: "Where is the bathroom?", [LanguageCode.FRENCH]: "Où sont les toilettes ?", [LanguageCode.PORTUGUESE]: "Onde fica o banheiro?", [LanguageCode.MANDARIN]: "洗手間在哪裡？" } },
         { thai: "นี่เท่าไหร่", phonetic: "nîi thâo-rài", translations: { [LanguageCode.ENGLISH]: "How much is this?", [LanguageCode.FRENCH]: "C'est combien ?", [LanguageCode.PORTUGUESE]: "Quanto custa isto?", [LanguageCode.MANDARIN]: "這個多少錢？" } },
         { thai: "อันนี้", phonetic: "an níi", translations: { [LanguageCode.ENGLISH]: "This", [LanguageCode.FRENCH]: "Ceci", [LanguageCode.PORTUGUESE]: "Isto", [LanguageCode.MANDARIN]: "這個" } },
         { thai: "อันนั้น", phonetic: "an nán", translations: { [LanguageCode.ENGLISH]: "That", [LanguageCode.FRENCH]: "Cela", [LanguageCode.PORTUGUESE]: "Aquilo", [LanguageCode.MANDARIN]: "那個" } },
         { thai: "ช่วยด้วย", phonetic: "chûai dûai", translations: { [LanguageCode.ENGLISH]: "Help!", [LanguageCode.FRENCH]: "À l'aide !", [LanguageCode.PORTUGUESE]: "Socorro!", [LanguageCode.MANDARIN]: "救命！" } },
-        { thai: "ได้ไหม", phonetic: "dâai mái", translations: { [LanguageCode.ENGLISH]: "Can (I/you)?", [LanguageCode.FRENCH]: "Est-ce que je/tu peux ?", [LanguageCode.PORTUGUESE]: "Pode?", [LanguageCode.MANDARIN]: "可以嗎？" } },
+        { thai: "ได้ไหม", phonetic: "dâai mǎi", translations: { [LanguageCode.ENGLISH]: "Can (I/you)?", [LanguageCode.FRENCH]: "Est-ce que je/tu peux ?", [LanguageCode.PORTUGUESE]: "Pode?", [LanguageCode.MANDARIN]: "可以嗎？" } },
         { thai: "หน่อย", phonetic: "nòi", translations: { [LanguageCode.ENGLISH]: "(A little) please", [LanguageCode.FRENCH]: "(Un peu) s'il te/vous plaît", [LanguageCode.PORTUGUESE]: "(Um pouco) por favor", [LanguageCode.MANDARIN]: "稍微一下，請" } },
         { thai: "บราซิล", phonetic: "braa-sin", translations: { [LanguageCode.ENGLISH]: "Brazil", [LanguageCode.FRENCH]: "Brésil", [LanguageCode.PORTUGUESE]: "Brasil", [LanguageCode.MANDARIN]: "巴西" } },
         { thai: "อเมริกา", phonetic: "à-mee-rí-gaa", translations: { [LanguageCode.ENGLISH]: "America", [LanguageCode.FRENCH]: "Amérique", [LanguageCode.PORTUGUESE]: "América", [LanguageCode.MANDARIN]: "美國" } },
@@ -345,6 +345,7 @@ export const lesson_1_0: Lesson = {
             [LanguageCode.FRENCH]: "sà-wàt-dii khráp",
             [LanguageCode.PORTUGUESE]: "sà-wàt-dii khráp",
             [LanguageCode.MANDARIN]: "sà-wàt-dii khráp",
-        }
+        },
+        speakingType: 'read'
     }
 };

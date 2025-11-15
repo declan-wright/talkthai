@@ -204,7 +204,8 @@ export const ListeningSpeakingPractice: React.FC<ListeningSpeakingPracticeProps>
                 audioBlob,
                 dynamicExercise.speakingPrompt,
                 dynamicExercise.phoneticPrompt,
-                language
+                language,
+                dynamicExercise.speakingType
             );
             setSpeakingFeedback(feedback);
             if (user && feedback.isRecognizable) {
@@ -355,9 +356,18 @@ export const ListeningSpeakingPractice: React.FC<ListeningSpeakingPracticeProps>
             <section>
                  <h3 className="font-heading text-2xl uppercase border-b-2 border-light-grey pb-2 mb-4">2. Speaking Challenge</h3>
                  <div className="text-center bg-light-grey/50 p-6 rounded-none">
-                     <p className="text-charcoal-ink/70 mb-2">{UI_STRINGS.speakingInstruction[langCode]}</p>
-                     <p className="font-thai text-5xl my-2">{speakingPrompt[langCode]}</p>
-                     <p className="text-charcoal-ink/60 text-lg">{phoneticPrompt[langCode]}</p>
+                     {dynamicExercise.speakingType === 'open-ended' ? (
+                         <>
+                             <p className="text-charcoal-ink/70 mb-2">{UI_STRINGS.speakingOpenEndedInstruction?.[langCode] || "Respond to the following prompt in Thai:"}</p>
+                             <p className="text-xl font-semibold my-4">{phoneticPrompt[langCode]}</p>
+                         </>
+                     ) : (
+                         <>
+                             <p className="text-charcoal-ink/70 mb-2">{UI_STRINGS.speakingInstruction[langCode]}</p>
+                             <p className="font-thai text-5xl my-2">{speakingPrompt[langCode]}</p>
+                             <p className="text-charcoal-ink/60 text-lg">{phoneticPrompt[langCode]}</p>
+                         </>
+                     )}
                  </div>
 
                  <div className="flex flex-col items-center justify-center gap-4 mt-6">

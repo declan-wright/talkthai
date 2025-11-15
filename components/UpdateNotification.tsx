@@ -52,6 +52,14 @@ export const UpdateNotification: React.FC<UpdateNotificationProps> = ({ isOpen, 
                             <span className="text-warm-white/50 text-xs">{latestEntry.date}</span>
                         </div>
 
+                        {latestEntry.highlight && (
+                            <div className="bg-vibrant-orange p-4 mb-4">
+                                <div className="text-warm-white text-sm">
+                                    {latestEntry.highlight[langCode]}
+                                </div>
+                            </div>
+                        )}
+
                         {latestEntry.description && (
                             <p className="text-warm-white/70 text-sm mb-4">{latestEntry.description[langCode]}</p>
                         )}

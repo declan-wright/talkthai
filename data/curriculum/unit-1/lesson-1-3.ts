@@ -12,8 +12,8 @@ export const lesson_1_3: Lesson = {
         { thai: "โมง", phonetic: "moong", translations: { [LanguageCode.ENGLISH]: "o'clock (daytime)", [LanguageCode.FRENCH]: "heures (journée)", [LanguageCode.PORTUGUESE]: "horas (dia)", [LanguageCode.MANDARIN]: "（白天）點" } },
         { thai: "ตี", phonetic: "dtii", translations: { [LanguageCode.ENGLISH]: "o'clock (1–5am)", [LanguageCode.FRENCH]: "heures (1–5h)", [LanguageCode.PORTUGUESE]: "horas (1–5h)", [LanguageCode.MANDARIN]: "凌晨（1–5點）" } },
         { thai: "ทุ่ม", phonetic: "thûm", translations: { [LanguageCode.ENGLISH]: "o'clock (7–11pm)", [LanguageCode.FRENCH]: "heures (19–23h)", [LanguageCode.PORTUGUESE]: "horas (19–23h)", [LanguageCode.MANDARIN]: "晚間（7–11點）" } },
-        { thai: "เที่ยง", phonetic: "thîiang", translations: { [LanguageCode.ENGLISH]: "noon", [LanguageCode.FRENCH]: "midi", [LanguageCode.PORTUGUESE]: "meio-dia", [LanguageCode.MANDARIN]: "中午" } },
-        { thai: "เที่ยงคืน", phonetic: "thîiang-kʉʉn", translations: { [LanguageCode.ENGLISH]: "midnight", [LanguageCode.FRENCH]: "minuit", [LanguageCode.PORTUGUESE]: "meia-noite", [LanguageCode.MANDARIN]: "午夜" } },
+        { thai: "เที่ยง", phonetic: "thîang", translations: { [LanguageCode.ENGLISH]: "noon", [LanguageCode.FRENCH]: "midi", [LanguageCode.PORTUGUESE]: "meio-dia", [LanguageCode.MANDARIN]: "中午" } },
+        { thai: "เที่ยงคืน", phonetic: "thîang-kʉʉn", translations: { [LanguageCode.ENGLISH]: "midnight", [LanguageCode.FRENCH]: "minuit", [LanguageCode.PORTUGUESE]: "meia-noite", [LanguageCode.MANDARIN]: "午夜" } },
         { thai: "ครึ่ง", phonetic: "khrʉ̂ng", translations: { [LanguageCode.ENGLISH]: "half (30 min)", [LanguageCode.FRENCH]: "et demie", [LanguageCode.PORTUGUESE]: "e meia", [LanguageCode.MANDARIN]: "半" } },
         { thai: "ตรง", phonetic: "trong", translations: { [LanguageCode.ENGLISH]: "exactly (on the dot)", [LanguageCode.FRENCH]: "pile", [LanguageCode.PORTUGUESE]: "em ponto", [LanguageCode.MANDARIN]: "整" } },
         { thai: "เช้า", phonetic: "cháo", translations: { [LanguageCode.ENGLISH]: "morning", [LanguageCode.FRENCH]: "matin", [LanguageCode.PORTUGUESE]: "manhã", [LanguageCode.MANDARIN]: "早上" } },
@@ -219,7 +219,8 @@ export const lesson_1_3: Lesson = {
             [LanguageCode.FRENCH]: "Dis l'heure actuelle et trois horaires d'activités.",
             [LanguageCode.PORTUGUESE]: "Diga a hora atual e três horários do seu dia.",
             [LanguageCode.MANDARIN]: "說出現在時間與三個日常活動時間。",
-        }
+        },
+        speakingType: 'open-ended'
     }
 };
 

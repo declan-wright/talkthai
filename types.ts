@@ -123,6 +123,7 @@ export interface ListeningSpeakingExercise {
     comprehensionQuestions: MultipleChoiceExerciseData;
     speakingPrompt: LocalizedString;
     phoneticPrompt: LocalizedString;
+    speakingType?: 'read' | 'open-ended'; // 'read' = read the Thai phrase, 'open-ended' = respond freely to English prompt
 }
 
 export interface SpeakingFeedback {
@@ -223,6 +224,21 @@ export interface TestResult {
     pointsPossible: number;
 }
 
+export interface RegradeQuestionData {
+    questionIndex: number;
+    questionType: TestQuestionType;
+    questionText: string;
+    userAnswer: string;
+    correctAnswer: string;
+}
+
+export interface RegradeResult {
+    questionIndex: number;
+    originallyIncorrect: boolean;
+    newIsCorrect: boolean;
+    explanation: string;
+}
+
 // --- Types for User Profile & Gamification ---
 export interface UserProfile {
     uid: string;
@@ -251,6 +267,7 @@ export interface UserProfile {
 
     // Progress
     testScores: Record<string, number>; // { "lessonId": score }
+    testRetakes?: Record<string, boolean>; // { "lessonId": true if retake has been used }
     flashcardProgress: Record<string, Record<string, number>>; // { "lessonId": { "thai_word": streak } }
     // Conversation Progress
     conversationPracticeCounts?: Record<string, number>; // { "topicId": count }

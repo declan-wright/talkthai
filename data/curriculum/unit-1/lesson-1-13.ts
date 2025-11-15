@@ -306,6 +306,7 @@ export const lesson_1_13: Lesson = {
             [LanguageCode.FRENCH]: "Décrivez votre chambre en utilisant 5 adjectifs. Exemple : hɔ̂ɔng khɔ̌ɔng chǎn lék, sǔay, sǐi khǎao, sà-àat, láe sà-duàk (Ma chambre est petite, belle, blanche, propre et confortable)",
             [LanguageCode.PORTUGUESE]: "Descreva seu quarto usando 5 adjetivos. Exemplo: hɔ̂ɔng khɔ̌ɔng chǎn lék, sǔay, sǐi khǎao, sà-àat, láe sà-duàk (Meu quarto é pequeno, bonito, branco, limpo e confortável)",
             [LanguageCode.MANDARIN]: "用 5 個形容詞描述你的房間。例子：hɔ̂ɔng khɔ̌ɔng chǎn lék, sǔay, sǐi khǎao, sà-àat, láe sà-duàk（我的房間小、漂亮、白色、乾淨、舒適）",
-        }
+        },
+        speakingType: 'open-ended'
     }
 };

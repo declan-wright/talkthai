@@ -258,6 +258,7 @@ export const lesson_1_1: Lesson = {
             [LanguageCode.FRENCH]: "nîi à-rai khráp",
             [LanguageCode.PORTUGUESE]: "nîi à-rai khráp",
             [LanguageCode.MANDARIN]: "nîi à-rai khráp",
-        }
+        },
+        speakingType: 'read'
     }
 };

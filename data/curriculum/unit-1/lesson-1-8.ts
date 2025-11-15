@@ -169,7 +169,8 @@ export const lesson_1_8: Lesson = {
             [LanguageCode.FRENCH]: "Décrivez un repas en utilisant 4 mots de goût. Ex : phàt thai à‑ròi, phèt nít nɔ̀i, bprîao, khem nít nɔ̀i.",
             [LanguageCode.PORTUGUESE]: "Descreva uma refeição usando 4 palavras de sabor. Ex.: phàt thai à‑ròi, phèt nít nɔ̀i, bprîao, khem nít nɔ̀i.",
             [LanguageCode.MANDARIN]: "用四個味道詞描述你吃過的一餐。例：phàt thai à‑ròi, phèt nít nɔ̀i, bprîao, khem nít nɔ̀i。",
-        }
+        },
+        speakingType: 'open-ended'
     }
 };
 

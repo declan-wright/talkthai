@@ -32,6 +32,7 @@ export const createUserProfile = async (
         currentStreak: 1,
         lastActivityDate: today,
         testScores: {},
+        testRetakes: {},
         flashcardProgress: {},
     };
 
@@ -71,8 +72,13 @@ export const addPoints = async (uid: string, points: number, activity: string): 
 
         const userProfile = docSnap.data() as UserProfile;
 
-        const newTotalPoints = (userProfile.totalPoints || 0) + points;
-        const newWeeklyPoints = (userProfile.weeklyPoints?.[weekId] || 0) + points;
+        // Apply half points (rounded down) for specific user
+        const adjustedPoints = userProfile.email === 'declanmarkwright@gmail.com'
+            ? Math.floor(points / 2)
+            : points;
+
+        const newTotalPoints = (userProfile.totalPoints || 0) + adjustedPoints;
+        const newWeeklyPoints = (userProfile.weeklyPoints?.[weekId] || 0) + adjustedPoints;
 
         transaction.update(userRef, {
             totalPoints: newTotalPoints,
@@ -184,8 +190,28 @@ export const deleteChatMessage = async (messageId: string): Promise<void> => {
 export const addStreakBrokenToShameWall = async (userProfile: UserProfile): Promise<void> => {
     const shameWallRef = collection(db, FIRESTORE_COLLECTIONS.SHAME_WALL);
     const now = Timestamp.now();
-    // Expires in 1 day
-    const expires = Timestamp.fromMillis(now.toMillis() + 24 * 60 * 60 * 1000); 
+
+    // First, remove any existing active streak-broken entries for this user
+    const existingQuery = query(
+        shameWallRef,
+        where('uid', '==', userProfile.uid),
+        where('reason', '==', ShameReason.STREAK_BROKEN),
+        where('expires', '>', now)
+    );
+    const existingEntries = await getDocs(existingQuery);
+    const batch = writeBatch(db);
+    existingEntries.docs.forEach(doc => batch.delete(doc.ref));
+    if (!existingEntries.empty) {
+        await batch.commit();
+    }
+
+    // Now add the new entry
+    // Calculate midnight of the next day
+    const nowDate = new Date();
+    const tomorrowMidnight = new Date(nowDate);
+    tomorrowMidnight.setDate(tomorrowMidnight.getDate() + 1);
+    tomorrowMidnight.setHours(0, 0, 0, 0);
+    const expires = Timestamp.fromMillis(tomorrowMidnight.getTime());
 
     const message = `${userProfile.firstName} broke a ${userProfile.currentStreak}-day streak. Expect fewer points in the future.`;
 
@@ -430,6 +456,19 @@ export const cleanupOldChatMessages = async (): Promise<void> => {
     snap.docs.forEach(d => batch.delete(d.ref));
     if (!snap.empty) {
         await batch.commit();
+    }
+};
+
+export const cleanupExpiredShameWallEntries = async (): Promise<void> => {
+    const shameWallRef = collection(db, FIRESTORE_COLLECTIONS.SHAME_WALL);
+    const now = Timestamp.now();
+    const q = query(shameWallRef, where('expires', '<=', now), orderBy('expires', 'asc'), limit(100));
+    const snap = await getDocs(q);
+    const batch = writeBatch(db);
+    snap.docs.forEach(d => batch.delete(d.ref));
+    if (!snap.empty) {
+        await batch.commit();
+        console.log(`Cleaned up ${snap.docs.length} expired shame wall entries`);
     }
 };
 
