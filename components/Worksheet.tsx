@@ -501,133 +501,261 @@ export const Worksheet: React.FC<WorksheetProps> = ({ lesson, language }) => {
     const { user } = useAuth();
     const { showPoints } = usePoints();
     const [userAnswers, setUserAnswers] = useState<Record<number, any>>({});
-    const [submissionStatus, setSubmissionStatus] = useState<Record<string | number, any> | null>(null);
-    
+    const [submissionStatus, setSubmissionStatus] = useState<Record<string | number, any>>({});
+    const [isLoadingProgress, setIsLoadingProgress] = useState(true);
+
     // Get review worksheet and create combined worksheet with review item inserted
-    const { worksheetWithReview, reviewExerciseIndex } = useMemo(() => {
+    // Also create a mapping from combined index to original index
+    const { worksheetWithReview, reviewExerciseIndex, indexMapping } = useMemo(() => {
         const reviewItem = getReviewWorksheet(UNITS, lesson.id);
-        
+
         if (!reviewItem) {
-            return { worksheetWithReview: lesson.worksheet, reviewExerciseIndex: -1 };
+            const mapping = lesson.worksheet.map((_, idx) => idx);
+            return {
+                worksheetWithReview: lesson.worksheet,
+                reviewExerciseIndex: -1,
+                indexMapping: mapping
+            };
         }
-        
+
         // Randomly insert the review item (but not as cultural note)
         const nonCulturalIndices = lesson.worksheet
             .map((item, index) => ({ item, index }))
             .filter(({ item }) => item.type !== ExerciseType.CULTURAL_NOTE)
             .map(({ index }) => index);
-        
+
         if (nonCulturalIndices.length === 0) {
             // If all exercises are cultural notes, just append
-            return { 
-                worksheetWithReview: [...lesson.worksheet, reviewItem], 
-                reviewExerciseIndex: lesson.worksheet.length 
+            const mapping = lesson.worksheet.map((_, idx) => idx);
+            mapping.push(-1); // Review exercise doesn't map to original
+            return {
+                worksheetWithReview: [...lesson.worksheet, reviewItem],
+                reviewExerciseIndex: lesson.worksheet.length,
+                indexMapping: mapping
             };
         }
-        
+
         // Pick a random position among non-cultural exercises
         const randomPosition = nonCulturalIndices[Math.floor(Math.random() * nonCulturalIndices.length)];
-        
+
         // Insert the review item at that position
         const combined = [...lesson.worksheet];
         combined.splice(randomPosition, 0, reviewItem);
-        
-        return { worksheetWithReview: combined, reviewExerciseIndex: randomPosition };
+
+        // Create mapping: combined[i] -> original[mapping[i]]
+        // Items before review keep their index, review maps to -1, items after shift by -1
+        const mapping: number[] = [];
+        for (let i = 0; i < combined.length; i++) {
+            if (i < randomPosition) {
+                mapping.push(i); // Before review: same index
+            } else if (i === randomPosition) {
+                mapping.push(-1); // Review exercise
+            } else {
+                mapping.push(i - 1); // After review: shifted back by 1
+            }
+        }
+
+        return { worksheetWithReview: combined, reviewExerciseIndex: randomPosition, indexMapping: mapping };
     }, [lesson.id, lesson.worksheet]);
 
+    // Load worksheet progress from Firestore on mount
+    useEffect(() => {
+        const loadProgress = async () => {
+            if (!user?.uid) {
+                setIsLoadingProgress(false);
+                return;
+            }
+
+            try {
+                // Load progress saved with original indices
+                const savedProgress = await firestoreService.getWorksheetProgress(user.uid, lesson.id);
+                console.log('[Worksheet] Loaded saved progress:', savedProgress);
+                console.log('[Worksheet] Index mapping:', indexMapping);
+
+                // Map from original indices to current combined indices
+                const mappedProgress: Record<number, any> = {};
+                indexMapping.forEach((originalIdx, combinedIdx) => {
+                    if (originalIdx !== -1 && savedProgress[originalIdx]) {
+                        console.log(`[Worksheet] Mapping: original[${originalIdx}] -> combined[${combinedIdx}]`);
+                        mappedProgress[combinedIdx] = savedProgress[originalIdx];
+                    }
+                });
+
+                console.log('[Worksheet] Mapped progress to display:', mappedProgress);
+                setSubmissionStatus(mappedProgress);
+            } catch (error) {
+                console.error('Failed to load worksheet progress:', error);
+            } finally {
+                setIsLoadingProgress(false);
+            }
+        };
+
+        loadProgress();
+    }, [user?.uid, lesson.id, indexMapping]);
+
     const handleAnswerChange = (exerciseIndex: number, answers: any) => {
-        if (submissionStatus) return;
+        if (submissionStatus[exerciseIndex]) return;
         setUserAnswers(prev => ({ ...prev, [exerciseIndex]: answers }));
     };
 
-    const handleCheckAnswers = () => {
-        const results: Record<string | number, any> = {};
-        let totalCorrect = 0;
-        let totalQuestions = 0;
+    const handleCheckExercise = async (exerciseIndex: number) => {
+        const exercise = worksheetWithReview[exerciseIndex];
+        const answers = userAnswers[exerciseIndex];
+        const isReviewExercise = exerciseIndex === reviewExerciseIndex;
 
-        worksheetWithReview.forEach((exercise, index) => {
-            const answers = userAnswers[index];
-            const isReviewExercise = index === reviewExerciseIndex;
-            
-            switch (exercise.type) {
-                case ExerciseType.MATCHING: {
-                    const exerciseResults = exercise.pairs.map((pair, pIndex) => answers?.[pIndex] === pIndex);
-                    results[index] = { type: exercise.type, results: exerciseResults };
-                    if (!isReviewExercise) {
-                    totalCorrect += exerciseResults.filter(Boolean).length;
-                    totalQuestions += exercise.pairs.length;
-                    }
-                    break;
-                }
-                case ExerciseType.FILL_IN_THE_BLANK: {
-                    const exerciseResults = exercise.sentences.map((s, sIndex) => {
-                        const correctOptions = s.correctAnswer.split('/').map(opt => opt.trim());
-                        const userAnswer = answers?.[sIndex]?.trim() || '';
-                        return correctOptions.includes(userAnswer);
-                    });
-                    results[index] = { type: exercise.type, results: exerciseResults };
-                    if (!isReviewExercise) {
-                    totalCorrect += exerciseResults.filter(Boolean).length;
-                    totalQuestions += exercise.sentences.length;
-                    }
-                    break;
-                }
-                case ExerciseType.MULTIPLE_CHOICE: {
-                    const exerciseResults = exercise.questions.map((q, qIndex) => answers?.[qIndex] === q.correctIndex);
-                    results[index] = { type: exercise.type, results: exerciseResults };
-                    if (!isReviewExercise) {
-                    totalCorrect += exerciseResults.filter(Boolean).length;
-                    totalQuestions += exercise.questions.length;
-                    }
-                    break;
-                }
-                case ExerciseType.JUMBLED_SENTENCE: {
-                    const exerciseResults = exercise.sentences.map((s, sIndex) => {
-                        const userOrder: string[] = answers?.[sIndex] || [];
-                        if (userOrder.length !== s.correctOrder.length) return false;
-                        return userOrder.every((tok, i) => tok === s.correctOrder[i]);
-                    });
-                    results[index] = { type: exercise.type, results: exerciseResults };
-                    if (!isReviewExercise) {
-                    totalCorrect += exerciseResults.filter(Boolean).length;
-                    totalQuestions += exercise.sentences.length;
-                    }
-                    break;
-                }
+        let exerciseResults: boolean[] = [];
+        let correctCount = 0;
+
+        switch (exercise.type) {
+            case ExerciseType.MATCHING: {
+                exerciseResults = exercise.pairs.map((pair, pIndex) => answers?.[pIndex] === pIndex);
+                correctCount = exerciseResults.filter(Boolean).length;
+                break;
             }
-        });
-        
-        results.summary = { totalCorrect, totalQuestions };
-        setSubmissionStatus(results);
+            case ExerciseType.FILL_IN_THE_BLANK: {
+                exerciseResults = exercise.sentences.map((s, sIndex) => {
+                    const correctOptions = s.correctAnswer.split('/').map(opt => opt.trim());
+                    const userAnswer = answers?.[sIndex]?.trim() || '';
+                    return correctOptions.includes(userAnswer);
+                });
+                correctCount = exerciseResults.filter(Boolean).length;
+                break;
+            }
+            case ExerciseType.MULTIPLE_CHOICE: {
+                exerciseResults = exercise.questions.map((q, qIndex) => answers?.[qIndex] === q.correctIndex);
+                correctCount = exerciseResults.filter(Boolean).length;
+                break;
+            }
+            case ExerciseType.JUMBLED_SENTENCE: {
+                exerciseResults = exercise.sentences.map((s, sIndex) => {
+                    const userOrder: string[] = answers?.[sIndex] || [];
+                    if (userOrder.length !== s.correctOrder.length) return false;
+                    return userOrder.every((tok, i) => tok === s.correctOrder[i]);
+                });
+                correctCount = exerciseResults.filter(Boolean).length;
+                break;
+            }
+            case ExerciseType.CULTURAL_NOTE:
+                return; // No checking needed for cultural notes
+        }
 
-        if (user && totalCorrect > 0) {
-            firestoreService.addPoints(user.uid, totalCorrect, "Worksheet");
-            showPoints(totalCorrect);
+        const submissionData = { type: exercise.type, results: exerciseResults };
+
+        setSubmissionStatus(prev => ({
+            ...prev,
+            [exerciseIndex]: submissionData
+        }));
+
+        // Save to Firestore using original index (skip review exercises)
+        const originalIndex = indexMapping[exerciseIndex];
+        console.log(`[Worksheet] Saving: combined[${exerciseIndex}] -> original[${originalIndex}]`, submissionData);
+        if (user?.uid && originalIndex !== -1) {
+            try {
+                await firestoreService.saveWorksheetExerciseSubmission(
+                    user.uid,
+                    lesson.id,
+                    originalIndex,
+                    submissionData
+                );
+                console.log('[Worksheet] Saved successfully');
+            } catch (error) {
+                console.error('Failed to save worksheet progress:', error);
+            }
+        } else {
+            console.log('[Worksheet] Skipping save (review exercise or no user)');
+        }
+
+        if (user && correctCount > 0 && !isReviewExercise) {
+            firestoreService.addPoints(user.uid, correctCount, "Worksheet");
+            showPoints(correctCount);
+        }
+    };
+
+    const handleResetExercise = async (exerciseIndex: number) => {
+        setUserAnswers(prev => {
+            const newAnswers = { ...prev };
+            delete newAnswers[exerciseIndex];
+            return newAnswers;
+        });
+        setSubmissionStatus(prev => {
+            const newStatus = { ...prev };
+            delete newStatus[exerciseIndex];
+            return newStatus;
+        });
+
+        // Clear from Firestore using original index (skip review exercises)
+        const originalIndex = indexMapping[exerciseIndex];
+        if (user?.uid && originalIndex !== -1) {
+            try {
+                await firestoreService.clearWorksheetExerciseSubmission(
+                    user.uid,
+                    lesson.id,
+                    originalIndex
+                );
+            } catch (error) {
+                console.error('Failed to clear worksheet progress:', error);
+            }
         }
     };
     
-    const handleTryAgain = () => {
-        setUserAnswers({});
-        setSubmissionStatus(null);
-    };
-    
-    const renderScore = () => {
-        if (!submissionStatus || !submissionStatus.summary) return null;
-        const { totalCorrect, totalQuestions } = submissionStatus.summary;
+    const renderOverallProgress = () => {
+        let totalCorrect = 0;
+        let totalQuestions = 0;
+        let submittedCount = 0;
+
+        worksheetWithReview.forEach((exercise, index) => {
+            if (exercise.type === ExerciseType.CULTURAL_NOTE) return;
+
+            const isReviewExercise = index === reviewExerciseIndex;
+            if (isReviewExercise) return;
+
+            const submission = submissionStatus[index];
+            if (!submission) return;
+
+            submittedCount++;
+            const results = submission.results || [];
+            totalCorrect += results.filter(Boolean).length;
+
+            switch (exercise.type) {
+                case ExerciseType.MATCHING:
+                    totalQuestions += exercise.pairs.length;
+                    break;
+                case ExerciseType.FILL_IN_THE_BLANK:
+                    totalQuestions += exercise.sentences.length;
+                    break;
+                case ExerciseType.MULTIPLE_CHOICE:
+                    totalQuestions += exercise.questions.length;
+                    break;
+                case ExerciseType.JUMBLED_SENTENCE:
+                    totalQuestions += exercise.sentences.length;
+                    break;
+            }
+        });
+
+        if (submittedCount === 0) return null;
+
         const score = totalQuestions > 0 ? Math.round((totalCorrect / totalQuestions) * 100) : 0;
         const isPerfect = totalCorrect === totalQuestions;
 
         return (
-            <div className={`p-4 mb-8 text-center rounded-none ${isPerfect ? 'bg-vibrant-orange/10 border-vibrant-orange' : 'bg-warm-white border-light-grey'} border-2`}>
+            <div className="p-4 mb-8 text-center rounded-none bg-light-grey/50 border-light-grey border-2">
                 <h2 className="text-2xl font-bold">{isPerfect ? UI_STRINGS.correct[language.code] : UI_STRINGS.results[language.code]}</h2>
                 <p className="text-lg">{UI_STRINGS.scoreMessage[language.code].replace('{correct}', totalCorrect.toString()).replace('{total}', totalQuestions.toString()).replace('{percent}', score.toString())}</p>
             </div>
         );
     };
 
+  if (isLoadingProgress) {
+    return (
+      <div className="flex justify-center items-center py-12">
+        <div className="text-charcoal-ink/60">Loading worksheet...</div>
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-12">
-      {renderScore()}
+      {renderOverallProgress()}
       {worksheetWithReview.map((exercise, index) => {
         const isReviewExercise = index === reviewExerciseIndex;
         let exerciseContent;
@@ -675,6 +803,9 @@ export const Worksheet: React.FC<WorksheetProps> = ({ lesson, language }) => {
                 exerciseContent = null;
         }
 
+        const isSubmitted = !!submissionStatus[index];
+        const isCulturalNote = exercise.type === ExerciseType.CULTURAL_NOTE;
+
         return (
           <div key={index} className={`p-4 sm:p-6 border-b-2 border-light-grey last:border-b-0 ${isReviewExercise ? 'relative' : ''}`}>
              {isReviewExercise && (
@@ -685,20 +816,28 @@ export const Worksheet: React.FC<WorksheetProps> = ({ lesson, language }) => {
                 </div>
              )}
              {exerciseContent}
+             {!isCulturalNote && (
+                <div className="flex justify-center mt-6">
+                    {!isSubmitted ? (
+                        <button
+                            onClick={() => handleCheckExercise(index)}
+                            className="bg-vibrant-orange text-warm-white font-bold py-2 px-6 uppercase active:scale-95 transition-transform rounded-none"
+                        >
+                            {UI_STRINGS.checkAnswers[language.code]}
+                        </button>
+                    ) : (
+                        <button
+                            onClick={() => handleResetExercise(index)}
+                            className="bg-charcoal-ink text-warm-white font-bold py-2 px-6 uppercase active:scale-95 transition-transform rounded-none"
+                        >
+                            {UI_STRINGS.tryAgain[language.code]}
+                        </button>
+                    )}
+                </div>
+             )}
           </div>
         );
       })}
-      <div className="flex justify-center py-6">
-        {!submissionStatus ? (
-            <button onClick={handleCheckAnswers} className="bg-vibrant-orange text-warm-white font-bold py-3 px-8 uppercase text-lg active:scale-95 transition-transform rounded-none">
-                {UI_STRINGS.checkAnswers[language.code]}
-            </button>
-        ) : (
-             <button onClick={handleTryAgain} className="bg-charcoal-ink text-warm-white font-bold py-3 px-8 uppercase text-lg active:scale-95 transition-transform rounded-none">
-                {UI_STRINGS.tryAgain[language.code]}
-            </button>
-        )}
-      </div>
     </div>
   );
 };

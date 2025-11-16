@@ -114,45 +114,45 @@ export const lesson_2_0: Lesson = {
                 {
                     question: { [LanguageCode.ENGLISH]: "You want to contact your friend by phone. You: ___หาเพื่อน", [LanguageCode.FRENCH]: "Vous voulez contacter votre ami par téléphone. Vous : ___หาเพื่อน", [LanguageCode.PORTUGUESE]: "Você quer contatar seu amigo por telefone. Você: ___หาเพื่อน", [LanguageCode.MANDARIN]: "你想給朋友打電話。你：___หาเพื่อน" },
                     options: [
-                        { [LanguageCode.ENGLISH]: "โทร (call)", [LanguageCode.FRENCH]: "โทร (appeler)", [LanguageCode.PORTUGUESE]: "โทร (ligar)", [LanguageCode.MANDARIN]: "โทร（打電話）" },
-                        { [LanguageCode.ENGLISH]: "แชท (chat)", [LanguageCode.FRENCH]: "แชท (tchatter)", [LanguageCode.PORTUGUESE]: "แชท (conversar)", [LanguageCode.MANDARIN]: "แชท（聊天）" },
-                        { [LanguageCode.ENGLISH]: "โพสต์ (post)", [LanguageCode.FRENCH]: "โพสต์ (poster)", [LanguageCode.PORTUGUESE]: "โพสต์ (postar)", [LanguageCode.MANDARIN]: "โพสต์（發帖）" },
+                        { [LanguageCode.ENGLISH]: "โทร", [LanguageCode.FRENCH]: "โทร", [LanguageCode.PORTUGUESE]: "โทร", [LanguageCode.MANDARIN]: "โทร（打電話）" },
+                        { [LanguageCode.ENGLISH]: "แชท", [LanguageCode.FRENCH]: "แชท", [LanguageCode.PORTUGUESE]: "แชท", [LanguageCode.MANDARIN]: "แชท（聊天）" },
+                        { [LanguageCode.ENGLISH]: "โพสต์", [LanguageCode.FRENCH]: "โพสต์", [LanguageCode.PORTUGUESE]: "โพสต์", [LanguageCode.MANDARIN]: "โพสต์（發帖）" },
                     ],
                     correctIndex: 0
                 },
                 {
                     question: { [LanguageCode.ENGLISH]: "You see something beautiful and want a photo. You: ___รูป", [LanguageCode.FRENCH]: "Vous voyez quelque chose de beau et voulez une photo. Vous : ___รูป", [LanguageCode.PORTUGUESE]: "Você vê algo bonito e quer uma foto. Você: ___รูป", [LanguageCode.MANDARIN]: "你看到美麗的東西想拍照。你：___รูป" },
                     options: [
-                        { [LanguageCode.ENGLISH]: "โพสต์ (post)", [LanguageCode.FRENCH]: "โพสต์ (poster)", [LanguageCode.PORTUGUESE]: "โพสต์ (postar)", [LanguageCode.MANDARIN]: "โพสต์（發帖）" },
-                        { [LanguageCode.ENGLISH]: "ถ่ายรูป (take photo)", [LanguageCode.FRENCH]: "ถ่ายรูป (prendre photo)", [LanguageCode.PORTUGUESE]: "ถ่ายรูป (tirar foto)", [LanguageCode.MANDARIN]: "ถ่ายรูป（拍照）" },
-                        { [LanguageCode.ENGLISH]: "ส่ง (send)", [LanguageCode.FRENCH]: "ส่ง (envoyer)", [LanguageCode.PORTUGUESE]: "ส่ง (enviar)", [LanguageCode.MANDARIN]: "ส่ง（送）" },
+                        { [LanguageCode.ENGLISH]: "โพสต์", [LanguageCode.FRENCH]: "โพสต์", [LanguageCode.PORTUGUESE]: "โพสต์", [LanguageCode.MANDARIN]: "โพสต์（發帖）" },
+                        { [LanguageCode.ENGLISH]: "ถ่ายรูป", [LanguageCode.FRENCH]: "ถ่ายรูป", [LanguageCode.PORTUGUESE]: "ถ่ายรูป", [LanguageCode.MANDARIN]: "ถ่ายรูป（拍照）" },
+                        { [LanguageCode.ENGLISH]: "ส่ง", [LanguageCode.FRENCH]: "ส่ง", [LanguageCode.PORTUGUESE]: "ส่ง", [LanguageCode.MANDARIN]: "ส่ง（送）" },
                     ],
                     correctIndex: 1
                 },
                 {
                     question: { [LanguageCode.ENGLISH]: "You need to get a file from the internet. You: ___", [LanguageCode.FRENCH]: "Vous devez obtenir un fichier sur Internet. Vous : ___", [LanguageCode.PORTUGUESE]: "Você precisa pegar um arquivo da internet. Você: ___", [LanguageCode.MANDARIN]: "你需要從網上下載文件。你：___" },
                     options: [
-                        { [LanguageCode.ENGLISH]: "อัพโหลด (upload)", [LanguageCode.FRENCH]: "อัพโหลด (téléverser)", [LanguageCode.PORTUGUESE]: "อัพโหลด (fazer upload)", [LanguageCode.MANDARIN]: "อัพโหลด（上傳）" },
-                        { [LanguageCode.ENGLISH]: "ดาวน์โหลด (download)", [LanguageCode.FRENCH]: "ดาวน์โหลด (télécharger)", [LanguageCode.PORTUGUESE]: "ดาวน์โหลด (baixar)", [LanguageCode.MANDARIN]: "ดาวน์โหลด（下載）" },
-                        { [LanguageCode.ENGLISH]: "โพสต์ (post)", [LanguageCode.FRENCH]: "โพสต์ (poster)", [LanguageCode.PORTUGUESE]: "โพสต์ (postar)", [LanguageCode.MANDARIN]: "โพสต์（發帖）" },
+                        { [LanguageCode.ENGLISH]: "อัพโหลด", [LanguageCode.FRENCH]: "อัพโหลด (téléverser)", [LanguageCode.PORTUGUESE]: "อัพโหลด", [LanguageCode.MANDARIN]: "อัพโหลด（上傳）" },
+                        { [LanguageCode.ENGLISH]: "ดาวน์โหลด", [LanguageCode.FRENCH]: "ดาวน์โหลด (télécharger)", [LanguageCode.PORTUGUESE]: "ดาวน์โหลด", [LanguageCode.MANDARIN]: "ดาวน์โหลด（下載）" },
+                        { [LanguageCode.ENGLISH]: "โพสต์", [LanguageCode.FRENCH]: "โพสต์", [LanguageCode.PORTUGUESE]: "โพสต์", [LanguageCode.MANDARIN]: "โพสต์（發帖）" },
                     ],
                     correctIndex: 1
                 },
                 {
                     question: { [LanguageCode.ENGLISH]: "You're entering a Thai home. You must: ___รองเท้า", [LanguageCode.FRENCH]: "Vous entrez dans une maison thaïlandaise. Vous devez : ___รองเท้า", [LanguageCode.PORTUGUESE]: "Você está entrando em uma casa tailandesa. Você deve: ___รองเท้า", [LanguageCode.MANDARIN]: "你要進入泰國人的家。你必須：___รองเท้า" },
                     options: [
-                        { [LanguageCode.ENGLISH]: "ใส่ (put on)", [LanguageCode.FRENCH]: "ใส่ (mettre)", [LanguageCode.PORTUGUESE]: "ใส่ (colocar)", [LanguageCode.MANDARIN]: "ใส่（穿）" },
-                        { [LanguageCode.ENGLISH]: "ถอด (take off)", [LanguageCode.FRENCH]: "ถอด (enlever)", [LanguageCode.PORTUGUESE]: "ถอด (tirar)", [LanguageCode.MANDARIN]: "ถอด（脫）" },
-                        { [LanguageCode.ENGLISH]: "ซื้อ (buy)", [LanguageCode.FRENCH]: "ซื้อ (acheter)", [LanguageCode.PORTUGUESE]: "ซื้อ (comprar)", [LanguageCode.MANDARIN]: "ซื้อ（買）" },
+                        { [LanguageCode.ENGLISH]: "ใส่", [LanguageCode.FRENCH]: "ใส่", [LanguageCode.PORTUGUESE]: "ใส่", [LanguageCode.MANDARIN]: "ใส่（穿）" },
+                        { [LanguageCode.ENGLISH]: "ถอด", [LanguageCode.FRENCH]: "ถอด", [LanguageCode.PORTUGUESE]: "ถอด", [LanguageCode.MANDARIN]: "ถอด（脫）" },
+                        { [LanguageCode.ENGLISH]: "ซื้อ", [LanguageCode.FRENCH]: "ซื้อ", [LanguageCode.PORTUGUESE]: "ซื้อ", [LanguageCode.MANDARIN]: "ซื้อ（買）" },
                     ],
                     correctIndex: 1
                 },
                 {
                     question: { [LanguageCode.ENGLISH]: "At a restaurant, when the bill comes, you: ___เงิน", [LanguageCode.FRENCH]: "Au restaurant, quand l'addition arrive, vous : ___เงิน", [LanguageCode.PORTUGUESE]: "No restaurante, quando a conta chega, você: ___เงิน", [LanguageCode.MANDARIN]: "在餐廳，帳單來時，你：___เงิน" },
                     options: [
-                        { [LanguageCode.ENGLISH]: "รับ (receive)", [LanguageCode.FRENCH]: "รับ (recevoir)", [LanguageCode.PORTUGUESE]: "รับ (receber)", [LanguageCode.MANDARIN]: "รับ（收）" },
-                        { [LanguageCode.ENGLISH]: "ส่ง (send)", [LanguageCode.FRENCH]: "ส่ง (envoyer)", [LanguageCode.PORTUGUESE]: "ส่ง (enviar)", [LanguageCode.MANDARIN]: "ส่ง（送）" },
-                        { [LanguageCode.ENGLISH]: "จ่าย (pay)", [LanguageCode.FRENCH]: "จ่าย (payer)", [LanguageCode.PORTUGUESE]: "จ่าย (pagar)", [LanguageCode.MANDARIN]: "จ่าย（付款）" },
+                        { [LanguageCode.ENGLISH]: "รับ", [LanguageCode.FRENCH]: "รับ", [LanguageCode.PORTUGUESE]: "รับ", [LanguageCode.MANDARIN]: "รับ（收）" },
+                        { [LanguageCode.ENGLISH]: "ส่ง", [LanguageCode.FRENCH]: "ส่ง", [LanguageCode.PORTUGUESE]: "ส่ง", [LanguageCode.MANDARIN]: "ส่ง（送）" },
+                        { [LanguageCode.ENGLISH]: "จ่าย", [LanguageCode.FRENCH]: "จ่าย", [LanguageCode.PORTUGUESE]: "จ่าย", [LanguageCode.MANDARIN]: "จ่าย（付款）" },
                     ],
                     correctIndex: 2
                 },
@@ -232,36 +232,36 @@ export const lesson_2_0: Lesson = {
                 {
                     question: { [LanguageCode.ENGLISH]: "You want to stay healthy and active. You: ___ทุกวัน", [LanguageCode.FRENCH]: "Vous voulez rester en bonne santé et actif. Vous : ___ทุกวัน", [LanguageCode.PORTUGUESE]: "Você quer se manter saudável e ativo. Você: ___ทุกวัน", [LanguageCode.MANDARIN]: "你想保持健康和活躍。你：___ทุกวัน" },
                     options: [
-                        { [LanguageCode.ENGLISH]: "ออกกำลังกาย (exercise)", [LanguageCode.FRENCH]: "ออกกำลังกาย (faire de l'exercice)", [LanguageCode.PORTUGUESE]: "ออกกำลังกาย (fazer exercício)", [LanguageCode.MANDARIN]: "ออกกำลังกาย（運動）" },
-                        { [LanguageCode.ENGLISH]: "พักผ่อน (rest)", [LanguageCode.FRENCH]: "พักผ่อน (se reposer)", [LanguageCode.PORTUGUESE]: "พักผ่อน (descansar)", [LanguageCode.MANDARIN]: "พักผ่อน（休息）" },
-                        { [LanguageCode.ENGLISH]: "นอน (sleep)", [LanguageCode.FRENCH]: "นอน (dormir)", [LanguageCode.PORTUGUESE]: "นอน (dormir)", [LanguageCode.MANDARIN]: "นอน（睡覺）" },
+                        { [LanguageCode.ENGLISH]: "ออกกำลังกาย", [LanguageCode.FRENCH]: "ออกกำลังกาย (faire de l'exercice)", [LanguageCode.PORTUGUESE]: "ออกกำลังกาย (fazer exercício)", [LanguageCode.MANDARIN]: "ออกกำลังกาย（運動）" },
+                        { [LanguageCode.ENGLISH]: "พักผ่อน", [LanguageCode.FRENCH]: "พักผ่อน", [LanguageCode.PORTUGUESE]: "พักผ่อน", [LanguageCode.MANDARIN]: "พักผ่อน（休息）" },
+                        { [LanguageCode.ENGLISH]: "นอน", [LanguageCode.FRENCH]: "นอน", [LanguageCode.PORTUGUESE]: "นอน", [LanguageCode.MANDARIN]: "นอน（睡覺）" },
                     ],
                     correctIndex: 0
                 },
                 {
                     question: { [LanguageCode.ENGLISH]: "After dinner, you need to: ___จาน", [LanguageCode.FRENCH]: "Après le dîner, vous devez : ___จาน", [LanguageCode.PORTUGUESE]: "Depois do jantar, você precisa: ___จาน", [LanguageCode.MANDARIN]: "晚飯後，你需要：___จาน" },
                     options: [
-                        { [LanguageCode.ENGLISH]: "ซื้อ (buy)", [LanguageCode.FRENCH]: "ซื้อ (acheter)", [LanguageCode.PORTUGUESE]: "ซื้อ (comprar)", [LanguageCode.MANDARIN]: "ซื้อ（買）" },
-                        { [LanguageCode.ENGLISH]: "ล้าง (wash)", [LanguageCode.FRENCH]: "ล้าง (laver)", [LanguageCode.PORTUGUESE]: "ล้าง (lavar)", [LanguageCode.MANDARIN]: "ล้าง（洗）" },
-                        { [LanguageCode.ENGLISH]: "ดู (watch)", [LanguageCode.FRENCH]: "ดู (regarder)", [LanguageCode.PORTUGUESE]: "ดู (ver)", [LanguageCode.MANDARIN]: "ดู（看）" },
+                        { [LanguageCode.ENGLISH]: "ซื้อ", [LanguageCode.FRENCH]: "ซื้อ", [LanguageCode.PORTUGUESE]: "ซื้อ", [LanguageCode.MANDARIN]: "ซื้อ（買）" },
+                        { [LanguageCode.ENGLISH]: "ล้าง", [LanguageCode.FRENCH]: "ล้าง", [LanguageCode.PORTUGUESE]: "ล้าง", [LanguageCode.MANDARIN]: "ล้าง（洗）" },
+                        { [LanguageCode.ENGLISH]: "ดู", [LanguageCode.FRENCH]: "ดู", [LanguageCode.PORTUGUESE]: "ดู", [LanguageCode.MANDARIN]: "ดู（看）" },
                     ],
                     correctIndex: 1
                 },
                 {
                     question: { [LanguageCode.ENGLISH]: "Your house is messy. You need to: ___บ้าน", [LanguageCode.FRENCH]: "Votre maison est en désordre. Vous devez : ___บ้าน", [LanguageCode.PORTUGUESE]: "Sua casa está bagunçada. Você precisa: ___บ้าน", [LanguageCode.MANDARIN]: "你的房子很亂。你需要：___บ้าน" },
                     options: [
-                        { [LanguageCode.ENGLISH]: "ทำความสะอาด (clean)", [LanguageCode.FRENCH]: "ทำความสะอาด (nettoyer)", [LanguageCode.PORTUGUESE]: "ทำความสะอาด (limpar)", [LanguageCode.MANDARIN]: "ทำความสะอาด（打掃）" },
-                        { [LanguageCode.ENGLISH]: "ขาย (sell)", [LanguageCode.FRENCH]: "ขาย (vendre)", [LanguageCode.PORTUGUESE]: "ขาย (vender)", [LanguageCode.MANDARIN]: "ขาย（賣）" },
-                        { [LanguageCode.ENGLISH]: "จอง (book)", [LanguageCode.FRENCH]: "จอง (réserver)", [LanguageCode.PORTUGUESE]: "จอง (reservar)", [LanguageCode.MANDARIN]: "จอง（預訂）" },
+                        { [LanguageCode.ENGLISH]: "ทำความสะอาด", [LanguageCode.FRENCH]: "ทำความสะอาด", [LanguageCode.PORTUGUESE]: "ทำความสะอาด", [LanguageCode.MANDARIN]: "ทำความสะอาด（打掃）" },
+                        { [LanguageCode.ENGLISH]: "ขาย", [LanguageCode.FRENCH]: "ขาย", [LanguageCode.PORTUGUESE]: "ขาย", [LanguageCode.MANDARIN]: "ขาย（賣）" },
+                        { [LanguageCode.ENGLISH]: "จอง", [LanguageCode.FRENCH]: "จอง (réserver)", [LanguageCode.PORTUGUESE]: "จอง", [LanguageCode.MANDARIN]: "จอง（預訂）" },
                     ],
                     correctIndex: 0
                 },
                 {
                     question: { [LanguageCode.ENGLISH]: "You're thirsty. You want to: ___น้ำ", [LanguageCode.FRENCH]: "Vous avez soif. Vous voulez : ___น้ำ", [LanguageCode.PORTUGUESE]: "Você está com sede. Você quer: ___น้ำ", [LanguageCode.MANDARIN]: "你口渴了。你想：___น้ำ" },
                     options: [
-                        { [LanguageCode.ENGLISH]: "กิน (eat)", [LanguageCode.FRENCH]: "กิน (manger)", [LanguageCode.PORTUGUESE]: "กิน (comer)", [LanguageCode.MANDARIN]: "กิน（吃）" },
-                        { [LanguageCode.ENGLISH]: "ดื่ม (drink)", [LanguageCode.FRENCH]: "ดื่ม (boire)", [LanguageCode.PORTUGUESE]: "ดื่ม (beber)", [LanguageCode.MANDARIN]: "ดื่ม（喝）" },
-                        { [LanguageCode.ENGLISH]: "อาบ (bathe)", [LanguageCode.FRENCH]: "อาบ (se baigner)", [LanguageCode.PORTUGUESE]: "อาบ (tomar banho)", [LanguageCode.MANDARIN]: "อาบ（洗澡）" },
+                        { [LanguageCode.ENGLISH]: "กิน", [LanguageCode.FRENCH]: "กิน", [LanguageCode.PORTUGUESE]: "กิน", [LanguageCode.MANDARIN]: "กิน（吃）" },
+                        { [LanguageCode.ENGLISH]: "ดื่ม", [LanguageCode.FRENCH]: "ดื่ม", [LanguageCode.PORTUGUESE]: "ดื่ม", [LanguageCode.MANDARIN]: "ดื่ม（喝）" },
+                        { [LanguageCode.ENGLISH]: "อาบ", [LanguageCode.FRENCH]: "อาบ", [LanguageCode.PORTUGUESE]: "อาบ", [LanguageCode.MANDARIN]: "อาบ（洗澡）" },
                     ],
                     correctIndex: 1
                 },
@@ -333,10 +333,10 @@ export const lesson_2_0: Lesson = {
             [LanguageCode.MANDARIN]: "บรรยายกิจวัตรประจำวันของคุณด้วยกริยาที่เรียนในบทนี้ อย่างน้อย 10 ประโยค",
         },
         phoneticPrompt: {
-            [LanguageCode.ENGLISH]: "Describe your daily routine using the verbs from this lesson. Include at least 10 activities from morning to night. For example:\n\n'Every morning, I wake up (dtʉ̀ʉn), then I shower (àap-náam). After that, I brush my teeth (bprɛɛng-fan) and comb my hair (wǐi phǒm). I get dressed (dtɛ̀ng-dtuua) and put on clothes (sài sʉ̂a). I eat breakfast (gin-khâao-cháao) and drink coffee (dʉ̀ʉm gaa-fɛɛ). Then I drive to work (khàp rót bpai tham-ngaan)...\n\nContinue describing your afternoon activities, evening routine, and what you do before bed. Use as many verbs from this lesson as possible!\n\nTips:\n• Speak naturally about YOUR actual daily routine\n• Use time words: ตอนเช้า (morning), เที่ยง (noon), บ่าย (afternoon), เย็น (evening), กลางคืน (night)\n• Try to use compound verbs like กินข้าว (eat meal), ถ่ายรูป (take photos), ออกกำลังกาย (exercise)\n• Include modern activities: แชท (chat), โพสต์ (post), ถ่ายรูป (take photos)\n• Don't forget cultural activities like taking off shoes (ถอดรองเท้า) when entering home!",
-            [LanguageCode.FRENCH]: "Décrivez votre routine quotidienne en utilisant les verbes de cette leçon. Incluez au moins 10 activités du matin au soir. Par exemple :\n\n'Chaque matin, je me réveille (dtʉ̀ʉn), puis je me douche (àap-náam). Après ça, je me brosse les dents (bprɛɛng-fan) et je me peigne (wǐi phǒm). Je m'habille (dtɛ̀ng-dtuua) et je mets des vêtements (sài sʉ̂a). Je prends le petit-déjeuner (gin-khâao-cháao) et je bois du café (dʉ̀ʉm gaa-fɛɛ). Puis je conduis au travail (khàp rót bpai tham-ngaan)...\n\nContinuez à décrire vos activités de l'après-midi, votre routine du soir et ce que vous faites avant de vous coucher. Utilisez autant de verbes de cette leçon que possible !",
-            [LanguageCode.PORTUGUESE]: "Descreva sua rotina diária usando os verbos desta lição. Inclua pelo menos 10 atividades da manhã à noite. Por exemplo:\n\n'Toda manhã, eu acordo (dtʉ̀ʉn), depois tomo banho (àap-náam). Depois disso, escovo os dentes (bprɛɛng-fan) e penteio o cabelo (wǐi phǒm). Me visto (dtɛ̀ng-dtuua) e coloco roupas (sài sʉ̂a). Tomo café da manhã (gin-khâao-cháao) e bebo café (dʉ̀ʉm gaa-fɛɛ). Depois dirijo para o trabalho (khàp rót bpai tham-ngaan)...\n\nContinue descrevendo suas atividades da tarde, rotina da noite e o que você faz antes de dormir. Use o máximo de verbos desta lição que puder!",
-            [LanguageCode.MANDARIN]: "用本課的動詞描述你的日常作息。包括從早到晚至少 10 個活動。例如：\n\n'每天早上，我起床（dtʉ̀ʉn），然後洗澡（àap-náam）。之後，我刷牙（bprɛɛng-fan）和梳頭（wǐi phǒm）。我穿衣服（dtɛ̀ng-dtuua）和穿衣服（sài sʉ̂a）。我吃早餐（gin-khâao-cháao）和喝咖啡（dʉ̀ʉm gaa-fɛɛ）。然後我開車去上班（khàp rót bpai tham-ngaan）...\n\n繼續描述你的下午活動、晚上的例行活動和睡前做什麼。盡可能多地使用本課的動詞！",
+            [LanguageCode.ENGLISH]: "Describe your daily routine using the verbs from this lesson. Include activities from morning to night.",
+            [LanguageCode.FRENCH]: "Décrivez votre routine quotidienne en utilisant les verbes de cette leçon. Incluez des activités du matin au soir.",
+            [LanguageCode.PORTUGUESE]: "Descreva sua rotina diária usando os verbos desta lição. Inclua atividades da manhã à noite.",
+            [LanguageCode.MANDARIN]: "用本課的動詞描述你的日常作息。包括從早到晚的活動。",
         },
         speakingType: 'open-ended'
     }

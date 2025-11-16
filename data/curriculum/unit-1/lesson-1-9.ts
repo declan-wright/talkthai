@@ -114,7 +114,7 @@ export const lesson_1_9: Lesson = {
                 {
                     question: { [LanguageCode.ENGLISH]: "Which word do most Thais use when ordering casually?", [LanguageCode.FRENCH]: "Quel mot la plupart des Thaïlandais utilisent-ils pour commander de manière décontractée ?", [LanguageCode.PORTUGUESE]: "Qual palavra a maioria dos tailandeses usa ao pedir casualmente?", [LanguageCode.MANDARIN]: "大多數泰國人隨意點餐時用哪個詞？" },
                     options: [
-                        { [LanguageCode.ENGLISH]: "เอา (ao)", [LanguageCode.FRENCH]: "เอา (ao)", [LanguageCode.PORTUGUESE]: "เอา (ao)", [LanguageCode.MANDARIN]: "เอา (ao)" },
+                        { [LanguageCode.ENGLISH]: "เอา", [LanguageCode.FRENCH]: "เอา", [LanguageCode.PORTUGUESE]: "เอา", [LanguageCode.MANDARIN]: "เอา" },
                         { [LanguageCode.ENGLISH]: "ขอ (khɔ̌ɔ)", [LanguageCode.FRENCH]: "ขอ (khɔ̌ɔ)", [LanguageCode.PORTUGUESE]: "ขอ (khɔ̌ɔ)", [LanguageCode.MANDARIN]: "ขอ (khɔ̌ɔ)" },
                         { [LanguageCode.ENGLISH]: "สั่ง (sàng)", [LanguageCode.FRENCH]: "สั่ง (sàng)", [LanguageCode.PORTUGUESE]: "สั่ง (sàng)", [LanguageCode.MANDARIN]: "สั่ง (sàng)" },
                     ],

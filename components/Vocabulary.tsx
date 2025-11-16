@@ -63,15 +63,28 @@ export const Vocabulary: React.FC<VocabularyProps> = ({ lesson, language, onStud
     const [activeSet, setActiveSet] = useState<VocabularyItem[]>([]);
     const [reviewCards, setReviewCards] = useState<Set<string>>(new Set()); // Track which cards are review cards
     const [zhuyinEnabled, setZhuyinEnabledState] = useState(false);
+    const [mistakesInSession, setMistakesInSession] = useState<Record<string, number>>({}); // Track mistakes per word
+    const [practicingStarredOnly, setPracticingStarredOnly] = useState(false); // Track if practicing starred cards only
+
+    // Local state for starred words with optimistic updates
+    const [localStarredWords, setLocalStarredWords] = useState<Set<string>>(new Set());
+
+    // Sync local starred words with userProfile
+    useEffect(() => {
+        setLocalStarredWords(new Set(userProfile?.starredWords || []));
+    }, [userProfile?.starredWords]);
 
     // Check Zhuyin preference on mount
     useEffect(() => {
         setZhuyinEnabledState(isZhuyinEnabled());
     }, []);
-    
+
     const studyProgress = useMemo(() => {
         return userProfile?.flashcardProgress?.[lesson.id] || {};
     }, [userProfile, lesson.id]);
+
+    // Use local starred words for immediate UI updates
+    const starredWords = localStarredWords;
 
     useEffect(() => {
         onStudyStateChange(isStudying);
@@ -98,32 +111,72 @@ export const Vocabulary: React.FC<VocabularyProps> = ({ lesson, language, onStud
         return counts;
     }, [studyProgress, lesson.vocabulary]);
     
-    const generateAndSetActiveSet = (currentProgress: Record<string, number>) => {
+    const toggleStarWord = async (thaiWord: string) => {
+        if (!user) return;
+
+        const currentStarred = userProfile?.starredWords || [];
+        const newStarred = currentStarred.includes(thaiWord)
+            ? currentStarred.filter(w => w !== thaiWord)
+            : [...currentStarred, thaiWord];
+
+        // Optimistically update local state immediately for instant UI feedback
+        setLocalStarredWords(new Set(newStarred));
+
+        try {
+            await updateUserProfile({
+                starredWords: newStarred
+            });
+        } catch (error) {
+            console.error('Failed to update starred words:', error);
+            // Revert optimistic update on error
+            setLocalStarredWords(new Set(currentStarred));
+        }
+    };
+
+    const generateAndSetActiveSet = (currentProgress: Record<string, number>, starredOnly: boolean = false) => {
         const SET_SIZE = 7;
-        const notMastered = lesson.vocabulary.filter(item => (currentProgress[item.thai] || 0) < 3);
+
+        // If practicing starred only, filter to starred words
+        let availableVocab = starredOnly
+            ? lesson.vocabulary.filter(item => starredWords.has(item.thai))
+            : lesson.vocabulary;
+
+        const notMastered = availableVocab.filter(item => (currentProgress[item.thai] || 0) < 3);
 
         const learningCards = notMastered.filter(item => (currentProgress[item.thai] || 0) === 0 && currentProgress.hasOwnProperty(item.thai));
         const almostCards = notMastered.filter(item => (currentProgress[item.thai] || 0) > 0);
         const newCards = notMastered.filter(item => !currentProgress.hasOwnProperty(item.thai));
-        
+
         let potentialSet = [ ...learningCards, ...almostCards, ...newCards ];
-        
+
+        if (starredOnly) {
+            // If practicing starred only, don't include review cards from other lessons
+            let nextSet = shuffleArray(potentialSet).slice(0, SET_SIZE);
+            if (nextSet.length > 0) {
+                setActiveSet(nextSet);
+                setReviewCards(new Set());
+            } else {
+                setIsStudying(false);
+            }
+            return;
+        }
+
         // 20% chance to skip review cards
         const skipReviewCards = Math.random() < 0.2;
-        
+
         // Get review cards from previous lessons (unless skipping)
-        const reviewVocab = skipReviewCards ? [] : getReviewVocabulary(UNITS, lesson.id);
+        const reviewVocab = skipReviewCards ? [] : getReviewVocabulary(UNITS, lesson.id, starredWords);
         const reviewCardsSet = new Set(reviewVocab.map(v => v.thai));
-        
+
         // Calculate how many cards from current lesson to include
         const currentLessonCardCount = Math.min(SET_SIZE - reviewVocab.length, potentialSet.length);
-        
+
         // Select cards from current lesson
         let nextSet = shuffleArray(potentialSet).slice(0, currentLessonCardCount);
-        
+
         // Add review cards (if not skipping)
         nextSet = [...nextSet, ...reviewVocab];
-        
+
         // Shuffle the combined set
         nextSet = shuffleArray(nextSet);
 
@@ -135,7 +188,7 @@ export const Vocabulary: React.FC<VocabularyProps> = ({ lesson, language, onStud
         }
     };
     
-    const handleStartSession = () => {
+    const handleStartSession = (starredOnly: boolean = false) => {
         let progress = studyProgress;
         if (progressCounts.mastered === totalCards) {
             progress = {};
@@ -148,16 +201,31 @@ export const Vocabulary: React.FC<VocabularyProps> = ({ lesson, language, onStud
                 });
             }
         }
-        generateAndSetActiveSet(progress);
+        generateAndSetActiveSet(progress, starredOnly);
         setIsStudying(true);
         setSeenInSession(new Set());
+        setMistakesInSession({});
+        setPracticingStarredOnly(starredOnly);
     };
 
     const handleCardResult = async (card: VocabularyItem, result: 'correct' | 'incorrect') => {
         if (!user) return;
 
         const { thai } = card;
-        
+
+        // Track mistakes for auto-starring
+        if (result === 'incorrect') {
+            const newMistakeCount = (mistakesInSession[thai] || 0) + 1;
+            setMistakesInSession(prev => ({ ...prev, [thai]: newMistakeCount }));
+            console.log(`Word "${thai}" mistake count: ${newMistakeCount}`);
+
+            // Auto-star if 3 or more mistakes during this session
+            if (newMistakeCount >= 3 && !starredWords.has(thai)) {
+                console.log(`Auto-starring word "${thai}" after ${newMistakeCount} mistakes`);
+                await toggleStarWord(thai);
+            }
+        }
+
         // Don't update progress for review cards (from previous lessons)
         if (reviewCards.has(thai)) {
             setSeenInSession(prev => new Set(prev).add(thai));
@@ -207,16 +275,29 @@ export const Vocabulary: React.FC<VocabularyProps> = ({ lesson, language, onStud
     }
 
     const allMastered = progressCounts.mastered === totalCards;
-    const buttonText = allMastered 
+    const buttonText = allMastered
         ? UI_STRINGS.practiceFlashcards[language.code]
         : (Object.keys(studyProgress).length > 0 ? UI_STRINGS.continuePracticing[language.code] : UI_STRINGS.practiceFlashcards[language.code]);
+
+    const hasStarredWords = starredWords.size > 0;
+    const starredWordsInLesson = lesson.vocabulary.filter(item => starredWords.has(item.thai)).length;
 
     return (
         <div>
             {totalCards > 0 && <StudyProgress progress={progressCounts} total={totalCards} language={language} />}
-            <div className="flex justify-end mb-6">
+            <div className="flex justify-end mb-6 gap-3">
+                {hasStarredWords && starredWordsInLesson > 0 && (
+                    <button
+                        onClick={() => handleStartSession(true)}
+                        disabled={starredWordsInLesson === 0}
+                        className="bg-vibrant-orange text-warm-white font-bold py-2 px-4 uppercase text-sm flex items-center gap-2 active:scale-95 transition-transform disabled:bg-vibrant-orange/50 rounded-none"
+                    >
+                        <SparklesIcon />
+                        Practice Starred Flashcards Only
+                    </button>
+                )}
                 <button
-                    onClick={handleStartSession}
+                    onClick={() => handleStartSession(false)}
                     disabled={totalCards === 0}
                     className="bg-vibrant-orange text-warm-white font-bold py-2 px-4 uppercase text-sm flex items-center gap-2 active:scale-95 transition-transform disabled:bg-vibrant-orange/50 rounded-none"
                 >
@@ -227,11 +308,16 @@ export const Vocabulary: React.FC<VocabularyProps> = ({ lesson, language, onStud
             <div className="space-y-3">
                 {lesson.vocabulary.map((item, index) => {
                     const displayPhonetic = zhuyinEnabled ? romanizationToZhuyin(item.phonetic) : item.phonetic;
+                    const isStarred = starredWords.has(item.thai);
                     return (
-                        <div key={index} className="grid grid-cols-3 gap-4 p-3 border-b border-light-grey items-center">
-                            <div className="font-thai text-xl">{item.thai}</div>
-                            <div className="text-charcoal-ink/60">{displayPhonetic}</div>
-                            <div className="text-charcoal-ink/80">{item.translations[language.code]}</div>
+                        <div
+                            key={index}
+                            onClick={() => toggleStarWord(item.thai)}
+                            className="grid grid-cols-3 gap-4 p-3 border-b border-light-grey items-center cursor-pointer hover:bg-warm-white/50 transition-colors"
+                        >
+                            <div className={`font-thai text-xl ${isStarred ? 'text-vibrant-orange' : ''}`}>{item.thai}</div>
+                            <div className={`${isStarred ? 'text-vibrant-orange' : 'text-charcoal-ink/60'}`}>{displayPhonetic}</div>
+                            <div className={`${isStarred ? 'text-vibrant-orange' : 'text-charcoal-ink/80'}`}>{item.translations[language.code]}</div>
                         </div>
                     );
                 })}

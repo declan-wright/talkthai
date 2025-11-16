@@ -1,28 +1,33 @@
 import React, { useState } from 'react';
-import type { Language } from '../types';
+import type { Language, UserProfile } from '../types';
 import { type ReadingLesson, ReadingLessonType } from '../data/reading/lessons';
 import { ConsonantClass, type ThaiConsonant, type ThaiVowel, type VowelPosition } from '../data/reading/characters';
 import { READING_UI_STRINGS } from '../data/readingUIStrings';
 import { ArrowLeftIcon } from './Icons';
+import * as firestoreService from '../services/firestoreService';
 
 interface ReadingLessonViewProps {
   lesson: ReadingLesson;
   language: Language;
   onBack: () => void;
   onStartPractice: () => void;
+  user: UserProfile | null;
+  showPoints: (points: number) => void;
 }
 
 export const ReadingLessonView: React.FC<ReadingLessonViewProps> = ({
   lesson,
   language,
   onBack,
-  onStartPractice
+  onStartPractice,
+  user,
+  showPoints
 }) => {
   const [currentPageIndex, setCurrentPageIndex] = useState(0);
   const currentPage = lesson.pages[currentPageIndex];
   const isLastPage = currentPageIndex === lesson.pages.length - 1;
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (isLastPage) {
       // For introduction, go back to lesson selector
       if (lesson.type === ReadingLessonType.INTRODUCTION) {
@@ -32,7 +37,15 @@ export const ReadingLessonView: React.FC<ReadingLessonViewProps> = ({
         onStartPractice();
       }
     } else {
-      setCurrentPageIndex(currentPageIndex + 1);
+      // Award points for viewing the next page
+      const nextPageIndex = currentPageIndex + 1;
+      if (user) {
+        const awarded = await firestoreService.trackReadingPageView(user.uid, lesson.id, nextPageIndex);
+        if (awarded) {
+          showPoints(5);
+        }
+      }
+      setCurrentPageIndex(nextPageIndex);
     }
   };
 

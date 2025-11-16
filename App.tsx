@@ -528,7 +528,7 @@ const App: React.FC = () => {
       case AppState.SELECTING_READING_LESSON:
         return <ReadingLessonSelector language={selectedLanguage} onSelect={handleReadingLessonSelect} onBack={handleBackToHome} />;
       case AppState.VIEWING_READING_LESSON:
-        return <ReadingLessonView lesson={selectedReadingLesson!} language={selectedLanguage} onBack={() => window.history.back()} onStartPractice={handleStartReadingPracticeMode} />;
+        return <ReadingLessonView lesson={selectedReadingLesson!} language={selectedLanguage} onBack={() => window.history.back()} onStartPractice={handleStartReadingPracticeMode} user={userProfile} showPoints={showPoints} />;
       case AppState.IN_READING_PRACTICE:
         return <ReadingPractice lesson={selectedReadingLesson!} language={selectedLanguage} onBack={() => window.history.back()} />;
       case AppState.ZHUYIN_BETA:

@@ -127,7 +127,7 @@ export const lesson_1_18: Lesson = {
                     question: { [LanguageCode.ENGLISH]: "What is the most common messaging app in Thailand?", [LanguageCode.FRENCH]: "Quelle est l'application de messagerie la plus courante en Thaïlande ?", [LanguageCode.PORTUGUESE]: "Qual é o aplicativo de mensagens mais comum na Tailândia?", [LanguageCode.MANDARIN]: "泰國最常用的通訊軟體是什麼？" },
                     options: [
                         { [LanguageCode.ENGLISH]: "WhatsApp", [LanguageCode.FRENCH]: "WhatsApp", [LanguageCode.PORTUGUESE]: "WhatsApp", [LanguageCode.MANDARIN]: "WhatsApp" },
-                        { [LanguageCode.ENGLISH]: "ไลน์ (LINE)", [LanguageCode.FRENCH]: "ไลน์ (LINE)", [LanguageCode.PORTUGUESE]: "ไลน์ (LINE)", [LanguageCode.MANDARIN]: "ไลน์ (LINE)" },
+                        { [LanguageCode.ENGLISH]: "ไลน์", [LanguageCode.FRENCH]: "ไลน์", [LanguageCode.PORTUGUESE]: "ไลน์", [LanguageCode.MANDARIN]: "ไลน์" },
                         { [LanguageCode.ENGLISH]: "WeChat", [LanguageCode.FRENCH]: "WeChat", [LanguageCode.PORTUGUESE]: "WeChat", [LanguageCode.MANDARIN]: "WeChat" },
                     ],
                     correctIndex: 1
@@ -135,9 +135,9 @@ export const lesson_1_18: Lesson = {
                 {
                     question: { [LanguageCode.ENGLISH]: "Your phone battery is dead. You say: แบต___", [LanguageCode.FRENCH]: "La batterie de votre téléphone est morte. Vous dites : แบต___", [LanguageCode.PORTUGUESE]: "A bateria do seu celular acabou. Você diz: แบต___", [LanguageCode.MANDARIN]: "你的手機沒電了。你說：แบต___" },
                     options: [
-                        { [LanguageCode.ENGLISH]: "เร็ว (fast)", [LanguageCode.FRENCH]: "เร็ว (rapide)", [LanguageCode.PORTUGUESE]: "เร็ว (rápido)", [LanguageCode.MANDARIN]: "เร็ว (快)" },
-                        { [LanguageCode.ENGLISH]: "หมด (dead/empty)", [LanguageCode.FRENCH]: "หมด (morte/vide)", [LanguageCode.PORTUGUESE]: "หมด (acabou/vazio)", [LanguageCode.MANDARIN]: "หมด (沒電了)" },
-                        { [LanguageCode.ENGLISH]: "ช้า (slow)", [LanguageCode.FRENCH]: "ช้า (lent)", [LanguageCode.PORTUGUESE]: "ช้า (lento)", [LanguageCode.MANDARIN]: "ช้า (慢)" },
+                        { [LanguageCode.ENGLISH]: "เร็ว", [LanguageCode.FRENCH]: "เร็ว", [LanguageCode.PORTUGUESE]: "เร็ว (rápido)", [LanguageCode.MANDARIN]: "เร็ว (快)" },
+                        { [LanguageCode.ENGLISH]: "หมด", [LanguageCode.FRENCH]: "หมด", [LanguageCode.PORTUGUESE]: "หมด", [LanguageCode.MANDARIN]: "หมด (沒電了)" },
+                        { [LanguageCode.ENGLISH]: "ช้า", [LanguageCode.FRENCH]: "ช้า", [LanguageCode.PORTUGUESE]: "ช้า", [LanguageCode.MANDARIN]: "ช้า (慢)" },
                     ],
                     correctIndex: 1
                 },
@@ -197,8 +197,8 @@ export const lesson_1_18: Lesson = {
                 {
                     question: { [LanguageCode.ENGLISH]: "You want to share photos with a Thai friend. The easiest way is:", [LanguageCode.FRENCH]: "Vous voulez partager des photos avec un ami thaïlandais. Le moyen le plus simple est :", [LanguageCode.PORTUGUESE]: "Você quer compartilhar fotos com um amigo tailandês. A maneira mais fácil é:", [LanguageCode.MANDARIN]: "你想和泰國朋友分享照片。最簡單的方法是：" },
                     options: [
-                        { [LanguageCode.ENGLISH]: "ส่งทางอีเมล (Send by email)", [LanguageCode.FRENCH]: "ส่งทางอีเมล (Envoyer par email)", [LanguageCode.PORTUGUESE]: "ส่งทางอีเมล (Enviar por email)", [LanguageCode.MANDARIN]: "ส่งทางอีเมล (通過電郵發送)" },
-                        { [LanguageCode.ENGLISH]: "ส่งทางไลน์ (Send via LINE)", [LanguageCode.FRENCH]: "ส่งทางไลน์ (Envoyer via LINE)", [LanguageCode.PORTUGUESE]: "ส่งทางไลน์ (Enviar via LINE)", [LanguageCode.MANDARIN]: "ส่งทางไลน์ (通過LINE發送)" },
+                        { [LanguageCode.ENGLISH]: "ส่งทางอีเมล", [LanguageCode.FRENCH]: "ส่งทางอีเมล", [LanguageCode.PORTUGUESE]: "ส่งทางอีเมล", [LanguageCode.MANDARIN]: "ส่งทางอีเมล (通過電郵發送)" },
+                        { [LanguageCode.ENGLISH]: "ส่งทางไลน์", [LanguageCode.FRENCH]: "ส่งทางไลน์", [LanguageCode.PORTUGUESE]: "ส่งทางไลน์", [LanguageCode.MANDARIN]: "ส่งทางไลน์ (通過LINE發送)" },
                         { [LanguageCode.ENGLISH]: "ส่งทาง SMS (Send via SMS)", [LanguageCode.FRENCH]: "ส่งทาง SMS (Envoyer via SMS)", [LanguageCode.PORTUGUESE]: "ส่งทาง SMS (Enviar via SMS)", [LanguageCode.MANDARIN]: "ส่งทาง SMS (通過SMS發送)" },
                     ],
                     correctIndex: 1
@@ -229,10 +229,10 @@ export const lesson_1_18: Lesson = {
                 [LanguageCode.MANDARIN]: "將問題與解決方案配對。",
             },
             pairs: [
-                { prompt: { [LanguageCode.ENGLISH]: "แบตหมด (battery dead)", [LanguageCode.FRENCH]: "แบตหมด (batterie morte)", [LanguageCode.PORTUGUESE]: "แบตหมด (bateria acabou)", [LanguageCode.MANDARIN]: "แบตหมด (電池沒電)" }, answer: { [LanguageCode.ENGLISH]: "ชาร์จโทรศัพท์ (charge phone)", [LanguageCode.FRENCH]: "ชาร์จโทรศัพท์ (charger)", [LanguageCode.PORTUGUESE]: "ชาร์จโทรศัพท์ (carregar)", [LanguageCode.MANDARIN]: "ชาร์จโทรศัพท์ (充電)" } },
-                { prompt: { [LanguageCode.ENGLISH]: "ไวไฟช้า (WiFi slow)", [LanguageCode.FRENCH]: "ไวไฟช้า (WiFi lent)", [LanguageCode.PORTUGUESE]: "ไวไฟช้า (WiFi lento)", [LanguageCode.MANDARIN]: "ไวไฟช้า (WiFi慢)" }, answer: { [LanguageCode.ENGLISH]: "เปิดปิดใหม่ (restart)", [LanguageCode.FRENCH]: "เปิดปิดใหม่ (redémarrer)", [LanguageCode.PORTUGUESE]: "เปิดปิดใหม่ (reiniciar)", [LanguageCode.MANDARIN]: "เปิดปิดใหม่ (重啟)" } },
-                { prompt: { [LanguageCode.ENGLISH]: "ต้องจ่ายเงิน (need to pay)", [LanguageCode.FRENCH]: "ต้องจ่ายเงิน (besoin de payer)", [LanguageCode.PORTUGUESE]: "ต้องจ่ายเงิน (precisa pagar)", [LanguageCode.MANDARIN]: "ต้องจ่ายเงิน (需要付款)" }, answer: { [LanguageCode.ENGLISH]: "สแกนคิวอาร์โค้ด (scan QR)", [LanguageCode.FRENCH]: "สแกนคิวอาร์โค้ด (scanner QR)", [LanguageCode.PORTUGUESE]: "สแกนคิวอาร์โค้ด (escanear QR)", [LanguageCode.MANDARIN]: "สแกนคิวอาร์โค้ด (掃QR)" } },
-                { prompt: { [LanguageCode.ENGLISH]: "อยากติดต่อเพื่อน (want to contact friend)", [LanguageCode.FRENCH]: "อยากติดต่อเพื่อน (veux contacter ami)", [LanguageCode.PORTUGUESE]: "อยากติดต่อเพื่อน (quer contatar amigo)", [LanguageCode.MANDARIN]: "อยากติดต่อเพื่อน (想聯絡朋友)" }, answer: { [LanguageCode.ENGLISH]: "ส่งข้อความไลน์ (send LINE message)", [LanguageCode.FRENCH]: "ส่งข้อความไลน์ (envoyer message LINE)", [LanguageCode.PORTUGUESE]: "ส่งข้อความไลน์ (enviar mensagem LINE)", [LanguageCode.MANDARIN]: "ส่งข้อความไลน์ (發LINE訊息)" } },
+                { prompt: { [LanguageCode.ENGLISH]: "แบตหมด", [LanguageCode.FRENCH]: "แบตหมด", [LanguageCode.PORTUGUESE]: "แบตหมด", [LanguageCode.MANDARIN]: "แบตหมด (電池沒電)" }, answer: { [LanguageCode.ENGLISH]: "ชาร์จโทรศัพท์", [LanguageCode.FRENCH]: "ชาร์จโทรศัพท์", [LanguageCode.PORTUGUESE]: "ชาร์จโทรศัพท์", [LanguageCode.MANDARIN]: "ชาร์จโทรศัพท์ (充電)" } },
+                { prompt: { [LanguageCode.ENGLISH]: "ไวไฟช้า", [LanguageCode.FRENCH]: "ไวไฟช้า", [LanguageCode.PORTUGUESE]: "ไวไฟช้า", [LanguageCode.MANDARIN]: "ไวไฟช้า (WiFi慢)" }, answer: { [LanguageCode.ENGLISH]: "เปิดปิดใหม่", [LanguageCode.FRENCH]: "เปิดปิดใหม่ (redémarrer)", [LanguageCode.PORTUGUESE]: "เปิดปิดใหม่", [LanguageCode.MANDARIN]: "เปิดปิดใหม่ (重啟)" } },
+                { prompt: { [LanguageCode.ENGLISH]: "ต้องจ่ายเงิน", [LanguageCode.FRENCH]: "ต้องจ่ายเงิน", [LanguageCode.PORTUGUESE]: "ต้องจ่ายเงิน", [LanguageCode.MANDARIN]: "ต้องจ่ายเงิน (需要付款)" }, answer: { [LanguageCode.ENGLISH]: "สแกนคิวอาร์โค้ด", [LanguageCode.FRENCH]: "สแกนคิวอาร์โค้ด", [LanguageCode.PORTUGUESE]: "สแกนคิวอาร์โค้ด", [LanguageCode.MANDARIN]: "สแกนคิวอาร์โค้ด (掃QR)" } },
+                { prompt: { [LanguageCode.ENGLISH]: "อยากติดต่อเพื่อน", [LanguageCode.FRENCH]: "อยากติดต่อเพื่อน", [LanguageCode.PORTUGUESE]: "อยากติดต่อเพื่อน", [LanguageCode.MANDARIN]: "อยากติดต่อเพื่อน (想聯絡朋友)" }, answer: { [LanguageCode.ENGLISH]: "ส่งข้อความไลน์", [LanguageCode.FRENCH]: "ส่งข้อความไลน์", [LanguageCode.PORTUGUESE]: "ส่งข้อความไลน์", [LanguageCode.MANDARIN]: "ส่งข้อความไลน์ (發LINE訊息)" } },
             ]
         },
         {
@@ -263,8 +263,8 @@ export const lesson_1_18: Lesson = {
                     question: { [LanguageCode.ENGLISH]: "You're at a Thai friend's house and need to use their WiFi:", [LanguageCode.FRENCH]: "Vous êtes chez un ami thaïlandais et devez utiliser son WiFi :", [LanguageCode.PORTUGUESE]: "Você está na casa de um amigo tailandês e precisa usar o WiFi dele:", [LanguageCode.MANDARIN]: "你在泰國朋友家裡需要用WiFi：" },
                     options: [
                         { [LanguageCode.ENGLISH]: "ขอรหัสไวไฟหน่อย (Can I have WiFi password?)", [LanguageCode.FRENCH]: "ขอรหัสไวไฟหน่อย (Puis-je avoir le mot de passe WiFi ?)", [LanguageCode.PORTUGUESE]: "ขอรหัสไวไฟหน่อย (Posso ter a senha do WiFi?)", [LanguageCode.MANDARIN]: "ขอรหัสไวไฟหน่อย (可以給我WiFi密碼嗎？)" },
-                        { [LanguageCode.ENGLISH]: "ให้ไวไฟหน่อย (Give me WiFi)", [LanguageCode.FRENCH]: "ให้ไวไฟหน่อย (Donne-moi le WiFi)", [LanguageCode.PORTUGUESE]: "ให้ไวไฟหน่อย (Me dá WiFi)", [LanguageCode.MANDARIN]: "ให้ไวไฟหน่อย (給我WiFi)" },
-                        { [LanguageCode.ENGLISH]: "อยากได้ไวไฟ (I want WiFi)", [LanguageCode.FRENCH]: "อยากได้ไวไฟ (Je veux le WiFi)", [LanguageCode.PORTUGUESE]: "อยากได้ไวไฟ (Eu quero WiFi)", [LanguageCode.MANDARIN]: "อยากได้ไวไฟ (我想要WiFi)" },
+                        { [LanguageCode.ENGLISH]: "ให้ไวไฟหน่อย", [LanguageCode.FRENCH]: "ให้ไวไฟหน่อย (Donne-moi le WiFi)", [LanguageCode.PORTUGUESE]: "ให้ไวไฟหน่อย (Me dá WiFi)", [LanguageCode.MANDARIN]: "ให้ไวไฟหน่อย (給我WiFi)" },
+                        { [LanguageCode.ENGLISH]: "อยากได้ไวไฟ", [LanguageCode.FRENCH]: "อยากได้ไวไฟ", [LanguageCode.PORTUGUESE]: "อยากได้ไวไฟ", [LanguageCode.MANDARIN]: "อยากได้ไวไฟ (我想要WiFi)" },
                     ],
                     correctIndex: 0
                 },
@@ -280,9 +280,9 @@ export const lesson_1_18: Lesson = {
                 {
                     question: { [LanguageCode.ENGLISH]: "Your Grab driver can't find you. You need to:", [LanguageCode.FRENCH]: "Votre chauffeur Grab ne vous trouve pas. Vous devez :", [LanguageCode.PORTUGUESE]: "Seu motorista Grab não consegue te encontrar. Você precisa:", [LanguageCode.MANDARIN]: "你的Grab司機找不到你。你需要：" },
                     options: [
-                        { [LanguageCode.ENGLISH]: "โทรหาคนขับ (Call the driver)", [LanguageCode.FRENCH]: "โทรหาคนขับ (Appeler le chauffeur)", [LanguageCode.PORTUGUESE]: "โทรหาคนขับ (Ligar para o motorista)", [LanguageCode.MANDARIN]: "โทรหาคนขับ (打電話給司機)" },
-                        { [LanguageCode.ENGLISH]: "เล่นไอจี (Use IG)", [LanguageCode.FRENCH]: "เล่นไอจี (Utiliser IG)", [LanguageCode.PORTUGUESE]: "เล่นไอจี (Usar IG)", [LanguageCode.MANDARIN]: "เล่นไอจี (用IG)" },
-                        { [LanguageCode.ENGLISH]: "ชาร์จโทรศัพท์ (Charge phone)", [LanguageCode.FRENCH]: "ชาร์จโทรศัพท์ (Charger téléphone)", [LanguageCode.PORTUGUESE]: "ชาร์จโทรศัพท์ (Carregar celular)", [LanguageCode.MANDARIN]: "ชาร์จโทรศัพท์ (充電)" },
+                        { [LanguageCode.ENGLISH]: "โทรหาคนขับ", [LanguageCode.FRENCH]: "โทรหาคนขับ", [LanguageCode.PORTUGUESE]: "โทรหาคนขับ", [LanguageCode.MANDARIN]: "โทรหาคนขับ (打電話給司機)" },
+                        { [LanguageCode.ENGLISH]: "เล่นไอจี", [LanguageCode.FRENCH]: "เล่นไอจี", [LanguageCode.PORTUGUESE]: "เล่นไอจี", [LanguageCode.MANDARIN]: "เล่นไอจี (用IG)" },
+                        { [LanguageCode.ENGLISH]: "ชาร์จโทรศัพท์", [LanguageCode.FRENCH]: "ชาร์จโทรศัพท์ (Charger téléphone)", [LanguageCode.PORTUGUESE]: "ชาร์จโทรศัพท์", [LanguageCode.MANDARIN]: "ชาร์จโทรศัพท์ (充電)" },
                     ],
                     correctIndex: 0
                 }

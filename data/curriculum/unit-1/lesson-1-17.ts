@@ -119,18 +119,18 @@ export const lesson_1_17: Lesson = {
                 {
                     question: { [LanguageCode.ENGLISH]: "Which season is the best time to visit Thailand?", [LanguageCode.FRENCH]: "Quelle saison est la meilleure pour visiter la Thaïlande ?", [LanguageCode.PORTUGUESE]: "Qual estação é a melhor época para visitar a Tailândia?", [LanguageCode.MANDARIN]: "哪個季節是訪問泰國的最佳時間？" },
                     options: [
-                        { [LanguageCode.ENGLISH]: "ฤดูร้อน (hot season)", [LanguageCode.FRENCH]: "ฤดูร้อน (saison chaude)", [LanguageCode.PORTUGUESE]: "ฤดูร้อน (estação quente)", [LanguageCode.MANDARIN]: "ฤดูร้อน (熱季)" },
-                        { [LanguageCode.ENGLISH]: "ฤดูฝน (rainy season)", [LanguageCode.FRENCH]: "ฤดูฝน (saison des pluies)", [LanguageCode.PORTUGUESE]: "ฤดูฝน (estação chuvosa)", [LanguageCode.MANDARIN]: "ฤดูฝน (雨季)" },
-                        { [LanguageCode.ENGLISH]: "ฤดูหนาว (cool season)", [LanguageCode.FRENCH]: "ฤดูหนาว (saison fraîche)", [LanguageCode.PORTUGUESE]: "ฤดูหนาว (estação fria)", [LanguageCode.MANDARIN]: "ฤดูหนาว (涼季)" },
+                        { [LanguageCode.ENGLISH]: "ฤดูร้อน", [LanguageCode.FRENCH]: "ฤดูร้อน", [LanguageCode.PORTUGUESE]: "ฤดูร้อน (estação quente)", [LanguageCode.MANDARIN]: "ฤดูร้อน (熱季)" },
+                        { [LanguageCode.ENGLISH]: "ฤดูฝน", [LanguageCode.FRENCH]: "ฤดูฝน", [LanguageCode.PORTUGUESE]: "ฤดูฝน (estação chuvosa)", [LanguageCode.MANDARIN]: "ฤดูฝน (雨季)" },
+                        { [LanguageCode.ENGLISH]: "ฤดูหนาว", [LanguageCode.FRENCH]: "ฤดูหนาว (saison fraîche)", [LanguageCode.PORTUGUESE]: "ฤดูหนาว (estação fria)", [LanguageCode.MANDARIN]: "ฤดูหนาว (涼季)" },
                     ],
                     correctIndex: 2
                 },
                 {
                     question: { [LanguageCode.ENGLISH]: "What do you call the water body that surrounds islands?", [LanguageCode.FRENCH]: "Comment appelle-t-on l'étendue d'eau qui entoure les îles ?", [LanguageCode.PORTUGUESE]: "Como você chama o corpo de água que cerca as ilhas?", [LanguageCode.MANDARIN]: "你如何稱呼環繞島嶼的水體？" },
                     options: [
-                        { [LanguageCode.ENGLISH]: "แม่น้ำ (river)", [LanguageCode.FRENCH]: "แม่น้ำ (rivière)", [LanguageCode.PORTUGUESE]: "แม่น้ำ (rio)", [LanguageCode.MANDARIN]: "แม่น้ำ (河流)" },
-                        { [LanguageCode.ENGLISH]: "ทะเล (sea)", [LanguageCode.FRENCH]: "ทะเล (mer)", [LanguageCode.PORTUGUESE]: "ทะเล (mar)", [LanguageCode.MANDARIN]: "ทะเล (海)" },
-                        { [LanguageCode.ENGLISH]: "ทุ่งนา (rice field)", [LanguageCode.FRENCH]: "ทุ่งนา (rizière)", [LanguageCode.PORTUGUESE]: "ทุ่งนา (arrozal)", [LanguageCode.MANDARIN]: "ทุ่งนา (稻田)" },
+                        { [LanguageCode.ENGLISH]: "แม่น้ำ", [LanguageCode.FRENCH]: "แม่น้ำ (rivière)", [LanguageCode.PORTUGUESE]: "แม่น้ำ", [LanguageCode.MANDARIN]: "แม่น้ำ (河流)" },
+                        { [LanguageCode.ENGLISH]: "ทะเล", [LanguageCode.FRENCH]: "ทะเล", [LanguageCode.PORTUGUESE]: "ทะเล", [LanguageCode.MANDARIN]: "ทะเล (海)" },
+                        { [LanguageCode.ENGLISH]: "ทุ่งนา", [LanguageCode.FRENCH]: "ทุ่งนา (rizière)", [LanguageCode.PORTUGUESE]: "ทุ่งนา", [LanguageCode.MANDARIN]: "ทุ่งนา (稻田)" },
                     ],
                     correctIndex: 1
                 },
@@ -154,9 +154,9 @@ export const lesson_1_17: Lesson = {
                 [LanguageCode.MANDARIN]: "將泰國季節與其月份配對。",
             },
             pairs: [
-                { prompt: { [LanguageCode.ENGLISH]: "March-May", [LanguageCode.FRENCH]: "Mars-Mai", [LanguageCode.PORTUGUESE]: "Março-Maio", [LanguageCode.MANDARIN]: "3月-5月" }, answer: { [LanguageCode.ENGLISH]: "ฤดูร้อน (hot season)", [LanguageCode.FRENCH]: "ฤดูร้อน (saison chaude)", [LanguageCode.PORTUGUESE]: "ฤดูร้อน (estação quente)", [LanguageCode.MANDARIN]: "ฤดูร้อน (熱季)" } },
-                { prompt: { [LanguageCode.ENGLISH]: "June-October", [LanguageCode.FRENCH]: "Juin-Octobre", [LanguageCode.PORTUGUESE]: "Junho-Outubro", [LanguageCode.MANDARIN]: "6月-10月" }, answer: { [LanguageCode.ENGLISH]: "ฤดูฝน (rainy season)", [LanguageCode.FRENCH]: "ฤดูฝน (saison des pluies)", [LanguageCode.PORTUGUESE]: "ฤดูฝน (estação chuvosa)", [LanguageCode.MANDARIN]: "ฤดูฝน (雨季)" } },
-                { prompt: { [LanguageCode.ENGLISH]: "November-February", [LanguageCode.FRENCH]: "Novembre-Février", [LanguageCode.PORTUGUESE]: "Novembro-Fevereiro", [LanguageCode.MANDARIN]: "11月-2月" }, answer: { [LanguageCode.ENGLISH]: "ฤดูหนาว (cool season)", [LanguageCode.FRENCH]: "ฤดูหนาว (saison fraîche)", [LanguageCode.PORTUGUESE]: "ฤดูหนาว (estação fria)", [LanguageCode.MANDARIN]: "ฤดูหนาว (涼季)" } },
+                { prompt: { [LanguageCode.ENGLISH]: "March-May", [LanguageCode.FRENCH]: "Mars-Mai", [LanguageCode.PORTUGUESE]: "Março-Maio", [LanguageCode.MANDARIN]: "3月-5月" }, answer: { [LanguageCode.ENGLISH]: "ฤดูร้อน", [LanguageCode.FRENCH]: "ฤดูร้อน", [LanguageCode.PORTUGUESE]: "ฤดูร้อน (estação quente)", [LanguageCode.MANDARIN]: "ฤดูร้อน (熱季)" } },
+                { prompt: { [LanguageCode.ENGLISH]: "June-October", [LanguageCode.FRENCH]: "Juin-Octobre", [LanguageCode.PORTUGUESE]: "Junho-Outubro", [LanguageCode.MANDARIN]: "6月-10月" }, answer: { [LanguageCode.ENGLISH]: "ฤดูฝน", [LanguageCode.FRENCH]: "ฤดูฝน", [LanguageCode.PORTUGUESE]: "ฤดูฝน (estação chuvosa)", [LanguageCode.MANDARIN]: "ฤดูฝน (雨季)" } },
+                { prompt: { [LanguageCode.ENGLISH]: "November-February", [LanguageCode.FRENCH]: "Novembre-Février", [LanguageCode.PORTUGUESE]: "Novembro-Fevereiro", [LanguageCode.MANDARIN]: "11月-2月" }, answer: { [LanguageCode.ENGLISH]: "ฤดูหนาว", [LanguageCode.FRENCH]: "ฤดูหนาว (saison fraîche)", [LanguageCode.PORTUGUESE]: "ฤดูหนาว (estação fria)", [LanguageCode.MANDARIN]: "ฤดูหนาว (涼季)" } },
             ]
         },
         {

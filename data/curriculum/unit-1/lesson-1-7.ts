@@ -84,10 +84,10 @@ export const lesson_1_7: Lesson = {
                 [LanguageCode.MANDARIN]: "將食材與菜餚配對。",
             },
             pairs: [
-                { prompt: { [LanguageCode.ENGLISH]: "ไก่ (chicken)", [LanguageCode.FRENCH]: "ไก่ (poulet)", [LanguageCode.PORTUGUESE]: "ไก่ (frango)", [LanguageCode.MANDARIN]: "ไก่ (雞肉)" }, answer: { [LanguageCode.ENGLISH]: "ข้าวมันไก่ (chicken rice)", [LanguageCode.FRENCH]: "ข้าวมันไก่ (riz au poulet)", [LanguageCode.PORTUGUESE]: "ข้าวมันไก่ (arroz com frango)", [LanguageCode.MANDARIN]: "ข้าวมันไก่ (海南雞飯)" } },
-                { prompt: { [LanguageCode.ENGLISH]: "กุ้ง (shrimp)", [LanguageCode.FRENCH]: "กุ้ง (crevette)", [LanguageCode.PORTUGUESE]: "กุ้ง (camarão)", [LanguageCode.MANDARIN]: "กุ้ง (蝦)" }, answer: { [LanguageCode.ENGLISH]: "ต้มยำ (tom yum soup)", [LanguageCode.FRENCH]: "ต้มยำ (soupe tom yum)", [LanguageCode.PORTUGUESE]: "ต้มยำ (sopa tom yum)", [LanguageCode.MANDARIN]: "ต้มยำ (冬陰湯)" } },
-                { prompt: { [LanguageCode.ENGLISH]: "มะม่วง (mango)", [LanguageCode.FRENCH]: "มะม่วง (mangue)", [LanguageCode.PORTUGUESE]: "มะม่วง (manga)", [LanguageCode.MANDARIN]: "มะม่วง (芒果)" }, answer: { [LanguageCode.ENGLISH]: "ข้าวเหนียวมะม่วง (mango sticky rice)", [LanguageCode.FRENCH]: "ข้าวเหนียวมะม่วง (riz gluant à la mangue)", [LanguageCode.PORTUGUESE]: "ข้าวเหนียวมะม่วง (arroz pegajoso com manga)", [LanguageCode.MANDARIN]: "ข้าวเหนียวมะม่วง (芒果糯米飯)" } },
-                { prompt: { [LanguageCode.ENGLISH]: "ก้วยเตี๋ยว (noodles)", [LanguageCode.FRENCH]: "ก้วยเตี๋ยว (nouilles)", [LanguageCode.PORTUGUESE]: "ก้วยเตี๋ยว (macarrão)", [LanguageCode.MANDARIN]: "ก้วยเตี๋ยว (麵條)" }, answer: { [LanguageCode.ENGLISH]: "ผัดไทย (pad thai)", [LanguageCode.FRENCH]: "ผัดไทย (pad thaï)", [LanguageCode.PORTUGUESE]: "ผัดไทย (pad thai)", [LanguageCode.MANDARIN]: "ผัดไทย (泰式炒麵)" } },
+                { prompt: { [LanguageCode.ENGLISH]: "ไก่", [LanguageCode.FRENCH]: "ไก่", [LanguageCode.PORTUGUESE]: "ไก่", [LanguageCode.MANDARIN]: "ไก่ (雞肉)" }, answer: { [LanguageCode.ENGLISH]: "ข้าวมันไก่", [LanguageCode.FRENCH]: "ข้าวมันไก่", [LanguageCode.PORTUGUESE]: "ข้าวมันไก่", [LanguageCode.MANDARIN]: "ข้าวมันไก่ (海南雞飯)" } },
+                { prompt: { [LanguageCode.ENGLISH]: "กุ้ง", [LanguageCode.FRENCH]: "กุ้ง", [LanguageCode.PORTUGUESE]: "กุ้ง (camarão)", [LanguageCode.MANDARIN]: "กุ้ง (蝦)" }, answer: { [LanguageCode.ENGLISH]: "ต้มยำ", [LanguageCode.FRENCH]: "ต้มยำ", [LanguageCode.PORTUGUESE]: "ต้มยำ", [LanguageCode.MANDARIN]: "ต้มยำ (冬陰湯)" } },
+                { prompt: { [LanguageCode.ENGLISH]: "มะม่วง", [LanguageCode.FRENCH]: "มะม่วง", [LanguageCode.PORTUGUESE]: "มะม่วง", [LanguageCode.MANDARIN]: "มะม่วง (芒果)" }, answer: { [LanguageCode.ENGLISH]: "ข้าวเหนียวมะม่วง", [LanguageCode.FRENCH]: "ข้าวเหนียวมะม่วง (riz gluant à la mangue)", [LanguageCode.PORTUGUESE]: "ข้าวเหนียวมะม่วง", [LanguageCode.MANDARIN]: "ข้าวเหนียวมะม่วง (芒果糯米飯)" } },
+                { prompt: { [LanguageCode.ENGLISH]: "ก้วยเตี๋ยว", [LanguageCode.FRENCH]: "ก้วยเตี๋ยว", [LanguageCode.PORTUGUESE]: "ก้วยเตี๋ยว (macarrão)", [LanguageCode.MANDARIN]: "ก้วยเตี๋ยว (麵條)" }, answer: { [LanguageCode.ENGLISH]: "ผัดไทย", [LanguageCode.FRENCH]: "ผัดไทย (pad thaï)", [LanguageCode.PORTUGUESE]: "ผัดไทย", [LanguageCode.MANDARIN]: "ผัดไทย (泰式炒麵)" } },
             ]
         },
         {
@@ -132,27 +132,27 @@ export const lesson_1_7: Lesson = {
                 {
                     question: { [LanguageCode.ENGLISH]: "You want to see what food is available. You ask: ขอ___", [LanguageCode.FRENCH]: "Vous voulez voir quels plats sont disponibles. Vous demandez : ขอ___", [LanguageCode.PORTUGUESE]: "Você quer ver que comidas estão disponíveis. Você pergunta: ขอ___", [LanguageCode.MANDARIN]: "你想看看有什麼食物。你問：ขอ___" },
                     options: [
-                        { [LanguageCode.ENGLISH]: "เมนู (menu)", [LanguageCode.FRENCH]: "เมนู (menu)", [LanguageCode.PORTUGUESE]: "เมนู (cardápio)", [LanguageCode.MANDARIN]: "เมนู (菜單)" },
-                        { [LanguageCode.ENGLISH]: "จาน (plate)", [LanguageCode.FRENCH]: "จาน (assiette)", [LanguageCode.PORTUGUESE]: "จาน (prato)", [LanguageCode.MANDARIN]: "จาน (盤子)" },
-                        { [LanguageCode.ENGLISH]: "ร้าน (shop)", [LanguageCode.FRENCH]: "ร้าน (magasin)", [LanguageCode.PORTUGUESE]: "ร้าน (loja)", [LanguageCode.MANDARIN]: "ร้าน (店)" },
+                        { [LanguageCode.ENGLISH]: "เมนู", [LanguageCode.FRENCH]: "เมนู", [LanguageCode.PORTUGUESE]: "เมนู (cardápio)", [LanguageCode.MANDARIN]: "เมนู (菜單)" },
+                        { [LanguageCode.ENGLISH]: "จาน", [LanguageCode.FRENCH]: "จาน", [LanguageCode.PORTUGUESE]: "จาน", [LanguageCode.MANDARIN]: "จาน (盤子)" },
+                        { [LanguageCode.ENGLISH]: "ร้าน", [LanguageCode.FRENCH]: "ร้าน", [LanguageCode.PORTUGUESE]: "ร้าน", [LanguageCode.MANDARIN]: "ร้าน (店)" },
                     ],
                     correctIndex: 0
                 },
                 {
                     question: { [LanguageCode.ENGLISH]: "The food tastes amazing. You say: ___มาก!", [LanguageCode.FRENCH]: "La nourriture est délicieuse. Vous dites : ___มาก!", [LanguageCode.PORTUGUESE]: "A comida está incrível. Você diz: ___มาก!", [LanguageCode.MANDARIN]: "食物很好吃。你說：___มาก！" },
                     options: [
-                        { [LanguageCode.ENGLISH]: "เผ็ด (spicy)", [LanguageCode.FRENCH]: "เผ็ด (épicé)", [LanguageCode.PORTUGUESE]: "เผ็ด (picante)", [LanguageCode.MANDARIN]: "เผ็ด (辣)" },
-                        { [LanguageCode.ENGLISH]: "อร่อย (delicious)", [LanguageCode.FRENCH]: "อร่อย (délicieux)", [LanguageCode.PORTUGUESE]: "อร่อย (delicioso)", [LanguageCode.MANDARIN]: "อร่อย (好吃)" },
-                        { [LanguageCode.ENGLISH]: "เค็ม (salty)", [LanguageCode.FRENCH]: "เค็ม (salé)", [LanguageCode.PORTUGUESE]: "เค็ม (salgado)", [LanguageCode.MANDARIN]: "เค็ม (鹹)" },
+                        { [LanguageCode.ENGLISH]: "เผ็ด", [LanguageCode.FRENCH]: "เผ็ด (épicé)", [LanguageCode.PORTUGUESE]: "เผ็ด", [LanguageCode.MANDARIN]: "เผ็ด (辣)" },
+                        { [LanguageCode.ENGLISH]: "อร่อย", [LanguageCode.FRENCH]: "อร่อย (délicieux)", [LanguageCode.PORTUGUESE]: "อร่อย", [LanguageCode.MANDARIN]: "อร่อย (好吃)" },
+                        { [LanguageCode.ENGLISH]: "เค็ม", [LanguageCode.FRENCH]: "เค็ม (salé)", [LanguageCode.PORTUGUESE]: "เค็ม", [LanguageCode.MANDARIN]: "เค็ม (鹹)" },
                     ],
                     correctIndex: 1
                 },
                 {
                     question: { [LanguageCode.ENGLISH]: "You can't eat spicy food. You say: ไม่___", [LanguageCode.FRENCH]: "Vous ne pouvez pas manger épicé. Vous dites : ไม่___", [LanguageCode.PORTUGUESE]: "Você não pode comer picante. Você diz: ไม่___", [LanguageCode.MANDARIN]: "你不能吃辣。你說：ไม่___" },
                     options: [
-                        { [LanguageCode.ENGLISH]: "หวาน (sweet)", [LanguageCode.FRENCH]: "หวาน (sucré)", [LanguageCode.PORTUGUESE]: "หวาน (doce)", [LanguageCode.MANDARIN]: "หวาน (甜)" },
-                        { [LanguageCode.ENGLISH]: "เผ็ด (spicy)", [LanguageCode.FRENCH]: "เผ็ด (épicé)", [LanguageCode.PORTUGUESE]: "เผ็ด (picante)", [LanguageCode.MANDARIN]: "เผ็ด (辣)" },
-                        { [LanguageCode.ENGLISH]: "อร่อย (delicious)", [LanguageCode.FRENCH]: "อร่อย (délicieux)", [LanguageCode.PORTUGUESE]: "อร่อย (delicioso)", [LanguageCode.MANDARIN]: "อร่อย (好吃)" },
+                        { [LanguageCode.ENGLISH]: "หวาน", [LanguageCode.FRENCH]: "หวาน (sucré)", [LanguageCode.PORTUGUESE]: "หวาน", [LanguageCode.MANDARIN]: "หวาน (甜)" },
+                        { [LanguageCode.ENGLISH]: "เผ็ด", [LanguageCode.FRENCH]: "เผ็ด (épicé)", [LanguageCode.PORTUGUESE]: "เผ็ด", [LanguageCode.MANDARIN]: "เผ็ด (辣)" },
+                        { [LanguageCode.ENGLISH]: "อร่อย", [LanguageCode.FRENCH]: "อร่อย (délicieux)", [LanguageCode.PORTUGUESE]: "อร่อย", [LanguageCode.MANDARIN]: "อร่อย (好吃)" },
                     ],
                     correctIndex: 1
                 }
@@ -200,18 +200,18 @@ export const lesson_1_7: Lesson = {
                 {
                     question: { [LanguageCode.ENGLISH]: "ข้าวมัน___ is the famous Hainanese-style rice dish", [LanguageCode.FRENCH]: "ข้าวมัน___ est le célèbre plat de riz de style Hainan", [LanguageCode.PORTUGUESE]: "ข้าวมัน___ é o famoso prato de arroz estilo hainanês", [LanguageCode.MANDARIN]: "ข้าวมัน___ 是著名的海南式米飯菜" },
                     options: [
-                        { [LanguageCode.ENGLISH]: "ไก่ (chicken)", [LanguageCode.FRENCH]: "ไก่ (poulet)", [LanguageCode.PORTUGUESE]: "ไก่ (frango)", [LanguageCode.MANDARIN]: "ไก่ (雞)" },
-                        { [LanguageCode.ENGLISH]: "หมู (pork)", [LanguageCode.FRENCH]: "หมู (porc)", [LanguageCode.PORTUGUESE]: "หมู (porco)", [LanguageCode.MANDARIN]: "หมู (豬)" },
-                        { [LanguageCode.ENGLISH]: "เป็ด (duck)", [LanguageCode.FRENCH]: "เป็ด (canard)", [LanguageCode.PORTUGUESE]: "เป็ด (pato)", [LanguageCode.MANDARIN]: "เป็ด (鴨)" },
+                        { [LanguageCode.ENGLISH]: "ไก่", [LanguageCode.FRENCH]: "ไก่", [LanguageCode.PORTUGUESE]: "ไก่", [LanguageCode.MANDARIN]: "ไก่ (雞)" },
+                        { [LanguageCode.ENGLISH]: "หมู", [LanguageCode.FRENCH]: "หมู", [LanguageCode.PORTUGUESE]: "หมู", [LanguageCode.MANDARIN]: "หมู (豬)" },
+                        { [LanguageCode.ENGLISH]: "เป็ด", [LanguageCode.FRENCH]: "เป็ด", [LanguageCode.PORTUGUESE]: "เป็ด", [LanguageCode.MANDARIN]: "เป็ด (鴨)" },
                     ],
                     correctIndex: 0
                 },
                 {
                     question: { [LanguageCode.ENGLISH]: "ต้มยำ___ is the most popular version of this soup", [LanguageCode.FRENCH]: "ต้มยำ___ est la version la plus populaire de cette soupe", [LanguageCode.PORTUGUESE]: "ต้มยำ___ é a versão mais popular desta sopa", [LanguageCode.MANDARIN]: "ต้มยำ___ 是這道湯最受歡迎的版本" },
                     options: [
-                        { [LanguageCode.ENGLISH]: "ไก่ (chicken)", [LanguageCode.FRENCH]: "ไก่ (poulet)", [LanguageCode.PORTUGUESE]: "ไก่ (frango)", [LanguageCode.MANDARIN]: "ไก่ (雞)" },
-                        { [LanguageCode.ENGLISH]: "กุ้ง (shrimp)", [LanguageCode.FRENCH]: "กุ้ง (crevette)", [LanguageCode.PORTUGUESE]: "กุ้ง (camarão)", [LanguageCode.MANDARIN]: "กุ้ง (蝦)" },
-                        { [LanguageCode.ENGLISH]: "เนื้อ (beef)", [LanguageCode.FRENCH]: "เนื้อ (bœuf)", [LanguageCode.PORTUGUESE]: "เนื้อ (carne)", [LanguageCode.MANDARIN]: "เนื้อ (牛肉)" },
+                        { [LanguageCode.ENGLISH]: "ไก่", [LanguageCode.FRENCH]: "ไก่", [LanguageCode.PORTUGUESE]: "ไก่", [LanguageCode.MANDARIN]: "ไก่ (雞)" },
+                        { [LanguageCode.ENGLISH]: "กุ้ง", [LanguageCode.FRENCH]: "กุ้ง", [LanguageCode.PORTUGUESE]: "กุ้ง (camarão)", [LanguageCode.MANDARIN]: "กุ้ง (蝦)" },
+                        { [LanguageCode.ENGLISH]: "เนื้อ", [LanguageCode.FRENCH]: "เนื้อ (bœuf)", [LanguageCode.PORTUGUESE]: "เนื้อ", [LanguageCode.MANDARIN]: "เนื้อ (牛肉)" },
                     ],
                     correctIndex: 1
                 },

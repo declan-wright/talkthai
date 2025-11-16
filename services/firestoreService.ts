@@ -88,6 +88,57 @@ export const addPoints = async (uid: string, points: number, activity: string): 
     });
 };
 
+export const trackReadingPageView = async (uid: string, lessonId: string, pageIndex: number): Promise<boolean> => {
+    if (!uid) return false;
+
+    const userRef = doc(db, FIRESTORE_COLLECTIONS.USERS, uid);
+    const pageKey = `${lessonId}:${pageIndex}`;
+    const POINTS_PER_PAGE = 5;
+
+    // Use transaction to check if page was already viewed and award points if not
+    const awarded = await runTransaction(db, async (transaction) => {
+        const docSnap = await transaction.get(userRef);
+        if (!docSnap.exists()) {
+            throw new Error('User profile does not exist');
+        }
+
+        const userProfile = docSnap.data() as UserProfile;
+        const readingPagesViewed = userProfile.readingPagesViewed || {};
+
+        // If already viewed, don't award points
+        if (readingPagesViewed[pageKey]) {
+            return false;
+        }
+
+        // Mark page as viewed and award points
+        const weekId = getCurrentWeekId();
+        const today = getTodayDateString();
+
+        // Apply half points (rounded down) for specific user
+        const adjustedPoints = userProfile.email === 'declanmarkwright@gmail.com'
+            ? Math.floor(POINTS_PER_PAGE / 2)
+            : POINTS_PER_PAGE;
+
+        const newTotalPoints = (userProfile.totalPoints || 0) + adjustedPoints;
+        const newWeeklyPoints = (userProfile.weeklyPoints?.[weekId] || 0) + adjustedPoints;
+
+        transaction.update(userRef, {
+            totalPoints: newTotalPoints,
+            [`weeklyPoints.${weekId}`]: newWeeklyPoints,
+            lastActivityDate: today,
+            [`readingPagesViewed.${pageKey}`]: true,
+        });
+
+        return true;
+    });
+
+    if (awarded) {
+        console.log(`Awarded ${POINTS_PER_PAGE} points for reading page ${lessonId}:${pageIndex}`);
+    }
+
+    return awarded;
+};
+
 
 export const getAllAssignedAvatars = async (): Promise<string[]> => {
     const usersRef = collection(db, FIRESTORE_COLLECTIONS.USERS);
@@ -569,4 +620,84 @@ export const incrementConversationProgress = async (
             conversationTotalTimeMs: nextTime,
         });
     });
+};
+
+// ---- Worksheet Progress ----
+
+export const saveWorksheetExerciseSubmission = async (
+    uid: string,
+    lessonId: string,
+    exerciseIndex: number,
+    submissionData: any
+): Promise<void> => {
+    if (!uid || !lessonId) return;
+    console.log(`[Firestore] Saving worksheet submission: lesson=${lessonId}, index=${exerciseIndex}`, submissionData);
+    const userRef = doc(db, FIRESTORE_COLLECTIONS.USERS, uid);
+
+    await runTransaction(db, async (tx) => {
+        const snap = await tx.get(userRef);
+        if (!snap.exists()) {
+            console.error('[Firestore] User document does not exist');
+            return;
+        }
+        const current = snap.data() as UserProfile;
+
+        const worksheetProgress = current.worksheetProgress || {};
+        const lessonProgress = worksheetProgress[lessonId] || {};
+        const updatedLessonProgress = { ...lessonProgress, [exerciseIndex]: submissionData };
+        const updatedWorksheetProgress = { ...worksheetProgress, [lessonId]: updatedLessonProgress };
+
+        console.log('[Firestore] Updated lesson progress:', updatedLessonProgress);
+        console.log('[Firestore] Full worksheet progress:', updatedWorksheetProgress);
+
+        // Update the entire worksheetProgress object instead of using nested field path
+        tx.update(userRef, {
+            worksheetProgress: updatedWorksheetProgress,
+        });
+    });
+    console.log('[Firestore] Transaction completed');
+};
+
+export const clearWorksheetExerciseSubmission = async (
+    uid: string,
+    lessonId: string,
+    exerciseIndex: number
+): Promise<void> => {
+    if (!uid || !lessonId) return;
+    const userRef = doc(db, FIRESTORE_COLLECTIONS.USERS, uid);
+
+    await runTransaction(db, async (tx) => {
+        const snap = await tx.get(userRef);
+        if (!snap.exists()) return;
+        const current = snap.data() as UserProfile;
+
+        const worksheetProgress = current.worksheetProgress || {};
+        const lessonProgress = worksheetProgress[lessonId] || {};
+        const updatedLessonProgress = { ...lessonProgress };
+        delete updatedLessonProgress[exerciseIndex];
+        const updatedWorksheetProgress = { ...worksheetProgress, [lessonId]: updatedLessonProgress };
+
+        // Update the entire worksheetProgress object instead of using nested field path
+        tx.update(userRef, {
+            worksheetProgress: updatedWorksheetProgress,
+        });
+    });
+};
+
+export const getWorksheetProgress = async (
+    uid: string,
+    lessonId: string
+): Promise<Record<number, any>> => {
+    if (!uid || !lessonId) return {};
+    console.log(`[Firestore] Loading worksheet progress for lesson=${lessonId}`);
+    const userRef = doc(db, FIRESTORE_COLLECTIONS.USERS, uid);
+    const snap = await getDoc(userRef);
+    if (!snap.exists()) {
+        console.log('[Firestore] User document does not exist');
+        return {};
+    }
+    const user = snap.data() as UserProfile;
+    const progress = user.worksheetProgress?.[lessonId] || {};
+    console.log('[Firestore] Loaded progress:', progress);
+    return progress;
 };

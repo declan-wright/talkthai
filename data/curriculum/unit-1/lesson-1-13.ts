@@ -90,12 +90,12 @@ export const lesson_1_13: Lesson = {
                 [LanguageCode.MANDARIN]: "將每個形容詞與其反義詞配對。",
             },
             pairs: [
-                { prompt: { [LanguageCode.ENGLISH]: "ใหญ่ (big)", [LanguageCode.FRENCH]: "ใหญ่ (grand)", [LanguageCode.PORTUGUESE]: "ใหญ่ (grande)", [LanguageCode.MANDARIN]: "ใหญ่ (大)" }, answer: { [LanguageCode.ENGLISH]: "เล็ก (small)", [LanguageCode.FRENCH]: "เล็ก (petit)", [LanguageCode.PORTUGUESE]: "เล็ก (pequeno)", [LanguageCode.MANDARIN]: "เล็ก (小)" } },
-                { prompt: { [LanguageCode.ENGLISH]: "สูง (tall)", [LanguageCode.FRENCH]: "สูง (grand)", [LanguageCode.PORTUGUESE]: "สูง (alto)", [LanguageCode.MANDARIN]: "สูง (高)" }, answer: { [LanguageCode.ENGLISH]: "เตี้ย (short)", [LanguageCode.FRENCH]: "เตี้ย (petit)", [LanguageCode.PORTUGUESE]: "เตี้ย (baixo)", [LanguageCode.MANDARIN]: "เตี้ย (矮)" } },
-                { prompt: { [LanguageCode.ENGLISH]: "ดี (good)", [LanguageCode.FRENCH]: "ดี (bon)", [LanguageCode.PORTUGUESE]: "ดี (bom)", [LanguageCode.MANDARIN]: "ดี (好)" }, answer: { [LanguageCode.ENGLISH]: "เลว (bad)", [LanguageCode.FRENCH]: "เลว (mauvais)", [LanguageCode.PORTUGUESE]: "เลว (ruim)", [LanguageCode.MANDARIN]: "เลว (壞)" } },
-                { prompt: { [LanguageCode.ENGLISH]: "ใหม่ (new)", [LanguageCode.FRENCH]: "ใหม่ (nouveau)", [LanguageCode.PORTUGUESE]: "ใหม่ (novo)", [LanguageCode.MANDARIN]: "ใหม่ (新)" }, answer: { [LanguageCode.ENGLISH]: "เก่า (old)", [LanguageCode.FRENCH]: "เก่า (vieux)", [LanguageCode.PORTUGUESE]: "เก่า (velho)", [LanguageCode.MANDARIN]: "เก่า (舊)" } },
-                { prompt: { [LanguageCode.ENGLISH]: "ร้อน (hot)", [LanguageCode.FRENCH]: "ร้อน (chaud)", [LanguageCode.PORTUGUESE]: "ร้อน (quente)", [LanguageCode.MANDARIN]: "ร้อน (熱)" }, answer: { [LanguageCode.ENGLISH]: "เย็น (cold)", [LanguageCode.FRENCH]: "เย็น (froid)", [LanguageCode.PORTUGUESE]: "เย็น (frio)", [LanguageCode.MANDARIN]: "เย็น (冷)" } },
-                { prompt: { [LanguageCode.ENGLISH]: "ยาว (long)", [LanguageCode.FRENCH]: "ยาว (long)", [LanguageCode.PORTUGUESE]: "ยาว (comprido)", [LanguageCode.MANDARIN]: "ยาว (長)" }, answer: { [LanguageCode.ENGLISH]: "สั้น (short)", [LanguageCode.FRENCH]: "สั้น (court)", [LanguageCode.PORTUGUESE]: "สั้น (curto)", [LanguageCode.MANDARIN]: "สั้น (短)" } },
+                { prompt: { [LanguageCode.ENGLISH]: "ใหญ่", [LanguageCode.FRENCH]: "ใหญ่", [LanguageCode.PORTUGUESE]: "ใหญ่", [LanguageCode.MANDARIN]: "ใหญ่ (大)" }, answer: { [LanguageCode.ENGLISH]: "เล็ก", [LanguageCode.FRENCH]: "เล็ก", [LanguageCode.PORTUGUESE]: "เล็ก", [LanguageCode.MANDARIN]: "เล็ก (小)" } },
+                { prompt: { [LanguageCode.ENGLISH]: "สูง", [LanguageCode.FRENCH]: "สูง", [LanguageCode.PORTUGUESE]: "สูง", [LanguageCode.MANDARIN]: "สูง (高)" }, answer: { [LanguageCode.ENGLISH]: "เตี้ย", [LanguageCode.FRENCH]: "เตี้ย", [LanguageCode.PORTUGUESE]: "เตี้ย", [LanguageCode.MANDARIN]: "เตี้ย (矮)" } },
+                { prompt: { [LanguageCode.ENGLISH]: "ดี", [LanguageCode.FRENCH]: "ดี", [LanguageCode.PORTUGUESE]: "ดี", [LanguageCode.MANDARIN]: "ดี (好)" }, answer: { [LanguageCode.ENGLISH]: "เลว", [LanguageCode.FRENCH]: "เลว", [LanguageCode.PORTUGUESE]: "เลว", [LanguageCode.MANDARIN]: "เลว (壞)" } },
+                { prompt: { [LanguageCode.ENGLISH]: "ใหม่", [LanguageCode.FRENCH]: "ใหม่", [LanguageCode.PORTUGUESE]: "ใหม่", [LanguageCode.MANDARIN]: "ใหม่ (新)" }, answer: { [LanguageCode.ENGLISH]: "เก่า", [LanguageCode.FRENCH]: "เก่า", [LanguageCode.PORTUGUESE]: "เก่า", [LanguageCode.MANDARIN]: "เก่า (舊)" } },
+                { prompt: { [LanguageCode.ENGLISH]: "ร้อน", [LanguageCode.FRENCH]: "ร้อน", [LanguageCode.PORTUGUESE]: "ร้อน", [LanguageCode.MANDARIN]: "ร้อน (熱)" }, answer: { [LanguageCode.ENGLISH]: "เย็น", [LanguageCode.FRENCH]: "เย็น", [LanguageCode.PORTUGUESE]: "เย็น", [LanguageCode.MANDARIN]: "เย็น (冷)" } },
+                { prompt: { [LanguageCode.ENGLISH]: "ยาว", [LanguageCode.FRENCH]: "ยาว", [LanguageCode.PORTUGUESE]: "ยาว", [LanguageCode.MANDARIN]: "ยาว (長)" }, answer: { [LanguageCode.ENGLISH]: "สั้น", [LanguageCode.FRENCH]: "สั้น", [LanguageCode.PORTUGUESE]: "สั้น", [LanguageCode.MANDARIN]: "สั้น (短)" } },
             ]
         },
         {
@@ -157,36 +157,36 @@ export const lesson_1_13: Lesson = {
                 {
                     question: { [LanguageCode.ENGLISH]: "A tall building would be: ตึก___", [LanguageCode.FRENCH]: "Un bâtiment haut serait : ตึก___", [LanguageCode.PORTUGUESE]: "Um prédio alto seria: ตึก___", [LanguageCode.MANDARIN]: "一棟高樓會是：ตึก___" },
                     options: [
-                        { [LanguageCode.ENGLISH]: "เตี้ย (short)", [LanguageCode.FRENCH]: "เตี้ย (petit)", [LanguageCode.PORTUGUESE]: "เตี้ย (baixo)", [LanguageCode.MANDARIN]: "เตี้ย (矮)" },
-                        { [LanguageCode.ENGLISH]: "สูง (tall)", [LanguageCode.FRENCH]: "สูง (haut)", [LanguageCode.PORTUGUESE]: "สูง (alto)", [LanguageCode.MANDARIN]: "สูง (高)" },
-                        { [LanguageCode.ENGLISH]: "ยาว (long)", [LanguageCode.FRENCH]: "ยาว (long)", [LanguageCode.PORTUGUESE]: "ยาว (comprido)", [LanguageCode.MANDARIN]: "ยาว (長)" },
+                        { [LanguageCode.ENGLISH]: "เตี้ย", [LanguageCode.FRENCH]: "เตี้ย", [LanguageCode.PORTUGUESE]: "เตี้ย", [LanguageCode.MANDARIN]: "เตี้ย (矮)" },
+                        { [LanguageCode.ENGLISH]: "สูง", [LanguageCode.FRENCH]: "สูง", [LanguageCode.PORTUGUESE]: "สูง", [LanguageCode.MANDARIN]: "สูง (高)" },
+                        { [LanguageCode.ENGLISH]: "ยาว", [LanguageCode.FRENCH]: "ยาว", [LanguageCode.PORTUGUESE]: "ยาว", [LanguageCode.MANDARIN]: "ยาว (長)" },
                     ],
                     correctIndex: 1
                 },
                 {
                     question: { [LanguageCode.ENGLISH]: "For a handsome man, you would say: ผู้ชาย___", [LanguageCode.FRENCH]: "Pour un bel homme, vous diriez : ผู้ชาย___", [LanguageCode.PORTUGUESE]: "Para um homem bonito, você diria: ผู้ชาย___", [LanguageCode.MANDARIN]: "對於一個帥哥，你會說：ผู้ชาย___" },
                     options: [
-                        { [LanguageCode.ENGLISH]: "สวย (beautiful)", [LanguageCode.FRENCH]: "สวย (belle)", [LanguageCode.PORTUGUESE]: "สวย (bonita)", [LanguageCode.MANDARIN]: "สวย (漂亮)" },
-                        { [LanguageCode.ENGLISH]: "หล่อ (handsome)", [LanguageCode.FRENCH]: "หล่อ (beau)", [LanguageCode.PORTUGUESE]: "หล่อ (bonito)", [LanguageCode.MANDARIN]: "หล่อ (帥)" },
-                        { [LanguageCode.ENGLISH]: "น่ารัก (cute)", [LanguageCode.FRENCH]: "น่ารัก (mignon)", [LanguageCode.PORTUGUESE]: "น่ารัก (fofo)", [LanguageCode.MANDARIN]: "น่ารัก (可愛)" },
+                        { [LanguageCode.ENGLISH]: "สวย", [LanguageCode.FRENCH]: "สวย", [LanguageCode.PORTUGUESE]: "สวย", [LanguageCode.MANDARIN]: "สวย (漂亮)" },
+                        { [LanguageCode.ENGLISH]: "หล่อ", [LanguageCode.FRENCH]: "หล่อ", [LanguageCode.PORTUGUESE]: "หล่อ", [LanguageCode.MANDARIN]: "หล่อ (帥)" },
+                        { [LanguageCode.ENGLISH]: "น่ารัก", [LanguageCode.FRENCH]: "น่ารัก", [LanguageCode.PORTUGUESE]: "น่ารัก", [LanguageCode.MANDARIN]: "น่ารัก (可愛)" },
                     ],
                     correctIndex: 1
                 },
                 {
                     question: { [LanguageCode.ENGLISH]: "What color is the sky? ท้องฟ้าสี___", [LanguageCode.FRENCH]: "De quelle couleur est le ciel ? ท้องฟ้าสี___", [LanguageCode.PORTUGUESE]: "De que cor é o céu? ท้องฟ้าสี___", [LanguageCode.MANDARIN]: "天空是什麼顏色？ท้องฟ้าสี___" },
                     options: [
-                        { [LanguageCode.ENGLISH]: "เขียว (green)", [LanguageCode.FRENCH]: "เขียว (vert)", [LanguageCode.PORTUGUESE]: "เขียว (verde)", [LanguageCode.MANDARIN]: "เขียว (綠)" },
-                        { [LanguageCode.ENGLISH]: "น้ำเงิน (blue)", [LanguageCode.FRENCH]: "น้ำเงิน (bleu)", [LanguageCode.PORTUGUESE]: "น้ำเงิน (azul)", [LanguageCode.MANDARIN]: "น้ำเงิน (藍)" },
-                        { [LanguageCode.ENGLISH]: "แดง (red)", [LanguageCode.FRENCH]: "แดง (rouge)", [LanguageCode.PORTUGUESE]: "แดง (vermelho)", [LanguageCode.MANDARIN]: "แดง (紅)" },
+                        { [LanguageCode.ENGLISH]: "เขียว", [LanguageCode.FRENCH]: "เขียว", [LanguageCode.PORTUGUESE]: "เขียว", [LanguageCode.MANDARIN]: "เขียว (綠)" },
+                        { [LanguageCode.ENGLISH]: "น้ำเงิน", [LanguageCode.FRENCH]: "น้ำเงิน", [LanguageCode.PORTUGUESE]: "น้ำเงิน", [LanguageCode.MANDARIN]: "น้ำเงิน (藍)" },
+                        { [LanguageCode.ENGLISH]: "แดง", [LanguageCode.FRENCH]: "แดง", [LanguageCode.PORTUGUESE]: "แดง", [LanguageCode.MANDARIN]: "แดง (紅)" },
                     ],
                     correctIndex: 1
                 },
                 {
                     question: { [LanguageCode.ENGLISH]: "Today is very hot. วันนี้___มาก", [LanguageCode.FRENCH]: "Aujourd'hui il fait très chaud. วันนี้___มาก", [LanguageCode.PORTUGUESE]: "Hoje está muito quente. วันนี้___มาก", [LanguageCode.MANDARIN]: "今天很熱。วันนี้___มาก" },
                     options: [
-                        { [LanguageCode.ENGLISH]: "เย็น (cold)", [LanguageCode.FRENCH]: "เย็น (froid)", [LanguageCode.PORTUGUESE]: "เย็น (frio)", [LanguageCode.MANDARIN]: "เย็น (冷)" },
-                        { [LanguageCode.ENGLISH]: "ร้อน (hot)", [LanguageCode.FRENCH]: "ร้อน (chaud)", [LanguageCode.PORTUGUESE]: "ร้อน (quente)", [LanguageCode.MANDARIN]: "ร้อน (熱)" },
-                        { [LanguageCode.ENGLISH]: "ดี (good)", [LanguageCode.FRENCH]: "ดี (bon)", [LanguageCode.PORTUGUESE]: "ดี (bom)", [LanguageCode.MANDARIN]: "ดี (好)" },
+                        { [LanguageCode.ENGLISH]: "เย็น", [LanguageCode.FRENCH]: "เย็น", [LanguageCode.PORTUGUESE]: "เย็น", [LanguageCode.MANDARIN]: "เย็น (冷)" },
+                        { [LanguageCode.ENGLISH]: "ร้อน", [LanguageCode.FRENCH]: "ร้อน", [LanguageCode.PORTUGUESE]: "ร้อน", [LanguageCode.MANDARIN]: "ร้อน (熱)" },
+                        { [LanguageCode.ENGLISH]: "ดี", [LanguageCode.FRENCH]: "ดี", [LanguageCode.PORTUGUESE]: "ดี", [LanguageCode.MANDARIN]: "ดี (好)" },
                     ],
                     correctIndex: 1
                 }
@@ -234,27 +234,27 @@ export const lesson_1_13: Lesson = {
                 {
                     question: { [LanguageCode.ENGLISH]: "You bought something yesterday. It's brand new. It is:", [LanguageCode.FRENCH]: "Vous avez acheté quelque chose hier. C'est tout neuf. C'est :", [LanguageCode.PORTUGUESE]: "Você comprou algo ontem. É novo em folha. É:", [LanguageCode.MANDARIN]: "你昨天買了東西。它是全新的。它是：" },
                     options: [
-                        { [LanguageCode.ENGLISH]: "เก่า (old)", [LanguageCode.FRENCH]: "เก่า (vieux)", [LanguageCode.PORTUGUESE]: "เก่า (velho)", [LanguageCode.MANDARIN]: "เก่า (舊)" },
-                        { [LanguageCode.ENGLISH]: "ใหม่ (new)", [LanguageCode.FRENCH]: "ใหม่ (nouveau)", [LanguageCode.PORTUGUESE]: "ใหม่ (novo)", [LanguageCode.MANDARIN]: "ใหม่ (新)" },
-                        { [LanguageCode.ENGLISH]: "ดี (good)", [LanguageCode.FRENCH]: "ดี (bon)", [LanguageCode.PORTUGUESE]: "ดี (bom)", [LanguageCode.MANDARIN]: "ดี (好)" },
+                        { [LanguageCode.ENGLISH]: "เก่า", [LanguageCode.FRENCH]: "เก่า", [LanguageCode.PORTUGUESE]: "เก่า", [LanguageCode.MANDARIN]: "เก่า (舊)" },
+                        { [LanguageCode.ENGLISH]: "ใหม่", [LanguageCode.FRENCH]: "ใหม่", [LanguageCode.PORTUGUESE]: "ใหม่", [LanguageCode.MANDARIN]: "ใหม่ (新)" },
+                        { [LanguageCode.ENGLISH]: "ดี", [LanguageCode.FRENCH]: "ดี", [LanguageCode.PORTUGUESE]: "ดี", [LanguageCode.MANDARIN]: "ดี (好)" },
                     ],
                     correctIndex: 1
                 },
                 {
                     question: { [LanguageCode.ENGLISH]: "The task takes a lot of effort and skill. It is:", [LanguageCode.FRENCH]: "La tâche demande beaucoup d'effort et de compétence. Elle est :", [LanguageCode.PORTUGUESE]: "A tarefa requer muito esforço e habilidade. É:", [LanguageCode.MANDARIN]: "這項任務需要大量的努力和技能。它是：" },
                     options: [
-                        { [LanguageCode.ENGLISH]: "ง่าย (easy)", [LanguageCode.FRENCH]: "ง่าย (facile)", [LanguageCode.PORTUGUESE]: "ง่าย (fácil)", [LanguageCode.MANDARIN]: "ง่าย (簡單)" },
-                        { [LanguageCode.ENGLISH]: "ยาก (difficult)", [LanguageCode.FRENCH]: "ยาก (difficile)", [LanguageCode.PORTUGUESE]: "ยาก (difícil)", [LanguageCode.MANDARIN]: "ยาก (難)" },
-                        { [LanguageCode.ENGLISH]: "เร็ว (fast)", [LanguageCode.FRENCH]: "เร็ว (rapide)", [LanguageCode.PORTUGUESE]: "เร็ว (rápido)", [LanguageCode.MANDARIN]: "เร็ว (快)" },
+                        { [LanguageCode.ENGLISH]: "ง่าย", [LanguageCode.FRENCH]: "ง่าย", [LanguageCode.PORTUGUESE]: "ง่าย (fácil)", [LanguageCode.MANDARIN]: "ง่าย (簡單)" },
+                        { [LanguageCode.ENGLISH]: "ยาก", [LanguageCode.FRENCH]: "ยาก", [LanguageCode.PORTUGUESE]: "ยาก (difícil)", [LanguageCode.MANDARIN]: "ยาก (難)" },
+                        { [LanguageCode.ENGLISH]: "เร็ว", [LanguageCode.FRENCH]: "เร็ว", [LanguageCode.PORTUGUESE]: "เร็ว (rápido)", [LanguageCode.MANDARIN]: "เร็ว (快)" },
                     ],
                     correctIndex: 1
                 },
                 {
                     question: { [LanguageCode.ENGLISH]: "A person who weighs very little is:", [LanguageCode.FRENCH]: "Une personne qui pèse très peu est :", [LanguageCode.PORTUGUESE]: "Uma pessoa que pesa muito pouco é:", [LanguageCode.MANDARIN]: "一個體重很輕的人是：" },
                     options: [
-                        { [LanguageCode.ENGLISH]: "อ้วน (fat)", [LanguageCode.FRENCH]: "อ้วน (gros)", [LanguageCode.PORTUGUESE]: "อ้วน (gordo)", [LanguageCode.MANDARIN]: "อ้วน (胖)" },
-                        { [LanguageCode.ENGLISH]: "ผอม (thin)", [LanguageCode.FRENCH]: "ผอม (mince)", [LanguageCode.PORTUGUESE]: "ผอม (magro)", [LanguageCode.MANDARIN]: "ผอม (瘦)" },
-                        { [LanguageCode.ENGLISH]: "สูง (tall)", [LanguageCode.FRENCH]: "สูง (grand)", [LanguageCode.PORTUGUESE]: "สูง (alto)", [LanguageCode.MANDARIN]: "สูง (高)" },
+                        { [LanguageCode.ENGLISH]: "อ้วน", [LanguageCode.FRENCH]: "อ้วน", [LanguageCode.PORTUGUESE]: "อ้วน", [LanguageCode.MANDARIN]: "อ้วน (胖)" },
+                        { [LanguageCode.ENGLISH]: "ผอม", [LanguageCode.FRENCH]: "ผอม", [LanguageCode.PORTUGUESE]: "ผอม", [LanguageCode.MANDARIN]: "ผอม (瘦)" },
+                        { [LanguageCode.ENGLISH]: "สูง", [LanguageCode.FRENCH]: "สูง", [LanguageCode.PORTUGUESE]: "สูง", [LanguageCode.MANDARIN]: "สูง (高)" },
                     ],
                     correctIndex: 1
                 }

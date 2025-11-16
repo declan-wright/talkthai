@@ -248,9 +248,9 @@ export const ReadingPractice: React.FC<ReadingPracticeProps> = ({ lesson, langua
       // Award points
       const correctCount = QUESTIONS_PER_SESSION - wrongAttempts.size;
       const percentage = (correctCount / QUESTIONS_PER_SESSION) * 100;
-      let points = 3;
-      if (percentage >= 90) points = 10;
-      else if (percentage >= 80) points = 5;
+      let points = 6;
+      if (percentage >= 90) points = 20;
+      else if (percentage >= 80) points = 10;
 
       if (user) {
         firestoreService.addPoints(user.uid, points, `Reading Practice: ${lesson.title['en']}`);
@@ -270,9 +270,9 @@ export const ReadingPractice: React.FC<ReadingPracticeProps> = ({ lesson, langua
   if (isComplete) {
     const correctCount = QUESTIONS_PER_SESSION - wrongAttempts.size;
     const percentage = Math.round((correctCount / QUESTIONS_PER_SESSION) * 100);
-    let points = 3;
-    if (percentage >= 90) points = 10;
-    else if (percentage >= 80) points = 5;
+    let points = 6;
+    if (percentage >= 90) points = 20;
+    else if (percentage >= 80) points = 10;
 
     const durationSeconds = endTime ? Math.round((endTime - startTime) / 1000) : 0;
 

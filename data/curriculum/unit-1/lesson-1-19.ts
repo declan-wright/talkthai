@@ -113,7 +113,7 @@ export const lesson_1_19: Lesson = {
                     question: { [LanguageCode.ENGLISH]: "What is the most popular ride-hailing app in Thailand?", [LanguageCode.FRENCH]: "Quelle est l'application de transport la plus populaire en Thaïlande ?", [LanguageCode.PORTUGUESE]: "Qual é o aplicativo de transporte mais popular na Tailândia?", [LanguageCode.MANDARIN]: "泰國最受歡迎的叫車應用程式是什麼？" },
                     options: [
                         { [LanguageCode.ENGLISH]: "Uber", [LanguageCode.FRENCH]: "Uber", [LanguageCode.PORTUGUESE]: "Uber", [LanguageCode.MANDARIN]: "Uber" },
-                        { [LanguageCode.ENGLISH]: "แกร็บ (Grab)", [LanguageCode.FRENCH]: "แกร็บ (Grab)", [LanguageCode.PORTUGUESE]: "แกร็บ (Grab)", [LanguageCode.MANDARIN]: "แกร็บ (Grab)" },
+                        { [LanguageCode.ENGLISH]: "แกร็บ", [LanguageCode.FRENCH]: "แกร็บ", [LanguageCode.PORTUGUESE]: "แกร็บ", [LanguageCode.MANDARIN]: "แกร็บ" },
                         { [LanguageCode.ENGLISH]: "Lyft", [LanguageCode.FRENCH]: "Lyft", [LanguageCode.PORTUGUESE]: "Lyft", [LanguageCode.MANDARIN]: "Lyft" },
                     ],
                     correctIndex: 1
@@ -121,9 +121,9 @@ export const lesson_1_19: Lesson = {
                 {
                     question: { [LanguageCode.ENGLISH]: "How do you say 'to walk' in Thai?", [LanguageCode.FRENCH]: "Comment dit-on 'marcher' en thaï ?", [LanguageCode.PORTUGUESE]: "Como se diz 'andar' em tailandês?", [LanguageCode.MANDARIN]: "泰語中「走路」怎麼說？" },
                     options: [
-                        { [LanguageCode.ENGLISH]: "ขับ (drive)", [LanguageCode.FRENCH]: "ขับ (conduire)", [LanguageCode.PORTUGUESE]: "ขับ (dirigir)", [LanguageCode.MANDARIN]: "ขับ (開車)" },
-                        { [LanguageCode.ENGLISH]: "เดิน (walk)", [LanguageCode.FRENCH]: "เดิน (marcher)", [LanguageCode.PORTUGUESE]: "เดิน (andar)", [LanguageCode.MANDARIN]: "เดิน (走路)" },
-                        { [LanguageCode.ENGLISH]: "นั่ง (sit/ride)", [LanguageCode.FRENCH]: "นั่ง (s'asseoir/monter)", [LanguageCode.PORTUGUESE]: "นั่ง (sentar/pegar)", [LanguageCode.MANDARIN]: "นั่ง (坐)" },
+                        { [LanguageCode.ENGLISH]: "ขับ", [LanguageCode.FRENCH]: "ขับ", [LanguageCode.PORTUGUESE]: "ขับ", [LanguageCode.MANDARIN]: "ขับ (開車)" },
+                        { [LanguageCode.ENGLISH]: "เดิน", [LanguageCode.FRENCH]: "เดิน", [LanguageCode.PORTUGUESE]: "เดิน", [LanguageCode.MANDARIN]: "เดิน (走路)" },
+                        { [LanguageCode.ENGLISH]: "นั่ง", [LanguageCode.FRENCH]: "นั่ง (s'asseoir/monter)", [LanguageCode.PORTUGUESE]: "นั่ง", [LanguageCode.MANDARIN]: "นั่ง (坐)" },
                     ],
                     correctIndex: 1
                 },
@@ -139,8 +139,8 @@ export const lesson_1_19: Lesson = {
                 {
                     question: { [LanguageCode.ENGLISH]: "What do you need to board an international flight?", [LanguageCode.FRENCH]: "De quoi avez-vous besoin pour embarquer sur un vol international ?", [LanguageCode.PORTUGUESE]: "O que você precisa para embarcar em um voo internacional?", [LanguageCode.MANDARIN]: "登上國際航班需要什麼？" },
                     options: [
-                        { [LanguageCode.ENGLISH]: "หนังสือเดินทาง (passport)", [LanguageCode.FRENCH]: "หนังสือเดินทาง (passeport)", [LanguageCode.PORTUGUESE]: "หนังสือเดินทาง (passaporte)", [LanguageCode.MANDARIN]: "หนังสือเดินทาง (護照)" },
-                        { [LanguageCode.ENGLISH]: "รถเมล์ (bus)", [LanguageCode.FRENCH]: "รถเมล์ (bus)", [LanguageCode.PORTUGUESE]: "รถเมล์ (ônibus)", [LanguageCode.MANDARIN]: "รถเมล์ (公車)" },
+                        { [LanguageCode.ENGLISH]: "หนังสือเดินทาง", [LanguageCode.FRENCH]: "หนังสือเดินทาง", [LanguageCode.PORTUGUESE]: "หนังสือเดินทาง", [LanguageCode.MANDARIN]: "หนังสือเดินทาง (護照)" },
+                        { [LanguageCode.ENGLISH]: "รถเมล์", [LanguageCode.FRENCH]: "รถเมล์", [LanguageCode.PORTUGUESE]: "รถเมล์ (ônibus)", [LanguageCode.MANDARIN]: "รถเมล์ (公車)" },
                         { [LanguageCode.ENGLISH]: "ตุ๊กตุ๊ก (tuk-tuk)", [LanguageCode.FRENCH]: "ตุ๊กตุ๊ก (tuk-tuk)", [LanguageCode.PORTUGUESE]: "ตุ๊กตุ๊ก (tuk-tuk)", [LanguageCode.MANDARIN]: "ตุ๊กตุ๊ก (嘟嘟車)" },
                     ],
                     correctIndex: 0

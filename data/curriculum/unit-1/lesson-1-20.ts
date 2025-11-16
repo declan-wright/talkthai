@@ -107,7 +107,7 @@ export const lesson_1_20: Lesson = {
             pairs: [
                 { prompt: { [LanguageCode.ENGLISH]: "เหรอ", [LanguageCode.FRENCH]: "เหรอ", [LanguageCode.PORTUGUESE]: "เหรอ", [LanguageCode.MANDARIN]: "เหรอ" }, answer: { [LanguageCode.ENGLISH]: "Expressing surprise: 'Really?'", [LanguageCode.FRENCH]: "Exprimer la surprise : 'Vraiment ?'", [LanguageCode.PORTUGUESE]: "Expressar surpresa: 'Sério?'", [LanguageCode.MANDARIN]: "表達驚訝：「真的嗎？」" } },
                 { prompt: { [LanguageCode.ENGLISH]: "นะ", [LanguageCode.FRENCH]: "นะ", [LanguageCode.PORTUGUESE]: "นะ", [LanguageCode.MANDARIN]: "นะ" }, answer: { [LanguageCode.ENGLISH]: "Softening request: 'ok?'", [LanguageCode.FRENCH]: "Adoucir demande : 'd'accord ?'", [LanguageCode.PORTUGUESE]: "Suavizar pedido: 'tá?'", [LanguageCode.MANDARIN]: "軟化請求：「好嗎？」" } },
-                { prompt: { [LanguageCode.ENGLISH]: "จัง (jing)", [LanguageCode.FRENCH]: "จัง (jing)", [LanguageCode.PORTUGUESE]: "จัง (jing)", [LanguageCode.MANDARIN]: "จัง (jing)" }, answer: { [LanguageCode.ENGLISH]: "Casual emphasis: 'so/very'", [LanguageCode.FRENCH]: "Emphase familière : 'très'", [LanguageCode.PORTUGUESE]: "Ênfase casual: 'muito'", [LanguageCode.MANDARIN]: "隨意強調：「非常」" } },
+                { prompt: { [LanguageCode.ENGLISH]: "จัง", [LanguageCode.FRENCH]: "จัง", [LanguageCode.PORTUGUESE]: "จัง", [LanguageCode.MANDARIN]: "จัง" }, answer: { [LanguageCode.ENGLISH]: "Casual emphasis: 'so/very'", [LanguageCode.FRENCH]: "Emphase familière : 'très'", [LanguageCode.PORTUGUESE]: "Ênfase casual: 'muito'", [LanguageCode.MANDARIN]: "隨意強調：「非常」" } },
                 { prompt: { [LanguageCode.ENGLISH]: "ซิ", [LanguageCode.FRENCH]: "ซิ", [LanguageCode.PORTUGUESE]: "ซิ", [LanguageCode.MANDARIN]: "ซิ" }, answer: { [LanguageCode.ENGLISH]: "Encouragement: 'go ahead'", [LanguageCode.FRENCH]: "Encouragement : 'vas-y'", [LanguageCode.PORTUGUESE]: "Encorajamento: 'vai'", [LanguageCode.MANDARIN]: "鼓勵：「去吧」" } },
                 { prompt: { [LanguageCode.ENGLISH]: "คือ", [LanguageCode.FRENCH]: "คือ", [LanguageCode.PORTUGUESE]: "คือ", [LanguageCode.MANDARIN]: "คือ" }, answer: { [LanguageCode.ENGLISH]: "Filler word: 'like/I mean'", [LanguageCode.FRENCH]: "Mot de remplissage : 'genre'", [LanguageCode.PORTUGUESE]: "Palavra de preenchimento: 'tipo'", [LanguageCode.MANDARIN]: "填充詞：「就是」" } },
                 { prompt: { [LanguageCode.ENGLISH]: "เลย", [LanguageCode.FRENCH]: "เลย", [LanguageCode.PORTUGUESE]: "เลย", [LanguageCode.MANDARIN]: "เลย" }, answer: { [LanguageCode.ENGLISH]: "Emphasis: 'at all'", [LanguageCode.FRENCH]: "Emphase : 'du tout'", [LanguageCode.PORTUGUESE]: "Ênfase: 'absolutamente'", [LanguageCode.MANDARIN]: "強調：「根本」" } },
@@ -125,9 +125,9 @@ export const lesson_1_20: Lesson = {
                 {
                     question: { [LanguageCode.ENGLISH]: "A: 'Want to go eat?' B: '___! Let's go!'", [LanguageCode.FRENCH]: "A: 'Tu veux aller manger ?' B: '___ ! Allons-y !'", [LanguageCode.PORTUGUESE]: "A: 'Quer ir comer?' B: '___! Vamos!'", [LanguageCode.MANDARIN]: "A: 「想去吃飯嗎？」B: 「___！走吧！」" },
                     options: [
-                        { [LanguageCode.ENGLISH]: "ใช่ครับ (formal yes)", [LanguageCode.FRENCH]: "ใช่ครับ (oui formel)", [LanguageCode.PORTUGUESE]: "ใช่ครับ (sim formal)", [LanguageCode.MANDARIN]: "ใช่ครับ（正式的是）" },
-                        { [LanguageCode.ENGLISH]: "เออ (casual yeah)", [LanguageCode.FRENCH]: "เออ (ouais décontracté)", [LanguageCode.PORTUGUESE]: "เออ (é casual)", [LanguageCode.MANDARIN]: "เออ（隨意的嗯）" },
-                        { [LanguageCode.ENGLISH]: "ครับ (polite yes)", [LanguageCode.FRENCH]: "ครับ (oui poli)", [LanguageCode.PORTUGUESE]: "ครับ (sim educado)", [LanguageCode.MANDARIN]: "ครับ（禮貌的是）" },
+                        { [LanguageCode.ENGLISH]: "ใช่ครับ", [LanguageCode.FRENCH]: "ใช่ครับ", [LanguageCode.PORTUGUESE]: "ใช่ครับ", [LanguageCode.MANDARIN]: "ใช่ครับ（正式的是）" },
+                        { [LanguageCode.ENGLISH]: "เออ", [LanguageCode.FRENCH]: "เออ (ouais décontracté)", [LanguageCode.PORTUGUESE]: "เออ (é casual)", [LanguageCode.MANDARIN]: "เออ（隨意的嗯）" },
+                        { [LanguageCode.ENGLISH]: "ครับ", [LanguageCode.FRENCH]: "ครับ", [LanguageCode.PORTUGUESE]: "ครับ", [LanguageCode.MANDARIN]: "ครับ（禮貌的是）" },
                     ],
                     correctIndex: 1
                 },

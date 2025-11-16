@@ -113,24 +113,60 @@ export function shouldIncludeReview(lessonId: string): boolean {
 }
 
 /**
- * Get review vocabulary items for a lesson
+ * Get review vocabulary items for a lesson with weighted selection for starred words
+ * Starred words are weighted to be approximately 80% of the review cards
  */
 export function getReviewVocabulary(
     units: Unit[],
-    currentLessonId: string
+    currentLessonId: string,
+    starredWords?: Set<string>
 ): VocabularyItem[] {
     if (!shouldIncludeReview(currentLessonId)) {
         return [];
     }
-    
+
     const previousVocab = getPreviousLessonsVocabulary(units, currentLessonId);
-    
+
     if (previousVocab.length === 0) {
         return [];
     }
-    
+
     const reviewCount = selectReviewCardCount();
-    return selectRandomItems(previousVocab, reviewCount);
+
+    // If no starred words provided, use random selection
+    if (!starredWords || starredWords.size === 0) {
+        return selectRandomItems(previousVocab, reviewCount);
+    }
+
+    // Separate starred and non-starred vocabulary
+    const starredVocab = previousVocab.filter(item => starredWords.has(item.thai));
+    const nonStarredVocab = previousVocab.filter(item => !starredWords.has(item.thai));
+
+    // If no starred words available, use random selection
+    if (starredVocab.length === 0) {
+        return selectRandomItems(previousVocab, reviewCount);
+    }
+
+    // Calculate 80% starred, 20% non-starred
+    const starredCount = Math.ceil(reviewCount * 0.8);
+    const nonStarredCount = reviewCount - starredCount;
+
+    // Select cards with weighted distribution
+    const selectedStarred = selectRandomItems(starredVocab, starredCount);
+    const selectedNonStarred = selectRandomItems(nonStarredVocab, nonStarredCount);
+
+    // If we didn't get enough starred cards, fill the rest from non-starred
+    const totalSelected = [...selectedStarred, ...selectedNonStarred];
+    if (totalSelected.length < reviewCount) {
+        const remaining = reviewCount - totalSelected.length;
+        const additionalCards = selectRandomItems(
+            previousVocab.filter(item => !totalSelected.includes(item)),
+            remaining
+        );
+        return [...totalSelected, ...additionalCards];
+    }
+
+    return totalSelected;
 }
 
 /**

@@ -206,7 +206,7 @@ export const lesson_1_4: Lesson = {
                 {
                     question: { [LanguageCode.ENGLISH]: "At a restaurant: ผม___ข้าวผัด", [LanguageCode.FRENCH]: "Au restaurant : ผม___ข้าวผัด", [LanguageCode.PORTUGUESE]: "No restaurante: ผม___ข้าวผัด", [LanguageCode.MANDARIN]: "在餐廳：ผม___ข้าวผัด" },
                     options: [
-                        { [LanguageCode.ENGLISH]: "เอา (I'll take/want)", [LanguageCode.FRENCH]: "เอา (Je prends)", [LanguageCode.PORTUGUESE]: "เอา (Eu quero)", [LanguageCode.MANDARIN]: "เอา (我要)" },
+                        { [LanguageCode.ENGLISH]: "เอา (I'll take/want)", [LanguageCode.FRENCH]: "เอา", [LanguageCode.PORTUGUESE]: "เอา", [LanguageCode.MANDARIN]: "เอา (我要)" },
                         { [LanguageCode.ENGLISH]: "นอน", [LanguageCode.FRENCH]: "นอน", [LanguageCode.PORTUGUESE]: "นอน", [LanguageCode.MANDARIN]: "นอน" },
                         { [LanguageCode.ENGLISH]: "วิ่ง", [LanguageCode.FRENCH]: "วิ่ง", [LanguageCode.PORTUGUESE]: "วิ่ง", [LanguageCode.MANDARIN]: "วิ่ง" },
                     ],
@@ -242,7 +242,7 @@ export const lesson_1_4: Lesson = {
                 {
                     question: { [LanguageCode.ENGLISH]: "After eating a big meal: ผม___แล้ว", [LanguageCode.FRENCH]: "Après un gros repas : ผม___แล้ว", [LanguageCode.PORTUGUESE]: "Depois de uma grande refeição: ผม___แล้ว", [LanguageCode.MANDARIN]: "大餐後：ผม___แล้ว" },
                     options: [
-                        { [LanguageCode.ENGLISH]: "อิ่ม (full)", [LanguageCode.FRENCH]: "อิ่ม (rassasié)", [LanguageCode.PORTUGUESE]: "อิ่ม (satisfeito)", [LanguageCode.MANDARIN]: "อิ่ม (飽了)" },
+                        { [LanguageCode.ENGLISH]: "อิ่ม", [LanguageCode.FRENCH]: "อิ่ม (rassasié)", [LanguageCode.PORTUGUESE]: "อิ่ม", [LanguageCode.MANDARIN]: "อิ่ม (飽了)" },
                         { [LanguageCode.ENGLISH]: "วิ่ง", [LanguageCode.FRENCH]: "วิ่ง", [LanguageCode.PORTUGUESE]: "วิ่ง", [LanguageCode.MANDARIN]: "วิ่ง" },
                         { [LanguageCode.ENGLISH]: "เรียน", [LanguageCode.FRENCH]: "เรียน", [LanguageCode.PORTUGUESE]: "เรียน", [LanguageCode.MANDARIN]: "เรียน" },
                     ],
@@ -259,10 +259,10 @@ export const lesson_1_4: Lesson = {
                 [LanguageCode.MANDARIN]: "將活動與一天中的典型時間配對。",
             },
             pairs: [
-                { prompt: { [LanguageCode.ENGLISH]: "ตื่น (wake up)", [LanguageCode.FRENCH]: "ตื่น (se réveiller)", [LanguageCode.PORTUGUESE]: "ตื่น (acordar)", [LanguageCode.MANDARIN]: "ตื่น (起床)" }, answer: { [LanguageCode.ENGLISH]: "เช้า (morning)", [LanguageCode.FRENCH]: "เช้า (matin)", [LanguageCode.PORTUGUESE]: "เช้า (manhã)", [LanguageCode.MANDARIN]: "เช้า (早上)" } },
-                { prompt: { [LanguageCode.ENGLISH]: "กิน (eat lunch)", [LanguageCode.FRENCH]: "กิน (déjeuner)", [LanguageCode.PORTUGUESE]: "กิน (almoçar)", [LanguageCode.MANDARIN]: "กิน (吃午飯)" }, answer: { [LanguageCode.ENGLISH]: "เที่ยง (noon)", [LanguageCode.FRENCH]: "เที่ยง (midi)", [LanguageCode.PORTUGUESE]: "เที่ยง (meio-dia)", [LanguageCode.MANDARIN]: "เที่ยง (中午)" } },
-                { prompt: { [LanguageCode.ENGLISH]: "ทำงาน (work)", [LanguageCode.FRENCH]: "ทำงาน (travailler)", [LanguageCode.PORTUGUESE]: "ทำงาน (trabalhar)", [LanguageCode.MANDARIN]: "ทำงาน (工作)" }, answer: { [LanguageCode.ENGLISH]: "บ่าย (afternoon)", [LanguageCode.FRENCH]: "บ่าย (après-midi)", [LanguageCode.PORTUGUESE]: "บ่าย (tarde)", [LanguageCode.MANDARIN]: "บ่าย (下午)" } },
-                { prompt: { [LanguageCode.ENGLISH]: "นอน (sleep)", [LanguageCode.FRENCH]: "นอน (dormir)", [LanguageCode.PORTUGUESE]: "นอน (dormir)", [LanguageCode.MANDARIN]: "นอน (睡覺)" }, answer: { [LanguageCode.ENGLISH]: "กลางคืน (night)", [LanguageCode.FRENCH]: "กลางคืน (nuit)", [LanguageCode.PORTUGUESE]: "กลางคืน (noite)", [LanguageCode.MANDARIN]: "กลางคืน (夜晚)" } },
+                { prompt: { [LanguageCode.ENGLISH]: "ตื่น", [LanguageCode.FRENCH]: "ตื่น (se réveiller)", [LanguageCode.PORTUGUESE]: "ตื่น", [LanguageCode.MANDARIN]: "ตื่น (起床)" }, answer: { [LanguageCode.ENGLISH]: "เช้า", [LanguageCode.FRENCH]: "เช้า", [LanguageCode.PORTUGUESE]: "เช้า (manhã)", [LanguageCode.MANDARIN]: "เช้า (早上)" } },
+                { prompt: { [LanguageCode.ENGLISH]: "กิน", [LanguageCode.FRENCH]: "กิน (déjeuner)", [LanguageCode.PORTUGUESE]: "กิน (almoçar)", [LanguageCode.MANDARIN]: "กิน (吃午飯)" }, answer: { [LanguageCode.ENGLISH]: "เที่ยง", [LanguageCode.FRENCH]: "เที่ยง", [LanguageCode.PORTUGUESE]: "เที่ยง (meio-dia)", [LanguageCode.MANDARIN]: "เที่ยง (中午)" } },
+                { prompt: { [LanguageCode.ENGLISH]: "ทำงาน", [LanguageCode.FRENCH]: "ทำงาน", [LanguageCode.PORTUGUESE]: "ทำงาน", [LanguageCode.MANDARIN]: "ทำงาน (工作)" }, answer: { [LanguageCode.ENGLISH]: "บ่าย", [LanguageCode.FRENCH]: "บ่าย (après-midi)", [LanguageCode.PORTUGUESE]: "บ่าย", [LanguageCode.MANDARIN]: "บ่าย (下午)" } },
+                { prompt: { [LanguageCode.ENGLISH]: "นอน", [LanguageCode.FRENCH]: "นอน", [LanguageCode.PORTUGUESE]: "นอน", [LanguageCode.MANDARIN]: "นอน (睡覺)" }, answer: { [LanguageCode.ENGLISH]: "กลางคืน", [LanguageCode.FRENCH]: "กลางคืน", [LanguageCode.PORTUGUESE]: "กลางคืน", [LanguageCode.MANDARIN]: "กลางคืน (夜晚)" } },
             ]
         },
         {

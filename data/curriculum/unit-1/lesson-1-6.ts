@@ -114,10 +114,10 @@ export const lesson_1_6: Lesson = {
                 [LanguageCode.MANDARIN]: "將動詞與適當的賓語配對。",
             },
             pairs: [
-                { prompt: { [LanguageCode.ENGLISH]: "อ่าน (read)", [LanguageCode.FRENCH]: "อ่าน (lire)", [LanguageCode.PORTUGUESE]: "อ่าน (ler)", [LanguageCode.MANDARIN]: "อ่าน (讀)" }, answer: { [LanguageCode.ENGLISH]: "หนังสือ (book)", [LanguageCode.FRENCH]: "หนังสือ (livre)", [LanguageCode.PORTUGUESE]: "หนังสือ (livro)", [LanguageCode.MANDARIN]: "หนังสือ (書)" } },
-                { prompt: { [LanguageCode.ENGLISH]: "เขียน (write)", [LanguageCode.FRENCH]: "เขียน (écrire)", [LanguageCode.PORTUGUESE]: "เขียน (escrever)", [LanguageCode.MANDARIN]: "เขียน (寫)" }, answer: { [LanguageCode.ENGLISH]: "จดหมาย (letter)", [LanguageCode.FRENCH]: "จดหมาย (lettre)", [LanguageCode.PORTUGUESE]: "จดหมาย (carta)", [LanguageCode.MANDARIN]: "จดหมาย (信)" } },
-                { prompt: { [LanguageCode.ENGLISH]: "ฟัง (listen)", [LanguageCode.FRENCH]: "ฟัง (écouter)", [LanguageCode.PORTUGUESE]: "ฟัง (ouvir)", [LanguageCode.MANDARIN]: "ฟัง (聽)" }, answer: { [LanguageCode.ENGLISH]: "ดนตรี (music)", [LanguageCode.FRENCH]: "ดนตรี (musique)", [LanguageCode.PORTUGUESE]: "ดนตรี (música)", [LanguageCode.MANDARIN]: "ดนตรี (音樂)" } },
-                { prompt: { [LanguageCode.ENGLISH]: "ใช้ (use)", [LanguageCode.FRENCH]: "ใช้ (utiliser)", [LanguageCode.PORTUGUESE]: "ใช้ (usar)", [LanguageCode.MANDARIN]: "ใช้ (用)" }, answer: { [LanguageCode.ENGLISH]: "โทรศัพท์ (phone)", [LanguageCode.FRENCH]: "โทรศัพท์ (téléphone)", [LanguageCode.PORTUGUESE]: "โทรศัพท์ (telefone)", [LanguageCode.MANDARIN]: "โทรศัพท์ (電話)" } },
+                { prompt: { [LanguageCode.ENGLISH]: "อ่าน", [LanguageCode.FRENCH]: "อ่าน", [LanguageCode.PORTUGUESE]: "อ่าน", [LanguageCode.MANDARIN]: "อ่าน (讀)" }, answer: { [LanguageCode.ENGLISH]: "หนังสือ", [LanguageCode.FRENCH]: "หนังสือ", [LanguageCode.PORTUGUESE]: "หนังสือ", [LanguageCode.MANDARIN]: "หนังสือ (書)" } },
+                { prompt: { [LanguageCode.ENGLISH]: "เขียน", [LanguageCode.FRENCH]: "เขียน (écrire)", [LanguageCode.PORTUGUESE]: "เขียน", [LanguageCode.MANDARIN]: "เขียน (寫)" }, answer: { [LanguageCode.ENGLISH]: "จดหมาย", [LanguageCode.FRENCH]: "จดหมาย", [LanguageCode.PORTUGUESE]: "จดหมาย", [LanguageCode.MANDARIN]: "จดหมาย (信)" } },
+                { prompt: { [LanguageCode.ENGLISH]: "ฟัง", [LanguageCode.FRENCH]: "ฟัง (écouter)", [LanguageCode.PORTUGUESE]: "ฟัง", [LanguageCode.MANDARIN]: "ฟัง (聽)" }, answer: { [LanguageCode.ENGLISH]: "ดนตรี", [LanguageCode.FRENCH]: "ดนตรี", [LanguageCode.PORTUGUESE]: "ดนตรี (música)", [LanguageCode.MANDARIN]: "ดนตรี (音樂)" } },
+                { prompt: { [LanguageCode.ENGLISH]: "ใช้", [LanguageCode.FRENCH]: "ใช้", [LanguageCode.PORTUGUESE]: "ใช้", [LanguageCode.MANDARIN]: "ใช้ (用)" }, answer: { [LanguageCode.ENGLISH]: "โทรศัพท์", [LanguageCode.FRENCH]: "โทรศัพท์ (téléphone)", [LanguageCode.PORTUGUESE]: "โทรศัพท์", [LanguageCode.MANDARIN]: "โทรศัพท์ (電話)" } },
             ]
         },
         {
@@ -183,10 +183,10 @@ export const lesson_1_6: Lesson = {
                 [LanguageCode.MANDARIN]: "配對相反的動作。",
             },
             pairs: [
-                { prompt: { [LanguageCode.ENGLISH]: "เปิด (open)", [LanguageCode.FRENCH]: "เปิด (ouvrir)", [LanguageCode.PORTUGUESE]: "เปิด (abrir)", [LanguageCode.MANDARIN]: "เปิด (開)" }, answer: { [LanguageCode.ENGLISH]: "ปิด (close)", [LanguageCode.FRENCH]: "ปิด (fermer)", [LanguageCode.PORTUGUESE]: "ปิด (fechar)", [LanguageCode.MANDARIN]: "ปิด (關)" } },
-                { prompt: { [LanguageCode.ENGLISH]: "ขึ้น (go up)", [LanguageCode.FRENCH]: "ขึ้น (monter)", [LanguageCode.PORTUGUESE]: "ขึ้น (subir)", [LanguageCode.MANDARIN]: "ขึ้น (上)" }, answer: { [LanguageCode.ENGLISH]: "ลง (go down)", [LanguageCode.FRENCH]: "ลง (descendre)", [LanguageCode.PORTUGUESE]: "ลง (descer)", [LanguageCode.MANDARIN]: "ลง (下)" } },
-                { prompt: { [LanguageCode.ENGLISH]: "ถาม (ask)", [LanguageCode.FRENCH]: "ถาม (demander)", [LanguageCode.PORTUGUESE]: "ถาม (perguntar)", [LanguageCode.MANDARIN]: "ถาม (問)" }, answer: { [LanguageCode.ENGLISH]: "ตอบ (answer)", [LanguageCode.FRENCH]: "ตอบ (répondre)", [LanguageCode.PORTUGUESE]: "ตอบ (responder)", [LanguageCode.MANDARIN]: "ตอบ (答)" } },
-                { prompt: { [LanguageCode.ENGLISH]: "นั่ง (sit)", [LanguageCode.FRENCH]: "นั่ง (s'asseoir)", [LanguageCode.PORTUGUESE]: "นั่ง (sentar)", [LanguageCode.MANDARIN]: "นั่ง (坐)" }, answer: { [LanguageCode.ENGLISH]: "ยืน (stand)", [LanguageCode.FRENCH]: "ยืน (se tenir debout)", [LanguageCode.PORTUGUESE]: "ยืน (ficar em pé)", [LanguageCode.MANDARIN]: "ยืน (站)" } },
+                { prompt: { [LanguageCode.ENGLISH]: "เปิด", [LanguageCode.FRENCH]: "เปิด", [LanguageCode.PORTUGUESE]: "เปิด", [LanguageCode.MANDARIN]: "เปิด (開)" }, answer: { [LanguageCode.ENGLISH]: "ปิด", [LanguageCode.FRENCH]: "ปิด", [LanguageCode.PORTUGUESE]: "ปิด", [LanguageCode.MANDARIN]: "ปิด (關)" } },
+                { prompt: { [LanguageCode.ENGLISH]: "ขึ้น", [LanguageCode.FRENCH]: "ขึ้น", [LanguageCode.PORTUGUESE]: "ขึ้น", [LanguageCode.MANDARIN]: "ขึ้น (上)" }, answer: { [LanguageCode.ENGLISH]: "ลง", [LanguageCode.FRENCH]: "ลง", [LanguageCode.PORTUGUESE]: "ลง", [LanguageCode.MANDARIN]: "ลง (下)" } },
+                { prompt: { [LanguageCode.ENGLISH]: "ถาม", [LanguageCode.FRENCH]: "ถาม", [LanguageCode.PORTUGUESE]: "ถาม", [LanguageCode.MANDARIN]: "ถาม (問)" }, answer: { [LanguageCode.ENGLISH]: "ตอบ", [LanguageCode.FRENCH]: "ตอบ (répondre)", [LanguageCode.PORTUGUESE]: "ตอบ", [LanguageCode.MANDARIN]: "ตอบ (答)" } },
+                { prompt: { [LanguageCode.ENGLISH]: "นั่ง", [LanguageCode.FRENCH]: "นั่ง (s'asseoir)", [LanguageCode.PORTUGUESE]: "นั่ง", [LanguageCode.MANDARIN]: "นั่ง (坐)" }, answer: { [LanguageCode.ENGLISH]: "ยืน", [LanguageCode.FRENCH]: "ยืน", [LanguageCode.PORTUGUESE]: "ยืน (ficar em pé)", [LanguageCode.MANDARIN]: "ยืน (站)" } },
             ]
         },
         {
@@ -201,27 +201,27 @@ export const lesson_1_6: Lesson = {
                 {
                     question: { [LanguageCode.ENGLISH]: "It's hot in the room. You say: ช่วย___แอร์หน่อย", [LanguageCode.FRENCH]: "Il fait chaud dans la pièce. Vous dites : ช่วย___แอร์หน่อย", [LanguageCode.PORTUGUESE]: "Está quente no quarto. Você diz: ช่วย___แอร์หน่อย", [LanguageCode.MANDARIN]: "房間很熱。你說：ช่วย___แอร์หน่อย" },
                     options: [
-                        { [LanguageCode.ENGLISH]: "เปิด (open)", [LanguageCode.FRENCH]: "เปิด (allumer)", [LanguageCode.PORTUGUESE]: "เปิด (ligar)", [LanguageCode.MANDARIN]: "เปิด (開)" },
-                        { [LanguageCode.ENGLISH]: "ปิด (close)", [LanguageCode.FRENCH]: "ปิด (éteindre)", [LanguageCode.PORTUGUESE]: "ปิด (desligar)", [LanguageCode.MANDARIN]: "ปิด (關)" },
-                        { [LanguageCode.ENGLISH]: "ใช้ (use)", [LanguageCode.FRENCH]: "ใช้ (utiliser)", [LanguageCode.PORTUGUESE]: "ใช้ (usar)", [LanguageCode.MANDARIN]: "ใช้ (用)" },
+                        { [LanguageCode.ENGLISH]: "เปิด", [LanguageCode.FRENCH]: "เปิด", [LanguageCode.PORTUGUESE]: "เปิด", [LanguageCode.MANDARIN]: "เปิด (開)" },
+                        { [LanguageCode.ENGLISH]: "ปิด", [LanguageCode.FRENCH]: "ปิด (éteindre)", [LanguageCode.PORTUGUESE]: "ปิด", [LanguageCode.MANDARIN]: "ปิด (關)" },
+                        { [LanguageCode.ENGLISH]: "ใช้", [LanguageCode.FRENCH]: "ใช้", [LanguageCode.PORTUGUESE]: "ใช้", [LanguageCode.MANDARIN]: "ใช้ (用)" },
                     ],
                     correctIndex: 0
                 },
                 {
                     question: { [LanguageCode.ENGLISH]: "You're on a bus and need to get off. You say: ผม___ที่นี่", [LanguageCode.FRENCH]: "Vous êtes dans un bus et devez descendre. Vous dites : ผม___ที่นี่", [LanguageCode.PORTUGUESE]: "Você está no ônibus e precisa descer. Você diz: ผม___ที่นี่", [LanguageCode.MANDARIN]: "你在公車上需要下車。你說：ผม___ที่นี่" },
                     options: [
-                        { [LanguageCode.ENGLISH]: "ขึ้น (get on)", [LanguageCode.FRENCH]: "ขึ้น (monter)", [LanguageCode.PORTUGUESE]: "ขึ้น (subir)", [LanguageCode.MANDARIN]: "ขึ้น (上)" },
-                        { [LanguageCode.ENGLISH]: "ลง (get off)", [LanguageCode.FRENCH]: "ลง (descendre)", [LanguageCode.PORTUGUESE]: "ลง (descer)", [LanguageCode.MANDARIN]: "ลง (下)" },
-                        { [LanguageCode.ENGLISH]: "นั่ง (sit)", [LanguageCode.FRENCH]: "นั่ง (s'asseoir)", [LanguageCode.PORTUGUESE]: "นั่ง (sentar)", [LanguageCode.MANDARIN]: "นั่ง (坐)" },
+                        { [LanguageCode.ENGLISH]: "ขึ้น", [LanguageCode.FRENCH]: "ขึ้น", [LanguageCode.PORTUGUESE]: "ขึ้น", [LanguageCode.MANDARIN]: "ขึ้น (上)" },
+                        { [LanguageCode.ENGLISH]: "ลง", [LanguageCode.FRENCH]: "ลง", [LanguageCode.PORTUGUESE]: "ลง", [LanguageCode.MANDARIN]: "ลง (下)" },
+                        { [LanguageCode.ENGLISH]: "นั่ง", [LanguageCode.FRENCH]: "นั่ง (s'asseoir)", [LanguageCode.PORTUGUESE]: "นั่ง", [LanguageCode.MANDARIN]: "นั่ง (坐)" },
                     ],
                     correctIndex: 1
                 },
                 {
                     question: { [LanguageCode.ENGLISH]: "You're in a library. What do you do with books? ผม___หนังสือ", [LanguageCode.FRENCH]: "Vous êtes dans une bibliothèque. Que faites-vous avec les livres ? ผม___หนังสือ", [LanguageCode.PORTUGUESE]: "Você está em uma biblioteca. O que você faz com livros? ผม___หนังสือ", [LanguageCode.MANDARIN]: "你在圖書館。你用書做什麼？ผม___หนังสือ" },
                     options: [
-                        { [LanguageCode.ENGLISH]: "อ่าน (read)", [LanguageCode.FRENCH]: "อ่าน (lire)", [LanguageCode.PORTUGUESE]: "อ่าน (ler)", [LanguageCode.MANDARIN]: "อ่าน (讀)" },
-                        { [LanguageCode.ENGLISH]: "ฟัง (listen)", [LanguageCode.FRENCH]: "ฟัง (écouter)", [LanguageCode.PORTUGUESE]: "ฟัง (ouvir)", [LanguageCode.MANDARIN]: "ฟัง (聽)" },
-                        { [LanguageCode.ENGLISH]: "เดิน (walk)", [LanguageCode.FRENCH]: "เดิน (marcher)", [LanguageCode.PORTUGUESE]: "เดิน (andar)", [LanguageCode.MANDARIN]: "เดิน (走)" },
+                        { [LanguageCode.ENGLISH]: "อ่าน", [LanguageCode.FRENCH]: "อ่าน", [LanguageCode.PORTUGUESE]: "อ่าน", [LanguageCode.MANDARIN]: "อ่าน (讀)" },
+                        { [LanguageCode.ENGLISH]: "ฟัง", [LanguageCode.FRENCH]: "ฟัง (écouter)", [LanguageCode.PORTUGUESE]: "ฟัง", [LanguageCode.MANDARIN]: "ฟัง (聽)" },
+                        { [LanguageCode.ENGLISH]: "เดิน", [LanguageCode.FRENCH]: "เดิน", [LanguageCode.PORTUGUESE]: "เดิน", [LanguageCode.MANDARIN]: "เดิน (走)" },
                     ],
                     correctIndex: 0
                 }

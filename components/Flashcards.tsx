@@ -50,9 +50,9 @@ export const Flashcards: React.FC<FlashcardsProps> = ({ cardSet, language, onCar
 
         const remainingUnseen = unseenDeck.slice(1);
         const updatedMistakes = isCorrect ? mistakeDeck : [...mistakeDeck, currentCard];
-        
+
         setIsFlipped(false);
-        
+
         // Use a timeout to allow the flip animation to start before the card changes
         setTimeout(() => {
             if (remainingUnseen.length > 0) {
@@ -60,7 +60,8 @@ export const Flashcards: React.FC<FlashcardsProps> = ({ cardSet, language, onCar
                 setMistakeDeck(updatedMistakes);
                 setPassCurrent(p => p + 1);
             } else if (updatedMistakes.length > 0) {
-                // No more unseen cards, but there were mistakes. Start a review pass.
+                // No more unseen cards, but there were mistakes. Start another review pass.
+                // Keep looping until all cards are answered correctly.
                 const newReviewDeck = shuffleArray(updatedMistakes);
                 setUnseenDeck(newReviewDeck);
                 setMistakeDeck([]); // Clear mistakes for the new review pass

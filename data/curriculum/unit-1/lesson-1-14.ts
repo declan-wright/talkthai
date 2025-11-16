@@ -128,36 +128,36 @@ export const lesson_1_14: Lesson = {
                 {
                     question: { [LanguageCode.ENGLISH]: "You're in a Grab and you've arrived. You say:", [LanguageCode.FRENCH]: "Vous êtes dans un Grab et vous êtes arrivé. Vous dites :", [LanguageCode.PORTUGUESE]: "Você está no Grab e chegou. Você diz:", [LanguageCode.MANDARIN]: "您在 Grab 中到達了。您說：" },
                     options: [
-                        { [LanguageCode.ENGLISH]: "หยุดที่นี่ (stop here)", [LanguageCode.FRENCH]: "หยุดที่นี่ (arrêtez ici)", [LanguageCode.PORTUGUESE]: "หยุดที่นี่ (pare aqui)", [LanguageCode.MANDARIN]: "หยุดที่นี่ (在這裡停)" },
-                        { [LanguageCode.ENGLISH]: "ไปที่นี่ (go here)", [LanguageCode.FRENCH]: "ไปที่นี่ (allez ici)", [LanguageCode.PORTUGUESE]: "ไปที่นี่ (vá aqui)", [LanguageCode.MANDARIN]: "ไปที่นี่ (去這裡)" },
-                        { [LanguageCode.ENGLISH]: "มาที่นี่ (come here)", [LanguageCode.FRENCH]: "มาที่นี่ (venez ici)", [LanguageCode.PORTUGUESE]: "มาที่นี่ (venha aqui)", [LanguageCode.MANDARIN]: "มาที่นี่ (來這裡)" },
+                        { [LanguageCode.ENGLISH]: "หยุดที่นี่", [LanguageCode.FRENCH]: "หยุดที่นี่ (arrêtez ici)", [LanguageCode.PORTUGUESE]: "หยุดที่นี่", [LanguageCode.MANDARIN]: "หยุดที่นี่ (在這裡停)" },
+                        { [LanguageCode.ENGLISH]: "ไปที่นี่", [LanguageCode.FRENCH]: "ไปที่นี่", [LanguageCode.PORTUGUESE]: "ไปที่นี่ (vá aqui)", [LanguageCode.MANDARIN]: "ไปที่นี่ (去這裡)" },
+                        { [LanguageCode.ENGLISH]: "มาที่นี่", [LanguageCode.FRENCH]: "มาที่นี่", [LanguageCode.PORTUGUESE]: "มาที่นี่", [LanguageCode.MANDARIN]: "มาที่นี่ (來這裡)" },
                     ],
                     correctIndex: 0
                 },
                 {
                     question: { [LanguageCode.ENGLISH]: "At the mall, you ask where the bathroom is. The person points upward. They say:", [LanguageCode.FRENCH]: "Au centre commercial, vous demandez où sont les toilettes. La personne pointe vers le haut. Elle dit :", [LanguageCode.PORTUGUESE]: "No shopping, você pergunta onde fica o banheiro. A pessoa aponta para cima. Ela diz:", [LanguageCode.MANDARIN]: "在商場，您問廁所在哪裡。那個人指向上方。他們說：" },
                     options: [
-                        { [LanguageCode.ENGLISH]: "อยู่ข้างล่าง (it's downstairs)", [LanguageCode.FRENCH]: "อยู่ข้างล่าง (c'est en bas)", [LanguageCode.PORTUGUESE]: "อยู่ข้างล่าง (fica no andar de baixo)", [LanguageCode.MANDARIN]: "อยู่ข้างล่าง (在樓下)" },
-                        { [LanguageCode.ENGLISH]: "อยู่ข้างบน (it's upstairs)", [LanguageCode.FRENCH]: "อยู่ข้างบน (c'est en haut)", [LanguageCode.PORTUGUESE]: "อยู่ข้างบน (fica no andar de cima)", [LanguageCode.MANDARIN]: "อยู่ข้างบน (在樓上)" },
-                        { [LanguageCode.ENGLISH]: "อยู่ข้างนอก (it's outside)", [LanguageCode.FRENCH]: "อยู่ข้างนอก (c'est dehors)", [LanguageCode.PORTUGUESE]: "อยู่ข้างนอก (fica do lado de fora)", [LanguageCode.MANDARIN]: "อยู่ข้างนอก (在外面)" },
+                        { [LanguageCode.ENGLISH]: "อยู่ข้างล่าง (it's downstairs)", [LanguageCode.FRENCH]: "อยู่ข้างล่าง (c'est en bas)", [LanguageCode.PORTUGUESE]: "อยู่ข้างล่าง", [LanguageCode.MANDARIN]: "อยู่ข้างล่าง (在樓下)" },
+                        { [LanguageCode.ENGLISH]: "อยู่ข้างบน (it's upstairs)", [LanguageCode.FRENCH]: "อยู่ข้างบน (c'est en haut)", [LanguageCode.PORTUGUESE]: "อยู่ข้างบน", [LanguageCode.MANDARIN]: "อยู่ข้างบน (在樓上)" },
+                        { [LanguageCode.ENGLISH]: "อยู่ข้างนอก (it's outside)", [LanguageCode.FRENCH]: "อยู่ข้างนอก (c'est dehors)", [LanguageCode.PORTUGUESE]: "อยู่ข้างนอก", [LanguageCode.MANDARIN]: "อยู่ข้างนอก (在外面)" },
                     ],
                     correctIndex: 1
                 },
                 {
                     question: { [LanguageCode.ENGLISH]: "The driver needs to turn right. You say:", [LanguageCode.FRENCH]: "Le chauffeur doit tourner à droite. Vous dites :", [LanguageCode.PORTUGUESE]: "O motorista precisa virar à direita. Você diz:", [LanguageCode.MANDARIN]: "司機需要右轉。您說：" },
                     options: [
-                        { [LanguageCode.ENGLISH]: "เลี้ยวซ้าย (turn left)", [LanguageCode.FRENCH]: "เลี้ยวซ้าย (tournez à gauche)", [LanguageCode.PORTUGUESE]: "เลี้ยวซ้าย (vire à esquerda)", [LanguageCode.MANDARIN]: "เลี้ยวซ้าย (左轉)" },
-                        { [LanguageCode.ENGLISH]: "เลี้ยวขวา (turn right)", [LanguageCode.FRENCH]: "เลี้ยวขวา (tournez à droite)", [LanguageCode.PORTUGUESE]: "เลี้ยวขวา (vire à direita)", [LanguageCode.MANDARIN]: "เลี้ยวขวา (右轉)" },
-                        { [LanguageCode.ENGLISH]: "ตรงไป (go straight)", [LanguageCode.FRENCH]: "ตรงไป (tout droit)", [LanguageCode.PORTUGUESE]: "ตรงไป (vá em frente)", [LanguageCode.MANDARIN]: "ตรงไป (直走)" },
+                        { [LanguageCode.ENGLISH]: "เลี้ยวซ้าย", [LanguageCode.FRENCH]: "เลี้ยวซ้าย (tournez à gauche)", [LanguageCode.PORTUGUESE]: "เลี้ยวซ้าย (vire à esquerda)", [LanguageCode.MANDARIN]: "เลี้ยวซ้าย (左轉)" },
+                        { [LanguageCode.ENGLISH]: "เลี้ยวขวา", [LanguageCode.FRENCH]: "เลี้ยวขวา (tournez à droite)", [LanguageCode.PORTUGUESE]: "เลี้ยวขวา (vire à direita)", [LanguageCode.MANDARIN]: "เลี้ยวขวา (右轉)" },
+                        { [LanguageCode.ENGLISH]: "ตรงไป", [LanguageCode.FRENCH]: "ตรงไป", [LanguageCode.PORTUGUESE]: "ตรงไป (vá em frente)", [LanguageCode.MANDARIN]: "ตรงไป (直走)" },
                     ],
                     correctIndex: 1
                 },
                 {
                     question: { [LanguageCode.ENGLISH]: "You want to ask where something is. You say:", [LanguageCode.FRENCH]: "Vous voulez demander où se trouve quelque chose. Vous dites :", [LanguageCode.PORTUGUESE]: "Você quer perguntar onde algo está. Você diz:", [LanguageCode.MANDARIN]: "您想問某物在哪裡。您說：" },
                     options: [
-                        { [LanguageCode.ENGLISH]: "อยู่ที่นี่ (is here)", [LanguageCode.FRENCH]: "อยู่ที่นี่ (est ici)", [LanguageCode.PORTUGUESE]: "อยู่ที่นี่ (está aqui)", [LanguageCode.MANDARIN]: "อยู่ที่นี่ (在這裡)" },
-                        { [LanguageCode.ENGLISH]: "อยู่ที่ไหน (where is)", [LanguageCode.FRENCH]: "อยู่ที่ไหน (où est)", [LanguageCode.PORTUGUESE]: "อยู่ที่ไหน (onde fica)", [LanguageCode.MANDARIN]: "อยู่ที่ไหน (在哪裡)" },
-                        { [LanguageCode.ENGLISH]: "อยู่ที่นั่น (is there)", [LanguageCode.FRENCH]: "อยู่ที่นั่น (est là-bas)", [LanguageCode.PORTUGUESE]: "อยู่ที่นั่น (está ali)", [LanguageCode.MANDARIN]: "อยู่ที่นั่น (在那裡)" },
+                        { [LanguageCode.ENGLISH]: "อยู่ที่นี่", [LanguageCode.FRENCH]: "อยู่ที่นี่", [LanguageCode.PORTUGUESE]: "อยู่ที่นี่ (está aqui)", [LanguageCode.MANDARIN]: "อยู่ที่นี่ (在這裡)" },
+                        { [LanguageCode.ENGLISH]: "อยู่ที่ไหน", [LanguageCode.FRENCH]: "อยู่ที่ไหน (où est)", [LanguageCode.PORTUGUESE]: "อยู่ที่ไหน", [LanguageCode.MANDARIN]: "อยู่ที่ไหน (在哪裡)" },
+                        { [LanguageCode.ENGLISH]: "อยู่ที่นั่น", [LanguageCode.FRENCH]: "อยู่ที่นั่น (est là-bas)", [LanguageCode.PORTUGUESE]: "อยู่ที่นั่น (está ali)", [LanguageCode.MANDARIN]: "อยู่ที่นั่น (在那裡)" },
                     ],
                     correctIndex: 1
                 }

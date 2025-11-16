@@ -23,6 +23,10 @@ import { lesson_1_19 } from './unit-1/lesson-1-19';
 import { lesson_1_20 } from './unit-1/lesson-1-20';
 import { lesson_1_21 } from './unit-1/lesson-1-21';
 import { lesson_2_0 } from './unit-2/lesson-2-0';
+import { lesson_2_1 } from './unit-2/lesson-2-1';
+import { lesson_2_2 } from './unit-2/lesson-2-2';
+import { lesson_2_3 } from './unit-2/lesson-2-3';
+import { lesson_2_4 } from './unit-2/lesson-2-4';
 
 export const UNITS: Unit[] = [
     {
@@ -68,6 +72,10 @@ export const UNITS: Unit[] = [
         },
         lessons: [
             lesson_2_0,
+            lesson_2_1,
+            lesson_2_2,
+            lesson_2_3,
+            lesson_2_4,
         ]
     },
     {

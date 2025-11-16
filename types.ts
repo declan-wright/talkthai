@@ -269,6 +269,9 @@ export interface UserProfile {
     testScores: Record<string, number>; // { "lessonId": score }
     testRetakes?: Record<string, boolean>; // { "lessonId": true if retake has been used }
     flashcardProgress: Record<string, Record<string, number>>; // { "lessonId": { "thai_word": streak } }
+    starredWords?: string[]; // Array of starred Thai words for focused practice
+    readingPagesViewed?: Record<string, boolean>; // { "lessonId:pageIndex": true }
+    worksheetProgress?: Record<string, Record<number, any>>; // { "lessonId": { exerciseIndex: { type, results } } }
     // Conversation Progress
     conversationPracticeCounts?: Record<string, number>; // { "topicId": count }
     conversationTotalTimeMs?: number; // total accumulated conversation time in ms

@@ -132,25 +132,25 @@ export const lesson_1_12: Lesson = {
                 {
                     question: { [LanguageCode.ENGLISH]: "What do Thai students wear to school?", [LanguageCode.FRENCH]: "Que portent les étudiants thaïlandais à l'école ?", [LanguageCode.PORTUGUESE]: "O que os estudantes tailandeses usam na escola?", [LanguageCode.MANDARIN]: "泰國學生上學穿什麼？" },
                     options: [
-                        { [LanguageCode.ENGLISH]: "ชุดนักเรียน (student uniform)", [LanguageCode.FRENCH]: "ชุดนักเรียน (uniforme scolaire)", [LanguageCode.PORTUGUESE]: "ชุดนักเรียน (uniforme escolar)", [LanguageCode.MANDARIN]: "ชุดนักเรียน（學生制服）" },
-                        { [LanguageCode.ENGLISH]: "ห้องเรียน (classroom)", [LanguageCode.FRENCH]: "ห้องเรียน (salle de classe)", [LanguageCode.PORTUGUESE]: "ห้องเรียน (sala de aula)", [LanguageCode.MANDARIN]: "ห้องเรียน（教室）" },
-                        { [LanguageCode.ENGLISH]: "ตำรา (textbook)", [LanguageCode.FRENCH]: "ตำรา (manuel)", [LanguageCode.PORTUGUESE]: "ตำรา (livro didático)", [LanguageCode.MANDARIN]: "ตำรา（教科書）" },
+                        { [LanguageCode.ENGLISH]: "ชุดนักเรียน", [LanguageCode.FRENCH]: "ชุดนักเรียน", [LanguageCode.PORTUGUESE]: "ชุดนักเรียน", [LanguageCode.MANDARIN]: "ชุดนักเรียน（學生制服）" },
+                        { [LanguageCode.ENGLISH]: "ห้องเรียน", [LanguageCode.FRENCH]: "ห้องเรียน", [LanguageCode.PORTUGUESE]: "ห้องเรียน", [LanguageCode.MANDARIN]: "ห้องเรียน（教室）" },
+                        { [LanguageCode.ENGLISH]: "ตำรา", [LanguageCode.FRENCH]: "ตำรา", [LanguageCode.PORTUGUESE]: "ตำรา (livro didático)", [LanguageCode.MANDARIN]: "ตำรา（教科書）" },
                     ],
                     correctIndex: 0
                 },
                 {
                     question: { [LanguageCode.ENGLISH]: "Where do students eat lunch at school?", [LanguageCode.FRENCH]: "Où les élèves mangent-ils le déjeuner à l'école ?", [LanguageCode.PORTUGUESE]: "Onde os alunos almoçam na escola?", [LanguageCode.MANDARIN]: "學生在學校哪裡吃午餐？" },
                     options: [
-                        { [LanguageCode.ENGLISH]: "ห้องสมุด (library)", [LanguageCode.FRENCH]: "ห้องสมุด (bibliothèque)", [LanguageCode.PORTUGUESE]: "ห้องสมุด (biblioteca)", [LanguageCode.MANDARIN]: "ห้องสมุด（圖書館）" },
-                        { [LanguageCode.ENGLISH]: "โรงอาหาร (cafeteria)", [LanguageCode.FRENCH]: "โรงอาหาร (cafétéria)", [LanguageCode.PORTUGUESE]: "โรงอาหาร (refeitório)", [LanguageCode.MANDARIN]: "โรงอาหาร（食堂）" },
-                        { [LanguageCode.ENGLISH]: "หอประชุม (assembly hall)", [LanguageCode.FRENCH]: "หอประชุม (salle de réunion)", [LanguageCode.PORTUGUESE]: "หอประชุม (salão de assembleias)", [LanguageCode.MANDARIN]: "หอประชุม（禮堂）" },
+                        { [LanguageCode.ENGLISH]: "ห้องสมุด", [LanguageCode.FRENCH]: "ห้องสมุด (bibliothèque)", [LanguageCode.PORTUGUESE]: "ห้องสมุด", [LanguageCode.MANDARIN]: "ห้องสมุด（圖書館）" },
+                        { [LanguageCode.ENGLISH]: "โรงอาหาร", [LanguageCode.FRENCH]: "โรงอาหาร (cafétéria)", [LanguageCode.PORTUGUESE]: "โรงอาหาร (refeitório)", [LanguageCode.MANDARIN]: "โรงอาหาร（食堂）" },
+                        { [LanguageCode.ENGLISH]: "หอประชุม", [LanguageCode.FRENCH]: "หอประชุม (salle de réunion)", [LanguageCode.PORTUGUESE]: "หอประชุม (salão de assembleias)", [LanguageCode.MANDARIN]: "หอประชุม（禮堂）" },
                     ],
                     correctIndex: 1
                 },
                 {
                     question: { [LanguageCode.ENGLISH]: "What is the formal/respectful word for teacher?", [LanguageCode.FRENCH]: "Quel est le mot formel/respectueux pour professeur ?", [LanguageCode.PORTUGUESE]: "Qual é a palavra formal/respeitosa para professor?", [LanguageCode.MANDARIN]: "老師的正式/尊敬詞是什麼？" },
                     options: [
-                        { [LanguageCode.ENGLISH]: "ครู (khruu)", [LanguageCode.FRENCH]: "ครู (khruu)", [LanguageCode.PORTUGUESE]: "ครู (khruu)", [LanguageCode.MANDARIN]: "ครู (khruu)" },
+                        { [LanguageCode.ENGLISH]: "ครู", [LanguageCode.FRENCH]: "ครู", [LanguageCode.PORTUGUESE]: "ครู", [LanguageCode.MANDARIN]: "ครู" },
                         { [LanguageCode.ENGLISH]: "อาจารย์ (aa-jaan)", [LanguageCode.FRENCH]: "อาจารย์ (aa-jaan)", [LanguageCode.PORTUGUESE]: "อาจารย์ (aa-jaan)", [LanguageCode.MANDARIN]: "อาจารย์ (aa-jaan)" },
                         { [LanguageCode.ENGLISH]: "นักเรียน (nák-rian)", [LanguageCode.FRENCH]: "นักเรียน (nák-rian)", [LanguageCode.PORTUGUESE]: "นักเรียน (nák-rian)", [LanguageCode.MANDARIN]: "นักเรียน (nák-rian)" },
                     ],
